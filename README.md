@@ -3,9 +3,8 @@
 ## Miembros del grupo LX-XXX-X (sustituir)
 
 1. Fernández Alcántara, Hugo
-1. Apellidos, Nombre
-1. Villarán Córcoles, Kevin
-1. Apellidos, Nombre
+2. Sánchez Carmona, Miguel Ángel
+3. Villarán Córcoles, Kevin
 
 ## 1. Introducción al problema
 
