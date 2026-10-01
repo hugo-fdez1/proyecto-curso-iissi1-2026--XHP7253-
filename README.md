@@ -8,7 +8,7 @@
 
 ## 1. Introducción al problema
 
-(Hugo lo ha hecho)
+(Hugo lo ha hecho) k
 
 
 ## 2. Glosario de términos
