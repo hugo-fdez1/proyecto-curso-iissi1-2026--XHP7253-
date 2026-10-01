@@ -1,6 +1,6 @@
 # Título Proyecto
 
-## Miembros del grupo LX-XXX-X (sustituir)
+## Miembros del grupo L1-DF-7
 
 1. Fernández Alcántara, Hugo
 2. Sánchez Carmona, Miguel Ángel
@@ -10,9 +10,17 @@
 
 - Descripción del problema para poner en contexto el proyecto, incluyendo información sobre los clientes y usuarios, la situación actual, problemas, expectativas, etc. Se valorará la presencia de información multimedia (fotos, gráficos, documentos escaneados, etc.).
 
+
+
+
+
+
 ## 2. Glosario de términos
 
 - Términos específicos del dominio del problema, ordenados alfabéticamente. Se valorará la presencia de información multimedia.
+
+
+
 
 ## 3. Visión general del sistema
 
