@@ -20,6 +20,22 @@
 - Términos específicos del dominio del problema, ordenados alfabéticamente. Se valorará la presencia de información multimedia.
 
 
+Alineacion,
+Clausula,
+Equipo,
+Jornada,
+Jugador,
+Liga,
+Mercado,
+Plantilla,
+Posicion,
+Puntos,
+Valor.
+
+
+
+
+
 
 
 ## 3. Visión general del sistema
