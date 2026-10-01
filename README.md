@@ -29,11 +29,6 @@ Puntos,
 Valor.
 
 
-
-
-
-
-
 ## 3. Visión general del sistema
 
 ### 3.1. Requisitos generales
