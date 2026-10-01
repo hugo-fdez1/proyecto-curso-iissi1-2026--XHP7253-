@@ -8,7 +8,7 @@
 
 ## 1. Introducción al problema
 
-(Huego lo ha hecho)
+(Hugo lo ha hecho)
 
 
 ## 2. Glosario de términos
