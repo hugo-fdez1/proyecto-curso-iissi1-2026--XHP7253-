@@ -8,11 +8,7 @@
 
 ## 1. Introducción al problema
 
-- Descripción del problema para poner en contexto el proyecto, incluyendo información sobre los clientes y usuarios, la situación actual, problemas, expectativas, etc. Se valorará la presencia de información multimedia (fotos, gráficos, documentos escaneados, etc.).
-
-
-
-
+(Huego lo ha hecho)
 
 
 ## 2. Glosario de términos
