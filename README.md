@@ -8,9 +8,9 @@
 
 ## 1. Introducción al problema
 
-- Descripción del problema para poner en contexto el proyecto, incluyendo información sobre los clientes y usuarios, la situación actual, problemas, expectativas, etc. Se valorará la presencia de información multimedia (fotos, gráficos, documentos escaneados, etc.).
+- Nos han pedido una aplicacion estilo "Fantasy" inspirada en LaLiga, es decir, una aplicación en la que un grupo de personas formen una liga en la que se le asigna un equipo inicial y se le da un presupuesto. Ese presupuesto se puede gastar en un mercado donde puedes poner en venta jugadores y cada día salen unos jugadores que puedes fichar. Además, existe la posibilidad de pagar la clausula de rescisión de un jugador de otro equipo para que instantáneamente se una a tu equipo.
 
-ggg
+
 
 
 
