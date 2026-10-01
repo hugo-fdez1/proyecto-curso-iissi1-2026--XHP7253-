@@ -13,9 +13,6 @@
 
 ## 2. Glosario de términos
 
-- Términos específicos del dominio del problema, ordenados alfabéticamente. Se valorará la presencia de información multimedia.
-
-
 Alineacion,
 Clausula,
 Equipo,
