@@ -13,16 +13,27 @@
 
 ## 2. Glosario de términos
 -Alineación:  Las distintas maneras en las que los jugadores pueden distribuirse por el campo.
+
 -Clausula: El valor por el que puedes comprar directamente a los jugadores de otro equipo sin llegar a un acuerdo con su propietario.
+
 -Clasificación: La posición de un equipo dependiendo de los puntos que ha sumado a lo largo de las jornadas.
+
 -Equipo: Los jugadores que tiene un usuario en plantilla.
+
 -Jornada: Los distintos partidos que se juegan entre los equipos alrededor de una misma fecha.
+
 -Jugador: Futbolista propiedad de uno de los participantes de la liga o de la propia liga y que suma una serie de puntos dependiendo de su actuación.
+
 -Liga: La competición en la que juegan los distintos participantes.
+
 -Mercado: Portal en el que se compra y vende jugadores. Se actualiza cada día con jugadores nuevos propiedad del mercado.
+
 -Plantilla: Conjunto de jugadores en propiedad de un usuario.
+
 -Posición: Lugar en el campo donde el jugador suele encontrarse. (Portero, defensa, centrocampista, delantero) 
+
 -Puntos: Número asignado a cada jugador al finalizar una jornada según su actuación.
+
 -Valor: Dinero que cuesta en el mercado un jugador.
 
 
