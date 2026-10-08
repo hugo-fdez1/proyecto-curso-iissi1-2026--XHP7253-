@@ -8,26 +8,26 @@
 
 ## 1. Introducción al problema
 
-- Nos han pedido una aplicacion estilo "Fantasy" inspirada en LaLiga, es decir, una aplicación en la que un grupo de personas formen una liga en la que se le asigna un equipo inicial y se le da un presupuesto. Ese presupuesto se puede gastar en un mercado donde puedes poner en venta jugadores y cada día salen unos jugadores que puedes fichar. Además, existe la posibilidad de pagar la clausula de rescisión de un jugador de otro equipo para que instantáneamente se una a tu equipo.
-
-
-
-
-
+- Nos han pedido una aplicación estilo "Fantasy" inspirada en LaLiga. En esta aplicación, un grupo de personas forman una liga en la que a cada usuario se le asigna un equipo inicial y se le da un presupuesto. Ese presupuesto se puede gastar en un mercado donde puedes comprar y vender jugadores y cada día salen unos jugadores nuevos que puedes fichar. Además, existe la posibilidad de pagar la clausula de rescisión de un jugador de otro equipo para que instantáneamente se una a tu equipo. Al final de cada jornada, según la actuación de cada jugador del equipo, el usuario gana (o pierde) una serie de puntos.  
+Actualmente, la aplicación se enfrenta a varios problemas: el mercado lo gestiona un administrador a mano, así como los puntos que hace cada jugador, también es necesario trabajar en la base de datos. Se espera que arreglemos estos problemas y consigamos una aplicación funcional. Una vez discutido el problema y tras haber realizado varias entrevistas con el cliente, hemos realizado este borrador. 
 
 ## 2. Glosario de términos
-
 - Términos específicos del dominio del problema, ordenados alfabéticamente. Se valorará la presencia de información multimedia.
 
 
 
 
 ## 3. Visión general del sistema
-
 ### 3.1. Requisitos generales
+R.G.01. Gestión de equipos
+  Como administrador de la aplicación
+  Quiero gestionar los equipos
+  Para 
 
 ### 3.2. Usuarios del sistema
-
+Se contemplan tres tipos de usuarios:
+- Creador de liga: Crea la liga y gestiona las distintas opciones en relación a los distintos participantes de la liga (e.g. echar a los jugadores de la liga, darle permisos especiales). El creador es a su vez un participante más 
+- Participante: Ficha jugadores y cons
 ## 4. Catálogo de requisitos
 
 ### 4.1. Requisitos funcionales
