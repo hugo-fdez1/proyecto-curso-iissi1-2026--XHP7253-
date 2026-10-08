@@ -26,8 +26,9 @@ R.G.01. Gestión de equipos
 
 ### 3.2. Usuarios del sistema
 Se contemplan tres tipos de usuarios:
-- Creador de liga: Crea la liga y gestiona las distintas opciones en relación a los distintos participantes de la liga (e.g. echar a los jugadores de la liga, darle permisos especiales). El creador es a su vez un participante más 
-- Participante: Ficha jugadores y cons
+- Administrador: No es un participante. Gestiona la aplicación para que no tenga problemas. 
+- Creador de liga: Crea la liga y gestiona las distintas opciones en relación a la liga y sus participantes (e.g. echar a los jugadores de la liga, establecer un presupuesto inicial). El creador es a su vez un participante más .
+- Participante: Ficha jugadores y construye su equipo, gana una serie de puntos en función de la actuación de sus jugadores alineados. 
 ## 4. Catálogo de requisitos
 
 ### 4.1. Requisitos funcionales
