@@ -116,9 +116,17 @@ para seguir el rendimiento del equipo.
 
 #### 4.1.2. Reglas de negocio
 
-##### R.N.01. Título regla negocio
+##### R.N.01. Jugador compartido
 
-Descripción de la regla de negocio.
+Un jugador no puede pertenecer a dos equipos diferentes en una misma liga.
+
+##### R.N.02. Varios equipos, un mismo manager
+
+Un manager no puede tener dos (o más) equipos en una misma liga.
+
+##### R.N.03. Bloqueo de cláusulas previo a la jornada
+
+Un mánager no puede fichar a un jugador de algún rival mediante cláusula durante las 24 horas antes de empezar la jornada.
 
 ### 4.2. Mapa de historias de usuario (opcional)
 
