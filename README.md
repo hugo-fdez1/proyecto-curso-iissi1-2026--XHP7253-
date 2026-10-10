@@ -25,28 +25,43 @@ Figura 1
 ## 3. Visión general del sistema
 ### 3.1. Requisitos generales
 - R.G.01. Gestión de la automatización de la liga
+  
   Como administrador,
+
   Quiero que el sistema automatice la gestión y las operaciones de la liga,
+
   Para reducir la carga de trabajo de los administradores.
 
 - R.G.02. Gestión de roles
+
   Como administrador,
+
   Quiero que se diferencie entre permisos de usuario, administrador y creador de una liga, 
+
   Para controlar qué funciones puede hacer cada usuario.
 
 - R.G.03. Gestión de las diferentes ligas
+
   Como administrador,
+
   Quiero gestionar distintas ligas de manera aislada,
+
   Para que distintos usuarios puedan jugar entre sí y tener varias competiciones sin interferencias entre sí.
 
 - R.G.04. Gestión de la visibilidad
+
   Como usuario / administrador,
+
   Quiero poder ver la clasificación actual e histórica, estadísticas, perfiles de jugadores,
+
   Para aprender sobre cómo va la competición en cualquier momento.
 
 - R.G.05. Gestión del acceso multiplataforma
+
   Como usuario / administrador,
+
   Quiero que la aplicación sea accesible desde navegadores web y dispositivos móviles,
+
   Para aumentar el número de usuarios lo máximo posible.
 
 ### 3.2. Usuarios del sistema
