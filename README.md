@@ -61,16 +61,58 @@ para [razón]
 
 #### 4.1.1. Requisitos de información
 
-##### R.I.01. Título requisito de información
+##### R.I.01. Consultar el perfil y estadísticas de un jugador
 
-Como [tipo de usuario]
-quiero [servicio]
-para [razón]
+Como mánager de una liga
+quiero visualizar todos los datos del jugador (puntos totales, media de puntos, valor de mercado)
+para evaluar si conviene ficharlo para el equipo o no.
 
 **Prueba de aceptación**
-- Descripción de la primera comprobación a realizar
-- Descripción de la segunda comprobación a realizar
-- ...
+- Verificar que aparece una gráfica que refleje cómo ha ido evolucionando su valor en el mercado en los últimos 30 días.
+- Comprobar que se muestre los puntos obtenidos por el jugador en cada jornada.
+- Asegurar que sea visible el estado fisico del jugador para los partidos (disponible, dudoso, lesionado o sancionado).
+
+#### R.I.02. Mostrar la actividad del mercado
+
+Como mánager de una liga
+quiero consultar un mural de actividad
+para estar informado acerca de los movimientos de fichaje y venta de jugadores de mis rivales.
+
+**Prueba de aceptación**
+- Comprobar que aparece el nombre del mánager que ha hecho el movimiento, el jugador y el precio.
+- Verificar que los eventos son ordenados cronológicamente, mostrando la fecha y hora exacta.
+- Probar que el dinero pujado por el mánager hacia un jugador no se muestre hasta el cierre del mercado diario (referencia a R.F.01).
+
+#### R.I.03. Visualizar la clasificación de la liga
+
+Como mánager de una liga
+quiero observar la tabla de clasificación
+para conocer mi posición respecto a las de mis rivales.
+
+**Prueba de aceptación**
+- Revisar que muestre los nombres de los mánagers, los puntos totales y el número que indica la posición en la tabla.
+- Verificar que las posiciones están ordenadas automáticamente de forma descendente, donde el que más puntos tenga es el que va primero.
+- En caso de que dos managers estén empatados, muestre por delante al mánager cuyo equipo tenga más valor.
+
+#### R.I.04. Consultar el balance financiero y movimientos de la cuenta
+
+Como mánager de una liga
+quiero acceder a un registro histórico de mis movimientos económicos
+para llevar un control de mi presupuesto y evitar saldos negativos.
+
+**Prueba de aceptación**
+- Verificar que aparece por cada movimiento la fecha, un concepto (por ejemplo: "Has fichado a [Jugador]", "Has subido la cláusula de [Jugador]", "En la jornada x has ganado:") y el importe.
+- Comprobar que, al realizar una puja, se muestre el presupuesto final de la resta del presupuesto inicial menos el dinero pujado y esa misma resta.
+
+#### R.I.05. Visualizar los puntos de la jornada en directo
+
+Como mánager de una liga
+quiero observar en directo cómo se van actualizando los puntos que están consiguiendo mis jugadores titulares
+para seguir el rendimiento del equipo.
+
+**Prueba de aceptación**
+- Validar que cada jugador titular muestre los puntos que lleva generados hasta el momento y que los puntos del equipo sea la suma de estos.
+- Comprobar que el jugador designado como capitán se muestre ya con la puntuación multiplicada por 2.
 
 #### 4.1.2. Reglas de negocio
 
