@@ -8,7 +8,12 @@
 
 ## 1. Introducción al problema
 
-- Descripción del problema para poner en contexto el proyecto, incluyendo información sobre los clientes y usuarios, la situación actual, problemas, expectativas, etc. Se valorará la presencia de información multimedia (fotos, gráficos, documentos escaneados, etc.).
+- Nos han pedido una aplicación estilo "Fantasy" inspirada en LaLiga. En esta aplicación, un grupo de personas forman una liga en la que a cada usuario se le asigna un equipo inicial y se le da un presupuesto. Ese presupuesto se puede gastar en un mercado donde puedes comprar y vender jugadores y cada día salen unos jugadores nuevos que puedes fichar. Al final de cada jornada, según la actuación de cada jugador del equipo, el usuario gana (o pierde) una serie de puntos, coronándose un ganador de la liga al finalizar todas las jornadas.  
+Actualmente, este formato se encuentra con varios problemas: muchos periódicos crean estas ligas "fantasy" (ver Figura 1), pero la inscripción y seguimiento son complejos, al tener que estar pendiente del periódico cada jornada, lo que supone un gasto importante además del propio gasto que conlleva la inscripción a la liga y la manera de gestionar el equipo (Ej. por teléfono, por correo); además de las ligas de los periódicos, existen ligas "entre amigos", mucho más casuales, pero con el inconveniente de que mínimo una persona debe gestionar toda la liga, es decir, gestionar los fichajes, el "Draft" (si se hace), el seguimiento de cada equipo y sus respectivos puntos, etc. Se espera que tomemos este formato y lo hagamos mucho más accesible, automatizando todos los problemas anteriormente mencionados para depender menos de una persona (o revista) que gestione la liga, implementando una base de datos con datos acerca de distintos puntos de la aplicación para facilitar el proceso.
+Una vez discutido el problema y tras haber realizado varias entrevistas con el cliente, hemos realizado este borrador.
+
+<img width="387" height="516" alt="image" src="https://github.com/user-attachments/assets/46e932d3-bf2f-41e9-b330-fd8260d4c7a0" />
+Figura 1
 
 
 
@@ -17,17 +22,80 @@
 
 ## 2. Glosario de términos
 
-- Términos específicos del dominio del problema, ordenados alfabéticamente. Se valorará la presencia de información multimedia.
+-Alineación: Las distintas maneras en las que los jugadores pueden distribuirse por el campo.
 
+-Clausula: El valor por el que puedes comprar directamente a los jugadores de otro equipo sin llegar a un acuerdo con su propietario.
+
+-Clasificación: La posición de un equipo dependiendo de los puntos que ha sumado a lo largo de las jornadas.
+
+-Equipo: Los jugadores que tiene un usuario en plantilla.
+
+-Jornada: Los distintos partidos que se juegan entre los equipos alrededor de una misma fecha.
+
+-Jugador: Futbolista propiedad de uno de los participantes de la liga o de la propia liga y que suma una serie de puntos dependiendo de su actuación.
+
+-Liga: La competición en la que juegan los distintos participantes.
+
+-Mercado: Portal en el que se compra y vende jugadores. Se actualiza cada día con jugadores nuevos propiedad del mercado.
+
+-Plantilla: Conjunto de jugadores en propiedad de un usuario.
+
+-Posición: Lugar en el campo donde el jugador suele encontrarse. (Portero, defensa, centrocampista, delantero)
+
+-Puntos: Número asignado a cada jugador al finalizar una jornada según su actuación.
+
+-Valor: Dinero que cuesta en el mercado un jugador.
 
 
 
 ## 3. Visión general del sistema
 
 ### 3.1. Requisitos generales
+- R.G.01. Gestión de la automatización de la liga
+  
+  Como administrador,
+
+  Quiero que el sistema automatice la gestión y las operaciones de la liga,
+
+  Para reducir la carga de trabajo de los administradores.
+
+- R.G.02. Gestión de roles
+
+  Como administrador,
+
+  Quiero que se diferencie entre permisos de usuario, administrador y creador de una liga, 
+
+  Para controlar qué funciones puede hacer cada usuario.
+
+- R.G.03. Gestión de las diferentes ligas
+
+  Como administrador,
+
+  Quiero gestionar distintas ligas de manera aislada,
+
+  Para que distintos usuarios puedan jugar entre sí y tener varias competiciones sin interferencias entre sí.
+
+- R.G.04. Gestión de la visibilidad
+
+  Como usuario / administrador,
+
+  Quiero poder ver la clasificación actual e histórica, estadísticas, perfiles de jugadores,
+
+  Para aprender sobre cómo va la competición en cualquier momento.
+
+- R.G.05. Gestión del acceso multiplataforma
+
+  Como usuario / administrador,
+
+  Quiero que la aplicación sea accesible desde navegadores web y dispositivos móviles,
+
+  Para aumentar el número de usuarios lo máximo posible.
 
 ### 3.2. Usuarios del sistema
-
+Se contemplan tres tipos de usuarios:
+- Administrador: No es un participante. Gestiona la aplicación para que no tenga problemas. 
+- Creador de liga: Crea la liga y gestiona las distintas opciones en relación a la liga y sus participantes (e.g. echar a los jugadores de la liga, establecer un presupuesto inicial). El creador es a su vez un participante más .
+- Participante: Ficha jugadores y construye su equipo, gana una serie de puntos en función de la actuación de sus jugadores alineados. 
 ## 4. Catálogo de requisitos
 
 ### 4.1. Requisitos funcionales
@@ -123,34 +191,91 @@ Prueba de aceptación
 -Se debe aplicar la regla de negocio R.N.02 (Un mismo usuario no puede estar inscrito en más de 10 ligas en paralelo).
 #### 4.1.1. Requisitos de información
 
-##### R.I.01. Título requisito de información
+##### R.I.01. Consultar el perfil y estadísticas de un jugador
 
-Como [tipo de usuario]
-quiero [servicio]
-para [razón]
+Como mánager de una liga
+quiero visualizar todos los datos del jugador (puntos totales, media de puntos, valor de mercado)
+para evaluar si conviene ficharlo para el equipo o no.
 
 **Prueba de aceptación**
-- Descripción de la primera comprobación a realizar
-- Descripción de la segunda comprobación a realizar
-- ...
+- Verificar que aparece una gráfica que refleje cómo ha ido evolucionando su valor en el mercado en los últimos 30 días.
+- Comprobar que se muestre los puntos obtenidos por el jugador en cada jornada.
+- Asegurar que sea visible el estado fisico del jugador para los partidos (disponible, dudoso, lesionado o sancionado).
+
+#### R.I.02. Mostrar la actividad del mercado
+
+Como mánager de una liga
+quiero consultar un mural de actividad
+para estar informado acerca de los movimientos de fichaje y venta de jugadores de mis rivales.
+
+**Prueba de aceptación**
+- Comprobar que aparece el nombre del mánager que ha hecho el movimiento, el jugador y el precio.
+- Verificar que los eventos son ordenados cronológicamente, mostrando la fecha y hora exacta.
+- Probar que el dinero pujado por el mánager hacia un jugador no se muestre hasta el cierre del mercado diario (referencia a R.F.01).
+
+#### R.I.03. Visualizar la clasificación de la liga
+
+Como mánager de una liga
+quiero observar la tabla de clasificación
+para conocer mi posición respecto a las de mis rivales.
+
+**Prueba de aceptación**
+- Revisar que muestre los nombres de los mánagers, los puntos totales y el número que indica la posición en la tabla.
+- Verificar que las posiciones están ordenadas automáticamente de forma descendente, donde el que más puntos tenga es el que va primero.
+- En caso de que dos managers estén empatados, muestre por delante al mánager cuyo equipo tenga más valor.
+
+#### R.I.04. Consultar el balance financiero y movimientos de la cuenta
+
+Como mánager de una liga
+quiero acceder a un registro histórico de mis movimientos económicos
+para llevar un control de mi presupuesto y evitar saldos negativos.
+
+**Prueba de aceptación**
+- Verificar que aparece por cada movimiento la fecha, un concepto (por ejemplo: "Has fichado a [Jugador]", "Has subido la cláusula de [Jugador]", "En la jornada x has ganado:") y el importe.
+- Comprobar que, al realizar una puja, se muestre el presupuesto final de la resta del presupuesto inicial menos el dinero pujado y esa misma resta.
+
+#### R.I.05. Visualizar los puntos de la jornada en directo
+
+Como mánager de una liga
+quiero observar en directo cómo se van actualizando los puntos que están consiguiendo mis jugadores titulares
+para seguir el rendimiento del equipo.
+
+**Prueba de aceptación**
+- Validar que cada jugador titular muestre los puntos que lleva generados hasta el momento y que los puntos del equipo sea la suma de estos.
+- Comprobar que el jugador designado como capitán se muestre ya con la puntuación multiplicada por 2.
 
 #### 4.1.2. Reglas de negocio
 
-Regla de negocio R.N.01 : El dinero de la puja activa se retiene temporalmente del presupuesto disponible del usuario.
+#### R.N.01 
+ El dinero de la puja activa se retiene temporalmente del presupuesto disponible del usuario.
 
-Regla de negocio R.N.02 : Si el saldo total del mánager es negativo al inicio de la jornada, la alineación puntúa 0.
+#### R.N.02  
+Si el saldo total del mánager es negativo al inicio de la jornada, la alineación puntúa 0.
 
-Regla de negocio R.N.03 : Un jugador recién fichado mediante cláusula no puede ser clausulado de nuevo durante 14 días.
+####  R.N.03 
+ Un jugador recién fichado mediante cláusula no puede ser clausulado de nuevo durante 14 días.
 
-Regla de negocio R.N.04 : El sistema del mercado emitirá siempre una oferta automática basada en el valor de mercado actual dentro de las primeras 24 horas.
+####  R.N.04  
+El sistema del mercado emitirá siempre una oferta automática basada en el valor de mercado actual dentro de las primeras 24 horas.
 
-Regla de negocio R.N.05 : Si el capitán seleccionado recibe puntos negativos, la penalización también se multiplicará por 2.
+#### R.N.05  
+Si el capitán seleccionado recibe puntos negativos, la penalización también se multiplicará por 2.
 
-Regla de negocio R.N.06 : Un mismo usuario no puede estar inscrito en más de 10 ligas en paralelo.
+####  R.N.06 
+Un mismo usuario no puede estar inscrito en más de 10 ligas en paralelo.
 
-##### R.N.01. Título regla negocio
+##### R.N.07. Jugador compartido
 
-Descripción de la regla de negocio.
+Un jugador no puede pertenecer a dos equipos diferentes en una misma liga.
+
+##### R.N.08. Varios equipos, un mismo manager
+
+Un manager no puede tener dos (o más) equipos en una misma liga.
+
+##### R.N.09. Bloqueo de cláusulas previo a la jornada
+
+Un mánager no puede fichar a un jugador de algún rival mediante cláusula durante las 24 horas antes de empezar la jornada.
+
 
 ### 4.2. Mapa de historias de usuario (opcional)
 
