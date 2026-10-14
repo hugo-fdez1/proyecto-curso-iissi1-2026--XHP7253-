@@ -108,11 +108,44 @@ Descripción de la regla de negocio.
 
 ### 4.3. Requisitos no funcionales (opcional)
 
-**R.N.F. 01. Título requisito no funcional**
-Como [tipo de usuario]
-quiero [servicio]
-para [razón]
+**R.N.F. 01. Actualización de la alineación**
+Como usuario,
 
+quiero que las alineaciones se actualicen casi inmediatamente al cambiar un jugador del once,
+
+para poder cambiar mi estrategia por jornada sin mayor complicación ni retraso.
+
+
+**R.N.F. 02. Disponibilidad de la base de datos**
+Como usuario / administrado,
+
+quiero que la base de datos esté operativa casi siempre, especialmente durante las jornadas,
+
+para que el usuario pueda gestionar sus ligas y sus equipos en todo momento.
+
+
+**R.N.F. 03. Actualización de los datos**
+Como administrador / usuario,
+
+quiero que los datos se actualicen en un plazo máximo de unos cinco minutos tras terminar un partido,
+
+para observar cómo van evolucionando las estadísticas según los partidos jugados.
+
+
+**R.N.F. 04. Actualización del mercado**
+Como usuario,
+
+quiero que el mecanismo de actualización del mercado termine su trabajo en un plazo máximo de unos minutos tras la hora de cambio del mercado (normalmente las 21:00),
+
+para que el usuario pueda inmediatamente seguir con la planificación de su equipo.
+
+
+**R.N.F. 05. Interfaz**
+Como administrador / usuario,
+
+quiero que la interfaz sea intuitiva,
+
+para que los nuevos jugadores no tengan problemas en empezar a jugar.
 -- fin entregable 1 --
 
 ## 5. Modelo conceptual
