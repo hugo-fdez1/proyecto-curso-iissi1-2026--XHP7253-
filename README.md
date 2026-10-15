@@ -39,6 +39,7 @@ Se contemplan tres tipos de usuarios:
   Para controlar el acceso y los permisos de cada usuario.
 
 
+
 **R.G.02. Gestión de la liga**
   
   Como creador de la liga,
@@ -46,6 +47,7 @@ Se contemplan tres tipos de usuarios:
   Quiero poder gestionar la liga,
 
   Para el buen funcionamiento de la competición.
+
 
 
   **R.G.03. Gestión del equipo**
@@ -57,6 +59,7 @@ Se contemplan tres tipos de usuarios:
   Para poder competir en la liga adecuadamente.
 
 
+
   **R.G.04. Gestión de los jugadores**
   
   Como participante / administrador,
@@ -64,6 +67,7 @@ Se contemplan tres tipos de usuarios:
   Quiero poder gestionar los jugadores,
 
   Para el buen funcionamiento de las estadísticas y transacciones.
+
 
   
   **R.G.05. Gestión de la jornada**
@@ -74,6 +78,7 @@ Se contemplan tres tipos de usuarios:
 
   Para organizar fácilmente el calendario de partidos.
 
+
   
   **R.G.06. Gestión de la puntuación**
   
@@ -83,6 +88,7 @@ Se contemplan tres tipos de usuarios:
 
   Para el buen funcionamiento de la clasificación.
 
+
   
   **R.G.07. Gestión de las transacciones**
   
@@ -91,6 +97,8 @@ Se contemplan tres tipos de usuarios:
   Quiero poder gestionar las transacciones,
 
   Para facilitar la compraventa de jugadores.
+
+
 
   **R.G.08. Gestión de las alineaciones**
   
