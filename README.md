@@ -23,52 +23,83 @@ Figura 1
 
 
 ## 3. Visión general del sistema
-### 3.1. Requisitos generales
-- R.G.01. Gestión de la automatización de la liga
-  
-  Como administrador,
-
-  Quiero que el sistema automatice la gestión y las operaciones de la liga,
-
-  Para reducir la carga de trabajo de los administradores.
-
-- R.G.02. Gestión de roles
-
-  Como administrador,
-
-  Quiero que se diferencie entre permisos de usuario, administrador y creador de una liga, 
-
-  Para controlar qué funciones puede hacer cada usuario.
-
-- R.G.03. Gestión de las diferentes ligas
-
-  Como administrador,
-
-  Quiero gestionar distintas ligas de manera aislada,
-
-  Para que distintos usuarios puedan jugar entre sí y tener varias competiciones sin interferencias entre sí.
-
-- R.G.04. Gestión de la visibilidad
-
-  Como usuario / administrador,
-
-  Quiero poder ver la clasificación actual e histórica, estadísticas, perfiles de jugadores,
-
-  Para aprender sobre cómo va la competición en cualquier momento.
-
-- R.G.05. Gestión del acceso multiplataforma
-
-  Como usuario / administrador,
-
-  Quiero que la aplicación sea accesible desde navegadores web y dispositivos móviles,
-
-  Para aumentar el número de usuarios lo máximo posible.
-
-### 3.2. Usuarios del sistema
+### 3.1. Usuarios del sistema
 Se contemplan tres tipos de usuarios:
 - Administrador: No es un participante. Gestiona la aplicación para que no tenga problemas. 
 - Creador de liga: Crea la liga y gestiona las distintas opciones en relación a la liga y sus participantes (e.g. echar a los jugadores de la liga, establecer un presupuesto inicial). El creador es a su vez un participante más .
-- Participante: Ficha jugadores y construye su equipo, gana una serie de puntos en función de la actuación de sus jugadores alineados. 
+- Participante: Ficha jugadores y construye su equipo, gana una serie de puntos en función de la actuación de sus jugadores alineados.
+
+### 3.2. Requisitos generales
+ **R.G.01. Gestión de los usuarios**
+  
+  Como administrador,
+
+  Quiero poder gestionar los distintos usuarios,
+
+  Para controlar el acceso y los permisos de cada usuario.
+
+
+**R.G.02. Gestión de la liga**
+  
+  Como creador de la liga,
+
+  Quiero poder gestionar la liga,
+
+  Para el buen funcionamiento de la competición.
+
+
+  **R.G.03. Gestión del equipo**
+  
+  Como participante,
+
+  Quiero poder gestionar el equipo,
+
+  Para poder competir en la liga adecuadamente.
+
+
+  **R.G.04. Gestión de los jugadores**
+  
+  Como participante / administrador,
+
+  Quiero poder gestionar los jugadores,
+
+  Para el buen funcionamiento de las estadísticas y transacciones.
+
+  
+  **R.G.05. Gestión de la jornada**
+  
+  Como administrador,
+
+  Quiero poder gestionar la jornada,
+
+  Para organizar fácilmente el calendario de partidos.
+
+  
+  **R.G.06. Gestión de la puntuación**
+  
+  Como administrador,
+
+  Quiero poder gestionar la puntuación,
+
+  Para el buen funcionamiento de la clasificación.
+
+  
+  **R.G.07. Gestión de las transacciones**
+  
+  Como participante / administrador,
+
+  Quiero poder gestionar las transacciones,
+
+  Para facilitar la compraventa de jugadores.
+
+  **R.G.08. Gestión de las alineaciones**
+  
+  Como participante,
+
+  Quiero poder gestionar las alineaciones,
+
+  Para hacer un buen uso de los jugadores cada jornada.
+
 ## 4. Catálogo de requisitos
 
 ### 4.1. Requisitos funcionales
