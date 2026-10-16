@@ -214,58 +214,137 @@ Prueba de aceptación
 -Se debe aplicar la regla de negocio R.N.02 (Un mismo usuario no puede estar inscrito en más de 10 ligas en paralelo).
 #### 4.1.1. Requisitos de información
 
-##### R.I.01. Consultar el perfil y estadísticas de un jugador
+##### R.I.01. Información de usuario
 
 Como mánager de una liga
-quiero visualizar todos los datos del jugador (puntos totales, media de puntos, valor de mercado)
-para evaluar si conviene ficharlo para el equipo o no.
 
-**Prueba de aceptación**
-- Verificar que aparece una gráfica que refleje cómo ha ido evolucionando su valor en el mercado en los últimos 30 días.
-- Comprobar que se muestre los puntos obtenidos por el jugador en cada jornada.
-- Asegurar que sea visible el estado fisico del jugador para los partidos (disponible, dudoso, lesionado o sancionado).
+quiero poder almacenar la siguiente información de Usuario:
+- El correo que esa persona va a emplear para registrarse.
+- La contraseña.
+- El nombre que se asigna dentro de la aplicación.
 
-#### R.I.02. Mostrar la actividad del mercado
+para identificar a los usuarios en la plataforma y permitir su autentificación.
 
-Como mánager de una liga
-quiero consultar un mural de actividad
-para estar informado acerca de los movimientos de fichaje y venta de jugadores de mis rivales.
+De esta clase Usuario derivan dos subclases:
+- Administrador: usuario que tiene la capacidad de gestionar ligas.
+- Participante: usuario que interactua con las ligas y cuenta con atributo propio:
+  - El presupuesto inicial.
 
-**Prueba de aceptación**
-- Comprobar que aparece el nombre del mánager que ha hecho el movimiento, el jugador y el precio.
-- Verificar que los eventos son ordenados cronológicamente, mostrando la fecha y hora exacta.
-- Probar que el dinero pujado por el mánager hacia un jugador no se muestre hasta el cierre del mercado diario (referencia a R.F.01).
+Y estas subclases se asocian de la siguiente forma:
+- Un Administrador puede gestionar una o varias Ligas a nivel global.
+- Un participante puede crear una o varias Ligas.  Además, el participante puede poseer uno o varios Equipos.
 
-#### R.I.03. Visualizar la clasificación de la liga
+##### R.I.02. Información de la liga
 
 Como mánager de una liga
-quiero observar la tabla de clasificación
-para conocer mi posición respecto a las de mis rivales.
 
-**Prueba de aceptación**
-- Revisar que muestre los nombres de los mánagers, los puntos totales y el número que indica la posición en la tabla.
-- Verificar que las posiciones están ordenadas automáticamente de forma descendente, donde el que más puntos tenga es el que va primero.
-- En caso de que dos managers estén empatados, muestre por delante al mánager cuyo equipo tenga más valor.
+quiero poder almacenar la siguiente información de la Liga:
+- El nombre de esa liga.
+- El código para unirse y participar.
 
-#### R.I.04. Consultar el balance financiero y movimientos de la cuenta
+para identificar de forma única la competición y permitir que los participantes se unan mediante un código privado.
 
-Como mánager de una liga
-quiero acceder a un registro histórico de mis movimientos económicos
-para llevar un control de mi presupuesto y evitar saldos negativos.
+Esta entidad Liga se asocia de la siguiente forma:
+- Una Liga gestionada por un solo Administrador.
+- Una Liga es creada por un único participante.
+- Una Liga se compone obligatoriamente de uno a muchos Equipos.
+- Una Liga está compuesta por una a muchas Jornadas.
 
-**Prueba de aceptación**
-- Verificar que aparece por cada movimiento la fecha, un concepto (por ejemplo: "Has fichado a [Jugador]", "Has subido la cláusula de [Jugador]", "En la jornada x has ganado:") y el importe.
-- Comprobar que, al realizar una puja, se muestre el presupuesto final de la resta del presupuesto inicial menos el dinero pujado y esa misma resta.
-
-#### R.I.05. Visualizar los puntos de la jornada en directo
+##### R.I.03. Información del equipo
 
 Como mánager de una liga
-quiero observar en directo cómo se van actualizando los puntos que están consiguiendo mis jugadores titulares
-para seguir el rendimiento del equipo.
 
-**Prueba de aceptación**
-- Validar que cada jugador titular muestre los puntos que lleva generados hasta el momento y que los puntos del equipo sea la suma de estos.
-- Comprobar que el jugador designado como capitán se muestre ya con la puntuación multiplicada por 2.
+quiero poder almacenar la siguiente información sobre el Equipo:
+- Los puntos totales (calculado mediante la suma de todos los puntos de la Alineación en cada Jornada).
+- El valor del equipo (calculado mediante la suma del valor de cada Jugador en el equipo).
+
+para saber cómo va el equipo en la clasificación general.
+
+Esta entidad Equipo se asocia de la siguiente forma:
+- Varios Equipo pertence a un solo participante (cumpliendo siempre la R.N.08).
+- Uno o varios Equipos pertenecen a una sola liga.
+- Un Equipo puede poseer entre 0 y muchos Jugadores.
+- Varios Equipos guardan varias Alineaciones.
+
+##### R.I.04. Información del jugador
+
+Como mánager de una liga
+
+quiero poder almacenar la siguiente información sobre el Jugador:
+- El nombre.
+- El valor de mercado.
+- La media de puntos (calculado mediante la media aritmética de los puntos obtenidos en las últimas 5 Jornadas).
+- La posición en la que juega.
+- El estado físico (lesionado, disponible, dudoso o sancionado).
+- Una foto del jugador
+- Los puntos totales (obtenido mediante la suma de todos los puntos obtenidos en cada Jornada).
+
+para consultar la ficha y las estadísticas del futbolista, saber si está disponible para ponerlo en la alineación y gestionar su compra o venta según su valor y posición.
+
+Esta entidad Jugador se asocia de la siguiente forma:
+- Varios Jugadores pertenecen a un equipo (respetando la RN.07).
+- 11 Jugadores son alineados por una Alineación.
+- Varios Jugadores juegan entre 0 y muchas Jornadas.
+
+##### R.I.05. Información de la jornada
+
+Como mánager de una liga
+
+quiero poder almacenar la siguiente información sobre el Jornada:
+- El número de la Jornada.
+- La fecha de inicio: indica que día empieza la Jornada.
+- La fecha de fin: indica que día termina la Jornada.
+
+para tener organizado el calendario de la liga, controlar las fechas en las que los participantes pueden guardar su alineación y calcular las puntuaciones semanales.
+
+Esta entidad Jornada se asocia de la siguiente forma:
+- Una o varias Jornadas son compuestas en una Liga.
+- Una Jornada registra muchas Alineaciones.
+- Varias Jornadas son jugadas por varios Jugadores.
+
+##### R.I.06. Información de puntuación
+
+Como mánager de una liga
+
+quiero poder almacenar la siguiente información sobre la Puntuación:
+- Los goles marcados por el Jugador en la Jornada.
+- Las asistencias realizadas.
+- Los puntos obtenidos en la jornada (calculados a partir de los goles, asistencias y su actuación).
+
+para saber cuántos puntos suma cada jugador en un partido concreto, actualizar los puntos de las alineaciones de los participantes y llevar el registro de estadísticas de los futbolistas.
+
+Esta entidad Puntuación se asocia de la siguiente forma:
+- Puntuacion nace de la relación muchos a muchos entre Jugador y Jornada. Cada registro de Puntuacion vincula a 1 único Jugador con 1 única Jornada para almacenar su rendimiento específico en ese partido.
+
+##### R.I.07. Información de transacciones
+
+Como mánager de una liga
+
+quiero poder almacenar la siguiente información sobre la Transacción:
+- La cantidad (el dinero de la operación).
+- La fecha en la que se realiza.
+- El estado de la operación (pendiente, aceptada o rechazada).
+
+para registrar los fichajes y compraventas de jugadores entre equipos y llevar el control del dinero gastado en la liga.
+
+Esta entidad Transacción se asocia de la siguiente forma:
+- Transacción se modela como una clase de asociación sobre la relación entre Equipo y Jugador. Cada registro de Transacción vincula a 1 Equipo con 1 Jugador para registrar el intento o confirmación de su fichaje por una cantidad, fecha y estado concretos.
+
+##### R.I.08. Información de las alineaciones
+
+Como mánager de una liga
+
+quiero poder almacenar la siguiente información sobre la Alineacion:
+- Los puntos por Jornada (calculado como la suma de todas las Puntuaciones de los 11 Jugadores alineados).
+- La formación que emplea el Equipo.
+- La fecha de guardado de la Alineación.
+
+para registrar los 11 jugadores y la formación táctica que elige el usuario en una jornada, comprobar que la guardó dentro del plazo límite y calcular los puntos que suma esa semana.
+
+Esta entidad Alineación se asocia de la siguiente forma:
+- Una o varias Alineaciones son registradas por la Jornada.
+- Varias Alineaciones son guardadas por varios Equipos.
+- Una Alineación alinea a 11 Jugadores.
 
 #### 4.1.2. Reglas de negocio
 
@@ -291,13 +370,10 @@ Un mismo usuario no puede estar inscrito en más de 10 ligas en paralelo.
 
 Un jugador no puede pertenecer a dos equipos diferentes en una misma liga.
 
-##### R.N.08. Varios equipos, un mismo manager
+##### R.N.08. Unicidad de equipo por liga
 
 Un manager no puede tener dos (o más) equipos en una misma liga.
 
-##### R.N.09. Bloqueo de cláusulas previo a la jornada
-
-Un mánager no puede fichar a un jugador de algún rival mediante cláusula durante las 24 horas antes de empezar la jornada.
 
 
 ### 4.2. Mapa de historias de usuario (opcional)
