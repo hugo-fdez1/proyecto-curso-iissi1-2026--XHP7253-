@@ -69,47 +69,87 @@ Se contemplan tres tipos de usuarios:
 ## 4. Catálogo de requisitos
 
 ### 4.1. Requisitos funcionales
-  **R.F.01.01. Creación de usuarios**  <br>
-  Como administrador / participante,<br>
-  Quiero poder crear un nuevo usuario,<br>
-  Para poder participar y/o administrar la liga o la misma aplicación.<br>
+**R.F.01.01. Creación de usuarios**  <br>
+Como administrador / participante,<br>
+Quiero poder crear un nuevo usuario,<br>
+Para poder participar y/o administrar la liga o la misma aplicación.<br>
   
 **Prueba de aceptación**
 - Una persona se registra en la aplicación con sus datos, se crea el usuario y puede comenzar a utilizar la aplicación.
 - Una persona se registra en la aplicación con datos incorrectos y el sistema muestra un mensaje de error.
 - Se debe aplicar la regla de negocio R.N.01.
 
-  **R.F.01.02. Lectura de usuarios**  <br>
-  Como administrador / usuario,<br>
-  Quiero poder consultar los datos asociados a un usuario,<br>
-  Para verificar su información o supervisar los usuarios registrados.<br>
+**R.F.01.02. Lectura de usuarios**  <br>
+Como administrador / usuario,<br>
+Quiero poder consultar los datos asociados a un usuario,<br>
+Para verificar su información o supervisar los usuarios registrados.<br>
   
 **Prueba de aceptación**
 - Se solicita consultar la información de un usuario y el sistema le muestra sus datos.
 - Se solicita consultar la información de un usuario no registrado y el sistema le muestra un mensaje de "usuario no encontrado".
 - Al consultar la información solo se muestra la información pública, ocultando datos privados como la contraseña.
 
-  **R.F.01.03. Modificación de usuarios**  <br>
-  Como administrador / usuario,<br>
-  Quiero poder modificar ,<br>
-  Para hacer un buen uso de los jugadores cada jornada.<br>
+**R.F.01.03. Modificación de usuarios**  <br>
+Como administrador / usuario,<br>
+Quiero poder modificar la información de un usuario,<br>
+Para mantener actualizados los datos del usuario .<br>
   
 **Prueba de aceptación**
-- Descripción de la primera comprobación a realizar
-- Descripción de la segunda comprobación a realizar
-- Se debe aplicar la regla de negocio R.N.XX.
-- ...
+- Se pide al sistema que edite alguno de los datos relacionados a un usuario registrado, se actualiza y se muestra un mensaje confirmando la edición seguido de los datos actualizados.
+- Se pide al sistema que edite los datos relacionados a un usuario no registrado y se muestra un mensaje de "usuario no encontrado".
+- Al editar se modifica alguno de los campos dejándolo en blanco y el sistema muestra un mensaje de error.
 
-  **R.F.01.04. Borrado de usuarios**  <br>
-  Como ,<br>
-  Quiero poder gestionar las alineaciones,<br>
-  Para hacer un buen uso de los jugadores cada jornada.<br>
+**R.F.01.04. Borrado de usuarios**  <br>
+Como administrados / usuario ,<br>
+Quiero poder borrar un usuario y los datos asociados a él,<br>
+Para quitar del sistema usuarios innecesarios o que no vayan a utilizar la aplicación más.<br>
   
 **Prueba de aceptación**
-- Descripción de la primera comprobación a realizar
-- Descripción de la segunda comprobación a realizar
-- Se debe aplicar la regla de negocio R.N.XX.
-- ...
+- Se intenta borrar un usuario del sistema, el sistema pide confirmación y una vez dada se elimina al usuario junto con sus datos.
+- Se intenta borrar un usuario no registrado y el sistema muestra un mensaje de "usuario no encontrado".
+- Al intentar iniciar sesión con sus datos, el sistema no permite el acceso y muestra un mensaje de "usuario no existe".
+
+
+**R.F.02.01. Creación de la liga**  <br>
+Como administrador / participante,<br>
+Quiero poder crear un nuevo usuario,<br>
+Para poder participar y/o administrar la liga o la misma aplicación.<br>
+  
+**Prueba de aceptación**
+- Una persona se registra en la aplicación con sus datos, se crea el usuario y puede comenzar a utilizar la aplicación.
+- Una persona se registra en la aplicación con datos incorrectos y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.01.
+
+**R.F.01.02. Consulta de la liga**  <br>
+Como administrador / usuario,<br>
+Quiero poder consultar los datos asociados a un usuario,<br>
+Para verificar su información o supervisar los usuarios registrados.<br>
+  
+**Prueba de aceptación**
+- Se solicita consultar la información de un usuario y el sistema le muestra sus datos.
+- Se solicita consultar la información de un usuario no registrado y el sistema le muestra un mensaje de "usuario no encontrado".
+- Al consultar la información solo se muestra la información pública, ocultando datos privados como la contraseña.
+
+**R.F.01.03. Modificación de la liga**  <br>
+Como administrador / usuario,<br>
+Quiero poder modificar la información de un usuario,<br>
+Para mantener actualizados los datos del usuario .<br>
+  
+**Prueba de aceptación**
+- Se pide al sistema que edite alguno de los datos relacionados a un usuario registrado, se actualiza y se muestra un mensaje confirmando la edición seguido de los datos actualizados.
+- Se pide al sistema que edite los datos relacionados a un usuario no registrado y se muestra un mensaje de "usuario no encontrado".
+- Al editar se modifica alguno de los campos dejándolo en blanco y el sistema muestra un mensaje de error.
+
+**R.F.01.04. Borrado de la liga**  <br>
+Como administrados / usuario ,<br>
+Quiero poder borrar un usuario y los datos asociados a él,<br>
+Para quitar del sistema usuarios innecesarios o que no vayan a utilizar la aplicación más.<br>
+  
+**Prueba de aceptación**
+- Se intenta borrar un usuario del sistema, el sistema pide confirmación y una vez dada se elimina al usuario junto con sus datos.
+- Se intenta borrar un usuario no registrado y el sistema muestra un mensaje de "usuario no encontrado".
+- Al intentar iniciar sesión con sus datos, el sistema no permite el acceso y muestra un mensaje de "usuario no existe".
+
 
 #### 4.1.1. Requisitos de información
 
