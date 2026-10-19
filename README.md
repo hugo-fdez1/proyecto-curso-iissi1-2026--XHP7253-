@@ -47,9 +47,43 @@
 
 ### 4.1. Requisitos funcionales
 
-#### R.F.01. Título requisito funcional
+#### R.F.03.01. Creación de equipo
 
-Como [tipo de usuario]
+Como administrador / participante 
+quiero poder crear un equipo
+para poder jugar y participar así en la liga creada.
+
+**Prueba de aceptación**
+- El sistema debe vincular correctamente el nuevo Equipo creado tanto a la Liga correspondiente como al Participante creador.
+- Se debe aplicar la regla de negocio R.N.08.
+
+
+#### R.F.03.02. Lectura de equipo
+
+Como administrador / participante 
+quiero consultar el detalle de mi equipo (plantilla, presupuesto y puntos acumulados)
+para conocer la situación actual de mi plantilla y planificar mi estrategia para las próximas jornadas.
+
+**Prueba de aceptación**
+- El sistema muestra el nombre del equipo, su valor total estimado y los puntos acumulados en la liga.
+- Se muestra el listado de jugadores que componen la plantilla actual del equipo.
+- Si un participante no posee un equipo en la liga consultada, el sistema denegará la visualización y mostrará un mensaje descriptivo.
+
+#### R.F.03.03. Modificación de equipo
+
+Como administrador / participante 
+quiero [servicio]
+para [razón]
+
+**Prueba de aceptación**
+- Descripción de la primera comprobación a realizar
+- Descripción de la segunda comprobación a realizar
+- Se debe aplicar la regla de negocio R.N.XX.
+- ...
+
+#### R.F.03.04. Borrado de equipo
+
+Como administrador / participante 
 quiero [servicio]
 para [razón]
 
@@ -133,7 +167,7 @@ Un mánager no puede fichar a un jugador de algún rival mediante cláusula dura
 ### 4.3. Requisitos no funcionales (opcional)
 
 **R.N.F. 01. Título requisito no funcional**
-Como [tipo de usuario]
+Como administrador / participante 
 quiero [servicio]
 para [razón]
 
