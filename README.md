@@ -8,19 +8,15 @@
 
 ## 1. Introducción al problema
 
-- Nos han pedido una aplicación estilo "Fantasy" inspirada en LaLiga. En esta aplicación, un grupo de personas forman una liga en la que a cada usuario se le asigna un equipo inicial y se le da un presupuesto. Ese presupuesto se puede gastar en un mercado donde puedes comprar y vender jugadores y cada día salen unos jugadores nuevos que puedes fichar. Al final de cada jornada, según la actuación de cada jugador del equipo, el usuario gana (o pierde) una serie de puntos, coronándose un ganador de la liga al finalizar todas las jornadas.  
+- Nos han pedido una aplicación estilo "Fantasy" inspirada en LaLiga. En esta aplicación, un grupo de personas forman una liga en la que a cada usuario se le asigna un equipo inicial y se le da un presupuesto. Ese presupuesto se puede gastar en un mercado donde puedes comprar y vender jugadores y cada día salen unos jugadores nuevos que puedes fichar. Al final de cada jornada, según la actuación de cada jugador del equipo, el usuario gana (o pierde) una serie de puntos, coronándose un ganador de la liga al finalizar todas las jornadas.  <br>
 Actualmente, este formato se encuentra con varios problemas: muchos periódicos crean estas ligas "fantasy" (ver Figura 1), pero la inscripción y seguimiento son complejos, al tener que estar pendiente del periódico cada jornada, lo que supone un gasto importante además del propio gasto que conlleva la inscripción a la liga y la manera de gestionar el equipo (Ej. por teléfono, por correo); además de las ligas de los periódicos, existen ligas "entre amigos", mucho más casuales, pero con el inconveniente de que mínimo una persona debe gestionar toda la liga, es decir, gestionar los fichajes, el "Draft" (si se hace), el seguimiento de cada equipo y sus respectivos puntos, etc. Se espera que tomemos este formato y lo hagamos mucho más accesible, automatizando todos los problemas anteriormente mencionados para depender menos de una persona (o revista) que gestione la liga, implementando una base de datos con datos acerca de distintos puntos de la aplicación para facilitar el proceso.
-Una vez discutido el problema y tras haber realizado varias entrevistas con el cliente, hemos realizado este borrador.
 
-<img width="387" height="516" alt="image" src="https://github.com/user-attachments/assets/46e932d3-bf2f-41e9-b330-fd8260d4c7a0" />
+<img width="387" height="516" alt="image" src="https://github.com/user-attachments/assets/46e932d3-bf2f-41e9-b330-fd8260d4c7a0" /> <br>
 Figura 1
 
 
 ## 2. Glosario de términos
 - Términos específicos del dominio del problema, ordenados alfabéticamente. Se valorará la presencia de información multimedia.
-
-
-
 
 ## 3. Visión general del sistema
 ### 3.1. Usuarios del sistema
@@ -30,94 +26,85 @@ Se contemplan tres tipos de usuarios:
 - Participante: Ficha jugadores y construye su equipo, gana una serie de puntos en función de la actuación de sus jugadores alineados.
 
 ### 3.2. Requisitos generales
- **R.G.01. Gestión de los usuarios**
+ **R.G.01. Gestión de los usuarios**  <br>
+  Como administrador,<br>
+  Quiero poder gestionar los distintos usuarios,<br>
+  Para controlar el acceso y los permisos de cada usuario.<br>
+
+**R.G.02. Gestión de la liga**<br>
+  Como creador de la liga, <br>
+  Quiero poder gestionar la liga,<br>
+  Para el buen funcionamiento de la competición.<br>
   
-  Como administrador,
+  **R.G.03. Gestión del equipo**<br>
+  Como participante,<br>
+  Quiero poder gestionar el equipo,<br>
+  Para poder competir en la liga adecuadamente.<br>
 
-  Quiero poder gestionar los distintos usuarios,
+  **R.G.04. Gestión de los jugadores**<br>
+  Como participante / administrador,<br>
+  Quiero poder gestionar los jugadores,<br>
+  Para el buen funcionamiento de las estadísticas y transacciones.<br>
 
-  Para controlar el acceso y los permisos de cada usuario.
+  **R.G.05. Gestión de la jornada**  <br>
+  Como administrador,<br>
+  Quiero poder gestionar la jornada,<br>
+  Para organizar fácilmente el calendario de partidos.<br>
 
+  **R.G.06. Gestión de la puntuación** <br> 
+  Como administrador,<br>
+  Quiero poder gestionar la puntuación,<br>
+  Para el buen funcionamiento de la clasificación.<br>
 
+  **R.G.07. Gestión de las transacciones**  <br>
+  Como participante / administrador,<br>
+  Quiero poder gestionar las transacciones,<br>
+  Para facilitar la compraventa de jugadores.<br>
 
-**R.G.02. Gestión de la liga**
-  
-  Como creador de la liga,
-
-  Quiero poder gestionar la liga,
-
-  Para el buen funcionamiento de la competición.
-
-
-
-  **R.G.03. Gestión del equipo**
-  
-  Como participante,
-
-  Quiero poder gestionar el equipo,
-
-  Para poder competir en la liga adecuadamente.
-
-
-
-  **R.G.04. Gestión de los jugadores**
-  
-  Como participante / administrador,
-
-  Quiero poder gestionar los jugadores,
-
-  Para el buen funcionamiento de las estadísticas y transacciones.
-
-
-  
-  **R.G.05. Gestión de la jornada**
-  
-  Como administrador,
-
-  Quiero poder gestionar la jornada,
-
-  Para organizar fácilmente el calendario de partidos.
-
-
-  
-  **R.G.06. Gestión de la puntuación**
-  
-  Como administrador,
-
-  Quiero poder gestionar la puntuación,
-
-  Para el buen funcionamiento de la clasificación.
-
-
-  
-  **R.G.07. Gestión de las transacciones**
-  
-  Como participante / administrador,
-
-  Quiero poder gestionar las transacciones,
-
-  Para facilitar la compraventa de jugadores.
-
-
-
-  **R.G.08. Gestión de las alineaciones**
-  
-  Como participante,
-
-  Quiero poder gestionar las alineaciones,
-
-  Para hacer un buen uso de los jugadores cada jornada.
+  **R.G.08. Gestión de las alineaciones**  <br>
+  Como participante,<br>
+  Quiero poder gestionar las alineaciones,<br>
+  Para hacer un buen uso de los jugadores cada jornada.<br>
 
 ## 4. Catálogo de requisitos
 
 ### 4.1. Requisitos funcionales
+  **R.F.01.01. Creación de usuarios**  <br>
+  Como administrador / participante,<br>
+  Quiero poder crear un nuevo usuario,<br>
+  Para poder participar y/o administrar la liga o la misma aplicación.<br>
+  
+**Prueba de aceptación**
+- Una persona se registra en la aplicación con sus datos, se crea el usuario y puede comenzar a utilizar la aplicación.
+- Una persona se registra en la aplicación con datos incorrectos y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.01.
 
-#### R.F.01. Título requisito funcional
+  **R.F.01.02. Lectura de usuarios**  <br>
+  Como administrador / usuario,<br>
+  Quiero poder consultar los datos asociados a un usuario,<br>
+  Para verificar su información o supervisar los usuarios registrados.<br>
+  
+**Prueba de aceptación**
+- Se solicita consultar la información de un usuario y el sistema le muestra sus datos.
+- Se solicita consultar la información de un usuario no registrado y el sistema le muestra un mensaje de "usuario no encontrado".
+- Al consultar la información solo se muestra la información pública, ocultando datos privados como la contraseña.
 
-Como [tipo de usuario]
-quiero [servicio]
-para [razón]
+  **R.F.01.03. Modificación de usuarios**  <br>
+  Como administrador / usuario,<br>
+  Quiero poder modificar ,<br>
+  Para hacer un buen uso de los jugadores cada jornada.<br>
+  
+**Prueba de aceptación**
+- Descripción de la primera comprobación a realizar
+- Descripción de la segunda comprobación a realizar
+- Se debe aplicar la regla de negocio R.N.XX.
+- ...
 
+  **R.F.01.04. Borrado de usuarios**  <br>
+  Como ,<br>
+  Quiero poder gestionar las alineaciones,<br>
+  Para hacer un buen uso de los jugadores cada jornada.<br>
+  
 **Prueba de aceptación**
 - Descripción de la primera comprobación a realizar
 - Descripción de la segunda comprobación a realizar
