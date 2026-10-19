@@ -119,6 +119,7 @@ Se contemplan tres tipos de usuarios:
   Quiero poder gestionar las alineaciones,
 
   Para hacer un buen uso de los jugadores cada jornada. 
+
 ## 4. Catálogo de requisitos
 
 ### 4.1. Requisitos funcionales
@@ -212,6 +213,7 @@ Prueba de aceptación
 -Verificar que el usuario creador quede asignado automáticamente con el rol de Administrador de Liga.
 
 -Se debe aplicar la regla de negocio R.N.02 (Un mismo usuario no puede estar inscrito en más de 10 ligas en paralelo).
+
 #### 4.1.1. Requisitos de información
 
 ##### R.I.01. Información de usuario
