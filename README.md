@@ -100,95 +100,49 @@ Se contemplan tres tipos de usuarios:
 
 ### 4.1. Requisitos funcionales
 
-R.F.01. Pujar por un jugador en el mercado
-Como mánager de una liga
+**R.F.05.01. Creación de jornadas**  
+Como administrador,  
+Quiero poder crear una nueva jornada,  
+Para organizar el calendario de partidos de la temporada.
+ 
+**Prueba de aceptación**
+ 
+- Se introduce el número, la fecha de inicio y la fecha de fin de una jornada con datos válidos y el sistema crea la jornada en estado pendiente.
+- Se intenta crear una jornada con un número ya existente o con la fecha de fin anterior a la de inicio y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
 
-quiero realizar una puja económica por un futbolista libre en el mercado
+**R.F.05.02. Lectura de jornadas**  
+Como administrador / participante,  
+Quiero poder consultar los datos de una jornada o el calendario completo,  
+Para saber cuándo se juega cada jornada y hasta cuándo puedo cambiar mi alineación.
+ 
+**Prueba de aceptación**
+ 
+- Se solicita consultar una jornada y el sistema muestra su número, fecha de inicio, fecha de fin y estado.
+- Se solicita consultar una jornada que no existe y el sistema muestra un mensaje de jornada no encontrada.
+- Se solicita el calendario filtrado por estado  y el sistema muestra solo las jornadas de ese estado.
 
-para incorporarlo a mi plantilla y reforzar mi equipo.
+**R.F.05.03. Modificación de jornadas**  
+Como administrador,  
+Quiero poder modificar los datos de una jornada,  
+Para corregir errores o adaptarme a cambios en el calendario de partidos.
+ 
+**Prueba de aceptación**
+ 
+- Se modifica la fecha de inicio de una jornada pendiente con un valor válido y el sistema guarda el cambio.
+- Se intenta modificar una jornada ya finalizada y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
 
-Prueba de aceptación
-
--El sistema debe comprobar que el mánager dispone de presupuesto equivalente o superior al importe pujado.
-
--La puja realizada debe permanecer oculta para el resto de mánagers hasta la hora de cierre del mercado.
-
--Se debe aplicar la regla de negocio R.N.01 (El dinero de la puja activa se retiene temporalmente del saldo disponible del usuario).
-
-R.F.02. Guardar alineación táctica
-Como mánager de una liga
-
-quiero seleccionar mi formación táctica y asignar 11 futbolistas titulares
-
-para sumar los puntos que consigan estos jugadores durante los partidos de la jornada.
-
-Prueba de aceptación
-
--Comprobar que no se permite guardar una alineación con más de 11 jugadores ni con puestos vacíos.
-
--Verificar que el sistema bloquee la edición de alineaciones en cuanto comience el primer partido de la jornada.
-
--Se debe aplicar la regla de negocio R.N.02 (Si el saldo total del mánager es negativo al inicio de la jornada, la alineación puntúa 0).
-
-R.F.03. Pagar cláusula de rescisión
-Como mánager de una liga
-
-quiero pagar la cláusula de rescisión de un jugador de un rival
-
-para ficharlo de forma inmediata sin necesidad de subasta.
-
-Prueba de aceptación
-
--Verificar que la opción solo esté activa dentro del horario permitido para clausulados.
-
--Comprobar que el importe pagado se descuente al comprador y se abone instantáneamente al saldo del vendedor.
-
--Se debe aplicar la regla de negocio R.N.03 (Un jugador recién fichado mediante cláusula no puede ser clausulado de nuevo durante 14 días).
-
-R.F.04. Poner un jugador en venta
-Como mánager de una liga
-
-quiero poner a un futbolista de mi plantilla en el mercado de fichajes
-
-para recibir ofertas económicas del sistema o de otros mánagers y ganar presupuesto.
-
-Prueba de aceptación
-
--Comprobar que el jugador aparezca inmediatamente en el mercado de ventas.
-
--Permitir retirar al jugador del mercado en cualquier momento antes de aceptar una oferta.
-
--Se debe aplicar la regla de negocio R.N.04 (El sistema del mercado emitirá siempre una oferta automática basada en el valor de mercado actual dentro de las primeras 24 horas).
-
-R.F.05. Asignar capitán al equipo
-Como mánager de una liga
-
-quiero designar a un jugador titular como capitán de mi alineación
-
-para duplicar los puntos que consiga durante la jornada.
-
-Prueba de aceptación
-
--Verificar que solo se pueda seleccionar a un único jugador titular como capitán por jornada.
-
--Comprobar que en el cálculo de puntuación final de la jornada se aplique el multiplicador x2 sobre sus puntos netos.
-
--Se debe aplicar la regla de negocio R.N.15 (Si el capitán seleccionado recibe puntos negativos, la penalización también se multiplicará por 2).
-
-R.F.06. Crear una liga privada
-Como mánager
-
-quiero crear una liga privada con un código de invitación único y una configuración personalizada
-
-para competir exclusivamente con un grupo cerrado de amigos.
-
-Prueba de aceptación
-
--Comprobar que el sistema genere un código único al completar la creación.
-
--Verificar que el usuario creador quede asignado automáticamente con el rol de Administrador de Liga.
-
--Se debe aplicar la regla de negocio R.N.02 (Un mismo usuario no puede estar inscrito en más de 10 ligas en paralelo).
+**R.F.05.04. Borrado de jornadas**  
+Como administrador,  
+Quiero poder eliminar una jornada,  
+Para quitar jornadas creadas por error.
+ 
+**Prueba de aceptación**
+ 
+- Se elimina una jornada pendiente que no tiene alineaciones ni puntuaciones asociadas y el sistema la borra del calendario.
+- Se intenta eliminar una jornada con alineaciones o puntuaciones asociadas, o una jornada ya finalizada, y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
 #### 4.1.1. Requisitos de información
 
 ##### R.I.01. Consultar el perfil y estadísticas de un jugador
