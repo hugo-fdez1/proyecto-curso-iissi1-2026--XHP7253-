@@ -181,8 +181,8 @@ Para que un usuario pueda unirse a una liga ya empezada.<br>
 
 #### R.F.03.01. Creación de equipo
 
-Como participante 
-quiero poder crear un equipo
+Como participante,<br>
+quiero poder crear un equipo,<br>
 para poder jugar y participar así en la liga creada.
 
 **Prueba de aceptación**
@@ -192,8 +192,8 @@ para poder jugar y participar así en la liga creada.
 
 #### R.F.03.02. Lectura de equipo
 
-Como participante 
-quiero consultar el detalle de mi equipo (plantilla, presupuesto y puntos acumulados)
+Como participante,<br>
+quiero consultar el detalle de mi equipo (plantilla, presupuesto y puntos acumulados),<br>
 para conocer la situación actual de mi plantilla y planificar mi estrategia para las próximas jornadas.
 
 **Prueba de aceptación**
@@ -203,8 +203,8 @@ para conocer la situación actual de mi plantilla y planificar mi estrategia par
 
 #### R.F.03.03. Modificación de equipo
 
-Como participante 
-quiero modificar los datos de mi equipo
+Como participante, <br>
+quiero modificar los datos de mi equipo, <br>
 para mantener actualizada la identidad de mi equipo dentro de la liga.
 
 **Prueba de aceptación**
@@ -213,8 +213,8 @@ para mantener actualizada la identidad de mi equipo dentro de la liga.
 
 #### R.F.03.04. Borrado de equipo
 
-Como administrador / participante 
-quiero eliminar un equipo registrado en una liga
+Como administrador / participante, <br>
+quiero eliminar un equipo registrado en una liga, <br>
 para darme de baja de la competición (como participante) o expulsar/retirar un equipo de la liga (como administrador).
 
 **Prueba de aceptación**
@@ -227,8 +227,8 @@ para darme de baja de la competición (como participante) o expulsar/retirar un 
 
 #### R.F.04.01. Creación de jugador
 
-Como administrador
-quiero dar de alta a un nuevo jugador en el sistema con sus datos base
+Como administrador,<br>
+quiero dar de alta a un nuevo jugador en el sistema con sus datos base,<br>
 para incorporar nuevos futbolistas al catálogo de la plataforma y permitir que los participantes puedan ficharlos en sus respectivas ligas.
 
 **Prueba de aceptación**
@@ -242,8 +242,8 @@ para incorporar nuevos futbolistas al catálogo de la plataforma y permitir que 
 
 #### R.F.04.02. Lectura de jugador
 
-Como participante
-quiero consultar la ficha de información detallada de un jugador
+Como participante,<br>
+quiero consultar la ficha de información detallada de un jugador,<br>
 para evaluar su rendimiento, planificar mis alineaciones o analizar su posible fichaje en el mercado.
 
 **Prueba de aceptación**
@@ -253,8 +253,8 @@ para evaluar su rendimiento, planificar mis alineaciones o analizar su posible f
 
 #### R.F.04.03. Modificación del jugador
 
-Como administrador
-quiero modificar la ficha y las estadísticas de un jugador
+Como administrador,<br>
+quiero modificar la ficha y las estadísticas de un jugador,<br>
 para mantener actualizada la información del mercado y reflejar su situación real en la competición.
 
 **Prueba de aceptación**
@@ -264,8 +264,8 @@ para mantener actualizada la información del mercado y reflejar su situación r
 
 #### R.F.04.04. Borrado del jugador
 
-Como adminsitrador
-quiero eliminar todos los datos sobre un jugador
+Como adminsitrador,<br>
+quiero eliminar todos los datos sobre un jugador,<br>
 para retirar del sistema a futbolistas que han abandonado la competición real.
 
 **Prueba de aceptación**
