@@ -179,6 +179,100 @@ Para que un usuario pueda unirse a una liga ya empezada.<br>
 - Un usuario introduce un código no asociado a una liga y el sistema muestra un mensaje de "liga no encontrada".
 - Se debe aplicar la R.N.02.
 
+#### R.F.03.01. Creación de equipo
+
+Como participante 
+quiero poder crear un equipo
+para poder jugar y participar así en la liga creada.
+
+**Prueba de aceptación**
+- El sistema debe vincular correctamente el nuevo Equipo creado tanto a la Liga correspondiente como al Participante creador.
+- Se debe aplicar la regla de negocio R.N.05.
+
+
+#### R.F.03.02. Lectura de equipo
+
+Como participante 
+quiero consultar el detalle de mi equipo (plantilla, presupuesto y puntos acumulados)
+para conocer la situación actual de mi plantilla y planificar mi estrategia para las próximas jornadas.
+
+**Prueba de aceptación**
+- El sistema muestra el nombre del equipo, su valor total estimado y los puntos acumulados en la liga.
+- Se muestra el listado de jugadores que componen la plantilla actual del equipo.
+- Si un participante no posee un equipo en la liga consultada, el sistema denegará la visualización y mostrará un mensaje descriptivo.
+
+#### R.F.03.03. Modificación de equipo
+
+Como participante 
+quiero modificar los datos de mi equipo
+para mantener actualizada la identidad de mi equipo dentro de la liga.
+
+**Prueba de aceptación**
+- El participante debe ser el propietario del equipo que intenta editar (el sistema deniega la edición si no es el dueño).
+- El sistema actualiza los datos en la base de datos y muestra una confirmación con los datos del equipo actualizados en la pantalla de la liga.
+
+#### R.F.03.04. Borrado de equipo
+
+Como administrador / participante 
+quiero eliminar un equipo registrado en una liga
+para darme de baja de la competición (como participante) o expulsar/retirar un equipo de la liga (como administrador).
+
+**Prueba de aceptación**
+- El sistema debe verificar que la acción la realice el participante propietario del equipo o el administrador que gestiona la liga.
+- El sistema debe solicitar una verificación al usuario antes de realizar la acción para evitar borrados accidentales. 
+- Al eliminar un equipo, el sistema tiene que liberar los jugadores que pertenecieron a ese equipo borrado.
+- Se debe modificar el número de participantes en la liga, además de la clasificación.
+
+
+
+#### R.F.04.01. Creación de jugador
+
+Como administrador
+quiero dar de alta a un nuevo jugador en el sistema con sus datos base
+para incorporar nuevos futbolistas al catálogo de la plataforma y permitir que los participantes puedan ficharlos en sus respectivas ligas.
+
+**Prueba de aceptación**
+- El administrador debe introducir los datos obligatorios del nuevo jugador: nombre, posición, valor, foto, estado físico.
+- El sistema inicializa automáticamente los atributos calculables (/media y /puntosTotales) a cero.
+- El sistema valida que la posición seleccionada esté permitidas por el enumerado (DEL, MED, DEF, POR).
+- El sistema debe validar que el estado físico asignado pertenezca a su enumerado correspondiente (LESIONADO, DISPONIBLE, DUDOSO, SANCIONADO).
+- Se debe aplicar la regla de negocio R.N.03.
+-  El sistema confirma el registro correcto y el jugador queda disponible en el mercado/catálogo global del sistema.
+
+
+#### R.F.04.02. Lectura de jugador
+
+Como participante
+quiero consultar la ficha de información detallada de un jugador
+para evaluar su rendimiento, planificar mis alineaciones o analizar su posible fichaje en el mercado.
+
+**Prueba de aceptación**
+- El sistema debe mostrar toda la información básica del jugador, además de sus atributos calculados.
+- El sistema muestra el valor del jugador actualizado.
+- Se permite consultar el desglose de las puntuaciones obtenidas por el jugador en cada una de las jornadas disputadas.
+
+#### R.F.04.03. Modificación del jugador
+
+Como administrador
+quiero modificar la ficha y las estadísticas de un jugador
+para mantener actualizada la información del mercado y reflejar su situación real en la competición.
+
+**Prueba de aceptación**
+- El sistema valida que el usuario auteticado sea un administrador.
+- El sistema permite buscar y seleccionar un Jugador existente para su edición.
+- El sistema guarda los cambios en la base de datos y se muestra inmediatamente en las fichas del jugador.
+
+#### R.F.04.04. Borrado del jugador
+
+Como adminsitrador
+quiero eliminar todos los datos sobre un jugador
+para retirar del sistema a futbolistas que han abandonado la competición real.
+
+**Prueba de aceptación**
+- El sistema valida que el usuario auteticado sea un administrador.
+- El sistema muestra un aviso al administrador y solicita una confirmación para procesar el borrado definitivo.
+- El sistema desvincula el jugador borrado del equipo al que pertenecía y enviará un mensaje que indique la incidencia al participante afectado.
+El sistema elimina la entidad Jugador de la base de datos, lo retira del mercado global y muestra un mensaje de confirmación.
 
 
 
@@ -422,6 +516,30 @@ Un usuario no puede participar en más de 5 ligas a la vez.
 
 Solo un administrador o el creador de una liga puede gestionar una liga y a sus participantes.
 
+##### R.N.04. Jugador compartido
+
+Un jugador no puede pertenecer a dos equipos diferentes en una misma liga.
+
+##### R.N.05. Unicidad de equipo por liga
+
+Un manager no puede tener dos (o más) equipos en una misma liga.
+
+##### R.N.06. Valor positivo del jugador
+
+El valor económico del Jugador debe ser un importe numérico estrictamente mayor que cero.
+
+##### R.N.07. Código incorrecto
+
+Solo es posible unirse a una liga mediante un código alfanumérico de 6 caracteres.
+
+##### R.N.08. Contraseña no permitida
+
+La contraseña debe contener al menos 8 caracteres.
+
+
+
+
+
 ### ESTO CREO QUE TAMBIÉN ESTÁ MAL PERO LO DEJO DE MOMENTO Y PONGO LOS BUENOS ARRIBA
 
 
@@ -440,16 +558,6 @@ El sistema del mercado emitirá siempre una oferta automática basada en el valo
 #### R.N.05  
 Si el capitán seleccionado recibe puntos negativos, la penalización también se multiplicará por 2.
 
-####  R.N.06 
-Un mismo usuario no puede estar inscrito en más de 10 ligas en paralelo.
-
-##### R.N.07. Jugador compartido
-
-Un jugador no puede pertenecer a dos equipos diferentes en una misma liga.
-
-##### R.N.08. Unicidad de equipo por liga
-
-Un manager no puede tener dos (o más) equipos en una misma liga.
 
 
 
