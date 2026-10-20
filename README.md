@@ -10,15 +10,9 @@
 
 - Nos han pedido una aplicación estilo "Fantasy" inspirada en LaLiga. En esta aplicación, un grupo de personas forman una liga en la que a cada usuario se le asigna un equipo inicial y se le da un presupuesto. Ese presupuesto se puede gastar en un mercado donde puedes comprar y vender jugadores y cada día salen unos jugadores nuevos que puedes fichar. Al final de cada jornada, según la actuación de cada jugador del equipo, el usuario gana (o pierde) una serie de puntos, coronándose un ganador de la liga al finalizar todas las jornadas.  
 Actualmente, este formato se encuentra con varios problemas: muchos periódicos crean estas ligas "fantasy" (ver Figura 1), pero la inscripción y seguimiento son complejos, al tener que estar pendiente del periódico cada jornada, lo que supone un gasto importante además del propio gasto que conlleva la inscripción a la liga y la manera de gestionar el equipo (Ej. por teléfono, por correo); además de las ligas de los periódicos, existen ligas "entre amigos", mucho más casuales, pero con el inconveniente de que mínimo una persona debe gestionar toda la liga, es decir, gestionar los fichajes, el "Draft" (si se hace), el seguimiento de cada equipo y sus respectivos puntos, etc. Se espera que tomemos este formato y lo hagamos mucho más accesible, automatizando todos los problemas anteriormente mencionados para depender menos de una persona (o revista) que gestione la liga, implementando una base de datos con datos acerca de distintos puntos de la aplicación para facilitar el proceso.
-Una vez discutido el problema y tras haber realizado varias entrevistas con el cliente, hemos realizado este borrador.
 
-<img width="387" height="516" alt="image" src="https://github.com/user-attachments/assets/46e932d3-bf2f-41e9-b330-fd8260d4c7a0" />
+<img width="387" height="516" alt="image" src="https://github.com/user-attachments/assets/46e932d3-bf2f-41e9-b330-fd8260d4c7a0" /><br>
 Figura 1
-
-
-
-
-
 
 ## 2. Glosario de términos
 
@@ -46,8 +40,6 @@ Figura 1
 
 -Valor: Dinero que cuesta en el mercado un jugador.
 
-
-
 ## 3. Visión general del sistema
 ### 3.1. Usuarios del sistema
 Se contemplan tres tipos de usuarios:
@@ -56,73 +48,142 @@ Se contemplan tres tipos de usuarios:
 - Participante: Ficha jugadores y construye su equipo, gana una serie de puntos en función de la actuación de sus jugadores alineados.
 
 ### 3.2. Requisitos generales
- **R.G.01. Gestión de los usuarios**
+ **R.G.01. Gestión de los usuarios**  <br>
+  Como administrador,<br>
+  Quiero poder gestionar los distintos usuarios,<br>
+  Para controlar el acceso y los permisos de cada usuario.<br>
+
+**R.G.02. Gestión de la liga**<br>
+  Como creador de la liga, <br>
+  Quiero poder gestionar la liga,<br>
+  Para el buen funcionamiento de la competición.<br>
   
-  Como administrador,
+  **R.G.03. Gestión del equipo**<br>
+  Como participante,<br>
+  Quiero poder gestionar el equipo,<br>
+  Para poder competir en la liga adecuadamente.<br>
 
-  Quiero poder gestionar los distintos usuarios,
+  **R.G.04. Gestión de los jugadores**<br>
+  Como participante / administrador,<br>
+  Quiero poder gestionar los jugadores,<br>
+  Para el buen funcionamiento de las estadísticas y transacciones.<br>
 
-  Para controlar el acceso y los permisos de cada usuario.
+  **R.G.05. Gestión de la jornada**  <br>
+  Como administrador,<br>
+  Quiero poder gestionar la jornada,<br>
+  Para organizar fácilmente el calendario de partidos.<br>
 
-**R.G.02. Gestión de la liga**
-  
-  Como creador de la liga,
+  **R.G.06. Gestión de la puntuación** <br> 
+  Como administrador,<br>
+  Quiero poder gestionar la puntuación,<br>
+  Para el buen funcionamiento de la clasificación.<br>
 
-  Quiero poder gestionar la liga,
+  **R.G.07. Gestión de las transacciones**  <br>
+  Como participante / administrador,<br>
+  Quiero poder gestionar las transacciones,<br>
+  Para facilitar la compraventa de jugadores.<br>
 
-  Para el buen funcionamiento de la competición.
-
-  **R.G.03. Gestión del equipo**
-  
-  Como participante,
-
-  Quiero poder gestionar el equipo,
-
-  Para poder competir en la liga adecuadamente.
-
-  **R.G.04. Gestión de los jugadores**
-  
-  Como participante / administrador,
-
-  Quiero poder gestionar los jugadores,
-
-  Para el buen funcionamiento de las estadísticas y transacciones.
-  
-  **R.G.05. Gestión de la jornada**
-  
-  Como administrador,
-
-  Quiero poder gestionar la jornada,
-
-  Para organizar fácilmente el calendario de partidos.
-  
-  **R.G.06. Gestión de la puntuación**
-  
-  Como administrador,
-
-  Quiero poder gestionar la puntuación,
-
-  Para el buen funcionamiento de la clasificación.
-
-  **R.G.07. Gestión de las transacciones**
-  
-  Como participante / administrador,
-
-  Quiero poder gestionar las transacciones,
-
-  Para facilitar la compraventa de jugadores.
-
-  **R.G.08. Gestión de las alineaciones**
-  
-  Como participante,
-
-  Quiero poder gestionar las alineaciones,
-
-  Para hacer un buen uso de los jugadores cada jornada. 
+  **R.G.08. Gestión de las alineaciones**  <br>
+  Como participante,<br>
+  Quiero poder gestionar las alineaciones,<br>
+  Para hacer un buen uso de los jugadores cada jornada.<br>
 
 ## 4. Catálogo de requisitos
 
 ### 4.1. Requisitos funcionales
+**R.F.01.01. Creación de usuarios**  <br>
+Como administrador / participante,<br>
+Quiero poder crear un nuevo usuario,<br>
+Para poder participar y/o administrar la liga o la misma aplicación.<br>
+  
+**Prueba de aceptación**
+- Una persona se registra en la aplicación con sus datos, se crea el usuario y puede comenzar a utilizar la aplicación.
+- Una persona se registra en la aplicación con datos incorrectos y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.01.
+
+**R.F.01.02. Lectura de usuarios**  <br>
+Como administrador / usuario,<br>
+Quiero poder consultar los datos asociados a un usuario,<br>
+Para verificar su información o supervisar los usuarios registrados.<br>
+  
+**Prueba de aceptación**
+- Se solicita consultar la información de un usuario y el sistema le muestra sus datos.
+- Se solicita consultar la información de un usuario no registrado y el sistema le muestra un mensaje de "usuario no encontrado".
+- Al consultar la información solo se muestra la información pública, ocultando datos privados como la contraseña.
+
+**R.F.01.03. Modificación de usuarios**  <br>
+Como administrador / usuario,<br>
+Quiero poder modificar la información de un usuario,<br>
+Para mantener actualizados los datos del usuario .<br>
+  
+**Prueba de aceptación**
+- Se pide al sistema que edite alguno de los datos relacionados a un usuario registrado, se actualiza y se muestra un mensaje confirmando la edición seguido de los datos actualizados.
+- Se pide al sistema que edite los datos relacionados a un usuario no registrado y se muestra un mensaje de "usuario no encontrado".
+- Al editar se modifica alguno de los campos dejándolo en blanco y el sistema muestra un mensaje de error.
+
+**R.F.01.04. Borrado de usuarios**  <br>
+Como administrador / usuario ,<br>
+Quiero poder borrar un usuario y los datos asociados a él,<br>
+Para quitar del sistema usuarios innecesarios o que no vayan a utilizar la aplicación más.<br>
+  
+**Prueba de aceptación**
+- Se intenta borrar un usuario del sistema, el sistema pide confirmación y una vez dada se elimina al usuario junto con sus datos.
+- Se intenta borrar un usuario no registrado y el sistema muestra un mensaje de "usuario no encontrado".
+- Al intentar iniciar sesión con sus datos, el sistema no permite el acceso y muestra un mensaje de "usuario no existe".
+
+
+**R.F.02.01. Creación de la liga**  <br>
+Como administrador / participante,<br>
+Quiero crear una nueva liga,<br>
+Para poder competir con otros usuarios en una misma competición.<br>
+  
+**Prueba de aceptación**
+- Un usuario intenta crear una liga, se crea una nueva competición y se muestra al usuario la clasificación de esa nueva liga. 
+- Un usuario no registrado intenta crear una liga y el sistema le manda a una pantalla de inicio de sesión.
+- Se debe aplicar la regla de negocio R.N.02.
+
+**R.F.02.02. Consulta de la liga**  <br>
+Como administrador / usuario,<br>
+Quiero poder consultar la información de una liga,<br>
+Para verificar sus datos asociados y sus miembros.<br>
+  
+**Prueba de aceptación**
+- Se solicita consultar la información de una liga y el sistema le muestra su nombre asociado, su código y los participantes de la liga.
+
+**R.F.02.03. Modificación de la liga**  <br>
+Como administrador / creador de la liga,<br>
+Quiero poder modificar la información y los participantes de una liga,<br>
+Para controlar la información de la liga y quién participa.<br>
+  
+**Prueba de aceptación**
+- Se pide al sistema que edite alguno de los ajustes de la liga, el sistema guarda el cambio y muestra un mensaje de "operación exitosa".
+- Se pide al sistema que expulse a algún miembro de la liga, se borra a ese usuario del sistema y se muestra un mensaje de "operación exitosa".
+- Se debe aplicar la regla de negocio R.N.03.
+
+**R.F.02.04. Borrado de la liga**  <br>
+Como administrador / creador de la liga ,<br>
+Quiero poder borrar una liga y toda su información asociada,<br>
+Para eliminar ligas en las que ya no se vaya a competir.<br>
+  
+**Prueba de aceptación**
+- Se intenta borrar una liga, el sistema borra la liga y sus datos asociados y muestra un mensaje de "operación exitosa".
+- Al intentar unirse a una liga borrada, el sistema no lo permite y muestra un mensaje de "esa liga ya no existe".
+
+**R.F.02.05. Unión a una liga**  <br>
+Como administrador / usuario,<br>
+Quiero que cada liga tenga asociado un código de 6 caracteres que permita unirse a dicha liga,<br>
+Para que un usuario pueda unirse a una liga ya empezada.<br>
+  
+**Prueba de aceptación**
+- Un usuario introduce un código asociado a una liga en la pantalla de inicio, se añade ese usuario a dicha liga y se muestra un mensaje de bienvenida a la liga. 
+- Un usuario introduce un código no asociado a una liga y el sistema muestra un mensaje de "liga no encontrada".
+- Se debe aplicar la R.N.02.
+
+
+
+
+
+### ESTO ESTÁ MAL CREO PERO LO DEJO DE MOMENTO.
 
 R.F.01. Pujar por un jugador en el mercado
 Como mánager de una liga
@@ -349,6 +410,20 @@ Esta entidad Alineación se asocia de la siguiente forma:
 - Una Alineación alinea a 11 Jugadores.
 
 #### 4.1.2. Reglas de negocio
+##### R.N.01. Correo único
+
+No puede haber dos usuarios con el mismo correo electrónico.
+
+##### R.N.02. Límite de ligas
+
+Un usuario no puede participar en más de 5 ligas a la vez.
+
+##### R.N.03. Permisos de gestión de liga
+
+Solo un administrador o el creador de una liga puede gestionar una liga y a sus participantes.
+
+### ESTO CREO QUE TAMBIÉN ESTÁ MAL PERO LO DEJO DE MOMENTO Y PONGO LOS BUENOS ARRIBA
+
 
 #### R.N.01 
  El dinero de la puja activa se retiene temporalmente del presupuesto disponible del usuario.
