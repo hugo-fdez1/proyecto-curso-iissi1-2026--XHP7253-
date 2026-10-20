@@ -49,7 +49,7 @@
 
 #### R.F.03.01. Creación de equipo
 
-Como administrador / participante 
+Como participante 
 quiero poder crear un equipo
 para poder jugar y participar así en la liga creada.
 
@@ -60,7 +60,7 @@ para poder jugar y participar así en la liga creada.
 
 #### R.F.03.02. Lectura de equipo
 
-Como administrador / participante 
+Como participante 
 quiero consultar el detalle de mi equipo (plantilla, presupuesto y puntos acumulados)
 para conocer la situación actual de mi plantilla y planificar mi estrategia para las próximas jornadas.
 
@@ -71,27 +71,77 @@ para conocer la situación actual de mi plantilla y planificar mi estrategia par
 
 #### R.F.03.03. Modificación de equipo
 
-Como administrador / participante 
-quiero [servicio]
-para [razón]
+Como participante 
+quiero modificar los datos de mi equipo
+para mantener actualizada la identidad de mi equipo dentro de la liga.
 
 **Prueba de aceptación**
-- Descripción de la primera comprobación a realizar
-- Descripción de la segunda comprobación a realizar
-- Se debe aplicar la regla de negocio R.N.XX.
-- ...
+- El participante debe ser el propietario del equipo que intenta editar (el sistema deniega la edición si no es el dueño).
+- El sistema actualiza los datos en la base de datos y muestra una confirmación con los datos del equipo actualizados en la pantalla de la liga.
 
 #### R.F.03.04. Borrado de equipo
 
 Como administrador / participante 
-quiero [servicio]
-para [razón]
+quiero eliminar un equipo registrado en una liga
+para darme de baja de la competición (como participante) o expulsar/retirar un equipo de la liga (como administrador).
 
 **Prueba de aceptación**
-- Descripción de la primera comprobación a realizar
-- Descripción de la segunda comprobación a realizar
-- Se debe aplicar la regla de negocio R.N.XX.
-- ...
+- El sistema debe verificar que la acción la realice el participante propietario del equipo o el administrador que gestiona la liga.
+- El sistema debe solicitar una verificación al usuario antes de realizar la acción para evitar borrados accidentales. 
+- Al eliminar un equipo, el sistema tiene que liberar los jugadores que pertenecieron a ese equipo borrado.
+- Se debe modificar el número de participantes en la liga, además de la clasificación.
+
+
+
+#### R.F.04.01. Creación de jugador
+
+Como administrador
+quiero dar de alta a un nuevo jugador en el sistema con sus datos base
+para incorporar nuevos futbolistas al catálogo de la plataforma y permitir que los participantes puedan ficharlos en sus respectivas ligas.
+
+**Prueba de aceptación**
+- El administrador debe introducir los datos obligatorios del nuevo jugador: nombre, posición, valor, foto, estado físico.
+- El sistema inicializa automáticamente los atributos calculables (/media y /puntosTotales) a cero.
+- El sistema valida que la posición seleccionada esté permitidas por el enumerado (DEL, MED, DEF, POR).
+- El sistema debe validar que el estado físico asignado pertenezca a su enumerado correspondiente (LESIONADO, DISPONIBLE, DUDOSO, SANCIONADO).
+- Se debe aplicar la regla de negocio R.N.03.
+-  El sistema confirma el registro correcto y el jugador queda disponible en el mercado/catálogo global del sistema.
+
+
+#### R.F.04.02. Lectura de jugador
+
+Como participante
+quiero consultar la ficha de información detallada de un jugador
+para evaluar su rendimiento, planificar mis alineaciones o analizar su posible fichaje en el mercado.
+
+**Prueba de aceptación**
+- El sistema debe mostrar toda la información básica del jugador, además de sus atributos calculados.
+- El sistema muestra el valor del jugador actualizado.
+- Se permite consultar el desglose de las puntuaciones obtenidas por el jugador en cada una de las jornadas disputadas.
+
+#### R.F.04.03. Modificación del jugador
+
+Como administrador
+quiero modificar la ficha y las estadísticas de un jugador
+para mantener actualizada la información del mercado y reflejar su situación real en la competición.
+
+**Prueba de aceptación**
+- El sistema valida que el usuario auteticado sea un administrador.
+- El sistema permite buscar y seleccionar un Jugador existente para su edición.
+- El sistema guarda los cambios en la base de datos y se muestra inmediatamente en las fichas del jugador.
+
+#### R.F.04.04. Borrado del jugador
+
+Como adminsitrador
+quiero eliminar todos los datos sobre un jugador
+para retirar del sistema a futbolistas que han abandonado la competición real.
+
+**Prueba de aceptación**
+- El sistema valida que el usuario auteticado sea un administrador.
+- El sistema muestra un aviso al administrador y solicita una confirmación para procesar el borrado definitivo.
+- El sistema desvincula el jugador borrado del equipo al que pertenecía y enviará un mensaje que indique la incidencia al participante afectado.
+El sistema elimina la entidad Jugador de la base de datos, lo retira del mercado global y muestra un mensaje de confirmación.
+
 
 #### 4.1.1. Requisitos de información
 
@@ -148,19 +198,21 @@ para seguir el rendimiento del equipo.
 - Validar que cada jugador titular muestre los puntos que lleva generados hasta el momento y que los puntos del equipo sea la suma de estos.
 - Comprobar que el jugador designado como capitán se muestre ya con la puntuación multiplicada por 2.
 
+
+
 #### 4.1.2. Reglas de negocio
 
 ##### R.N.01. Jugador compartido
-
 Un jugador no puede pertenecer a dos equipos diferentes en una misma liga.
 
-##### R.N.02. Varios equipos, un mismo manager
-
+##### R.N.02. Unicidad de equipos
 Un manager no puede tener dos (o más) equipos en una misma liga.
 
-##### R.N.03. Bloqueo de cláusulas previo a la jornada
+##### R.N.03. Valor positivo del jugador
+El jugador debe tener un valor económico introducido cuyo importe numérico mayor que cero.
 
-Un mánager no puede fichar a un jugador de algún rival mediante cláusula durante las 24 horas antes de empezar la jornada.
+
+
 
 ### 4.2. Mapa de historias de usuario (opcional)
 
