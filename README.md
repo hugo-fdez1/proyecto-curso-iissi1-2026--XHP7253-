@@ -143,6 +143,69 @@ Para quitar jornadas creadas por error.
 - Se elimina una jornada pendiente que no tiene alineaciones ni puntuaciones asociadas y el sistema la borra del calendario.
 - Se intenta eliminar una jornada con alineaciones o puntuaciones asociadas, o una jornada ya finalizada, y el sistema muestra un mensaje de error.
 - Se debe aplicar la regla de negocio R.N.XX.
+
+**R.F.06.01. Creación de puntuaciones**  
+Como administrador,  
+Quiero poder registrar los puntos que ha obtenido un jugador en una jornada,  
+Para que el sistema pueda calcular la puntuación de los equipos y la clasificación.
+ 
+**Prueba de aceptación**
+ 
+- Se registran los puntos de un jugador en una jornada en curso o finalizada y el sistema guarda la puntuación y actualiza los puntos de los equipos que lo alinearon.
+- Se intenta registrar la puntuación de un jugador que ya tiene puntos en esa jornada, o en una jornada pendiente, y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
+
+
+**R.F.06.02. Lectura de puntuaciones**  
+Como administrador / usuario,  
+Quiero poder consultar los puntos de un jugador o de un equipo en una jornada,  
+Para saber cómo ha rendido cada uno.
+ 
+**Prueba de aceptación**
+ 
+- Se solicita la puntuación de un jugador en una jornada y el sistema muestra sus puntos.
+- Se solicita la puntuación de un equipo en una jornada y el sistema muestra los puntos de cada jugador alineado y el total.
+- Se solicita la puntuación de una jornada sin puntos registrados y el sistema muestra un mensaje de puntuación no disponible.
+
+
+**R.F.06.03. Modificación de puntuaciones**  
+Como administrador,  
+Quiero poder corregir los puntos de un jugador en una jornada,  
+Para arreglar errores en la puntuación.
+ 
+**Prueba de aceptación**
+ 
+- Se modifica la puntuación de un jugador con un valor válido y el sistema guarda el cambio y recalcula los puntos de los equipos afectados y la clasificación.
+- Se intenta modificar la puntuación de un jugador que no tiene puntos registrados en esa jornada y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
+
+
+**R.F.06.04. Borrado de puntuaciones**  
+Como administrador,  
+Quiero poder eliminar la puntuación de un jugador en una jornada,  
+Para quitar puntuaciones registradas por error.
+ 
+**Prueba de aceptación**
+ 
+- Se elimina la puntuación de un jugador en una jornada y el sistema la borra y recalcula los puntos de los equipos afectados y la clasificación.
+- Se intenta eliminar una puntuación que no existe y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
+
+**R.F.06.05. Consulta de la clasificación**  
+Como participante / administrador,  
+Quiero poder consultar la clasificación de la liga,  
+Para conocer mi posición respecto al resto de participantes.
+ 
+**Prueba de aceptación**
+ 
+- Se solicita la clasificación y el sistema muestra los equipos ordenados por puntos totales de mayor a menor.
+- Se solicita la clasificación de una jornada concreta y el sistema muestra solo los puntos obtenidos en esa jornada.
+- Dos equipos empatan a puntos y el sistema los ordena aplicando el criterio de desempate.
+- Se debe aplicar la regla de negocio R.N.XX.
+
+
+
+
 #### 4.1.1. Requisitos de información
 
 ##### R.I.01. Consultar el perfil y estadísticas de un jugador
