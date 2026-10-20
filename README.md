@@ -100,7 +100,7 @@ Para mantener actualizados los datos del usuario .<br>
 - Al editar se modifica alguno de los campos dejándolo en blanco y el sistema muestra un mensaje de error.
 
 **R.F.01.04. Borrado de usuarios**  <br>
-Como administrados / usuario ,<br>
+Como administrador / usuario ,<br>
 Quiero poder borrar un usuario y los datos asociados a él,<br>
 Para quitar del sistema usuarios innecesarios o que no vayan a utilizar la aplicación más.<br>
   
@@ -112,43 +112,50 @@ Para quitar del sistema usuarios innecesarios o que no vayan a utilizar la aplic
 
 **R.F.02.01. Creación de la liga**  <br>
 Como administrador / participante,<br>
-Quiero poder crear un nuevo usuario,<br>
-Para poder participar y/o administrar la liga o la misma aplicación.<br>
+Quiero crear una nueva liga,<br>
+Para poder competir con otros usuarios en una misma competición.<br>
   
 **Prueba de aceptación**
-- Una persona se registra en la aplicación con sus datos, se crea el usuario y puede comenzar a utilizar la aplicación.
-- Una persona se registra en la aplicación con datos incorrectos y el sistema muestra un mensaje de error.
-- Se debe aplicar la regla de negocio R.N.01.
+- Un usuario intenta crear una liga, se crea una nueva competición y se muestra al usuario la clasificación de esa nueva liga. 
+- Un usuario no registrado intenta crear una liga y el sistema le manda a una pantalla de inicio de sesión.
+- Se debe aplicar la regla de negocio R.N.02.
 
-**R.F.01.02. Consulta de la liga**  <br>
+**R.F.02.02. Consulta de la liga**  <br>
 Como administrador / usuario,<br>
-Quiero poder consultar los datos asociados a un usuario,<br>
-Para verificar su información o supervisar los usuarios registrados.<br>
+Quiero poder consultar la información de una liga,<br>
+Para verificar sus datos asociados y sus miembros.<br>
   
 **Prueba de aceptación**
-- Se solicita consultar la información de un usuario y el sistema le muestra sus datos.
-- Se solicita consultar la información de un usuario no registrado y el sistema le muestra un mensaje de "usuario no encontrado".
-- Al consultar la información solo se muestra la información pública, ocultando datos privados como la contraseña.
+- Se solicita consultar la información de una liga y el sistema le muestra su nombre asociado, su código y los participantes de la liga.
 
-**R.F.01.03. Modificación de la liga**  <br>
+**R.F.02.03. Modificación de la liga**  <br>
+Como administrador / creador de la liga,<br>
+Quiero poder modificar la información y los participantes de una liga,<br>
+Para controlar la información de la liga y quién participa.<br>
+  
+**Prueba de aceptación**
+- Se pide al sistema que edite alguno de los ajustes de la liga, el sistema guarda el cambio y muestra un mensaje de "operación exitosa".
+- Se pide al sistema que expulse a algún miembro de la liga, se borra a ese usuario del sistema y se muestra un mensaje de "operación exitosa".
+- Se debe aplicar la regla de negocio R.N.03.
+
+**R.F.02.04. Borrado de la liga**  <br>
+Como administrador / creador de la liga ,<br>
+Quiero poder borrar una liga y toda su información asociada,<br>
+Para eliminar ligas en las que ya no se vaya a competir.<br>
+  
+**Prueba de aceptación**
+- Se intenta borrar una liga, el sistema borra la liga y sus datos asociados y muestra un mensaje de "operación exitosa".
+- Al intentar unirse a una liga borrada, el sistema no lo permite y muestra un mensaje de "esa liga ya no existe".
+
+**R.F.02.05. Unión a una liga**  <br>
 Como administrador / usuario,<br>
-Quiero poder modificar la información de un usuario,<br>
-Para mantener actualizados los datos del usuario .<br>
+Quiero que cada liga tenga asociado un código de 6 caracteres que permita unirse a dicha liga,<br>
+Para que un usuario pueda unirse a una liga ya empezada.<br>
   
 **Prueba de aceptación**
-- Se pide al sistema que edite alguno de los datos relacionados a un usuario registrado, se actualiza y se muestra un mensaje confirmando la edición seguido de los datos actualizados.
-- Se pide al sistema que edite los datos relacionados a un usuario no registrado y se muestra un mensaje de "usuario no encontrado".
-- Al editar se modifica alguno de los campos dejándolo en blanco y el sistema muestra un mensaje de error.
-
-**R.F.01.04. Borrado de la liga**  <br>
-Como administrados / usuario ,<br>
-Quiero poder borrar un usuario y los datos asociados a él,<br>
-Para quitar del sistema usuarios innecesarios o que no vayan a utilizar la aplicación más.<br>
-  
-**Prueba de aceptación**
-- Se intenta borrar un usuario del sistema, el sistema pide confirmación y una vez dada se elimina al usuario junto con sus datos.
-- Se intenta borrar un usuario no registrado y el sistema muestra un mensaje de "usuario no encontrado".
-- Al intentar iniciar sesión con sus datos, el sistema no permite el acceso y muestra un mensaje de "usuario no existe".
+- Un usuario introduce un código asociado a una liga en la pantalla de inicio, se añade ese usuario a dicha liga y se muestra un mensaje de bienvenida a la liga. 
+- Un usuario introduce un código no asociado a una liga y el sistema muestra un mensaje de "liga no encontrada".
+- Se debe aplicar la R.N.02.
 
 
 #### 4.1.1. Requisitos de información
@@ -166,9 +173,18 @@ para [razón]
 
 #### 4.1.2. Reglas de negocio
 
-##### R.N.01. Título regla negocio
+##### R.N.01. Correo único
 
-Descripción de la regla de negocio.
+No puede haber dos usuarios con el mismo correo electrónico.
+
+##### R.N.02. Límite de ligas
+
+Un usuario no puede participar en más de 5 ligas a la vez.
+
+##### R.N.03. Permisos de gestión de liga
+
+Solo un administrador o el creador de una liga puede gestionar una liga y a sus participantes.
+
 
 ### 4.2. Mapa de historias de usuario (opcional)
 
