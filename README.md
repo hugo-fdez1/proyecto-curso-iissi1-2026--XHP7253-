@@ -112,7 +112,7 @@ Para organizar el calendario de partidos de la temporada.
 - Se debe aplicar la regla de negocio R.N.XX.
 
 **R.F.05.02. Lectura de jornadas**  
-Como administrador / participante,  
+Como administrador / usuario,  
 Quiero poder consultar los datos de una jornada o el calendario completo,  
 Para saber cuándo se juega cada jornada y hasta cuándo puedo cambiar mi alineación.
  
@@ -192,7 +192,7 @@ Para quitar puntuaciones registradas por error.
 - Se debe aplicar la regla de negocio R.N.XX.
 
 **R.F.06.05. Consulta de la clasificación**  
-Como participante / administrador,  
+Como usuario / administrador,  
 Quiero poder consultar la clasificación de la liga,  
 Para conocer mi posición respecto al resto de participantes.
  
@@ -203,7 +203,66 @@ Para conocer mi posición respecto al resto de participantes.
 - Dos equipos empatan a puntos y el sistema los ordena aplicando el criterio de desempate.
 - Se debe aplicar la regla de negocio R.N.XX.
 
+**R.F.07.01. Creación de transacciones**  
+Como usuario,  
+Quiero poder realizar una transacción (puja por un jugador del mercado o venta de uno de mi plantilla),  
+Para incorporar jugadores a mi equipo o recuperar presupuesto.
+ 
+**Prueba de aceptación**
+ 
+- Se realiza una puja por un jugador del mercado con un importe válido y el sistema registra la transacción como pendiente.
+- Se intenta pujar con un importe superior al presupuesto disponible, con el mercado cerrado o con la plantilla completa y el sistema muestra un mensaje de error.
+- Se intenta vender un jugador que no está en la plantilla del equipo y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
 
+
+**R.F.07.02. Lectura de transacciones**  
+Como administrador / usuario ,  
+Quiero poder consultar las transacciones realizadas,  
+Para llevar el control de los fichajes, ventas y movimientos de presupuesto.
+ 
+**Prueba de aceptación**
+ 
+- Se solicita el historial de transacciones de un equipo y el sistema muestra jugador, tipo , importe, fecha y estado.
+- Se solicita el historial de toda la liga y el sistema muestra las transacciones de todos los equipos ordenadas por fecha.
+- Se solicita consultar una transacción que no existe y el sistema muestra un mensaje de transacción no encontrada.
+
+
+**R.F.07.03. Modificación de transacciones**  
+Como usuario,  
+Quiero poder modificar el importe de una puja pendiente,  
+Para mejorar mi oferta antes de que cierre el mercado.
+ 
+**Prueba de aceptación**
+ 
+- Se modifica el importe de una puja pendiente con un valor válido mientras el mercado está abierto y el sistema guarda el cambio.
+- Se intenta modificar una transacción ya resuelta o con el mercado cerrado y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
+
+
+**R.F.07.04. Borrado de transacciones**  
+Como usuario,  
+Quiero poder cancelar una puja pendiente,  
+Para retirar mi oferta si ya no me interesa el jugador.
+ 
+**Prueba de aceptación**
+ 
+- Se cancela una puja pendiente con el mercado abierto y el sistema la elimina sin afectar al presupuesto.
+- Se intenta cancelar una transacción ya resuelta y el sistema muestra un mensaje de error, porque el historial de fichajes no se puede borrar.
+- Se debe aplicar la regla de negocio R.N.XX.
+
+
+**R.F.07.05. Resolución de transacciones**  
+Como administrador,  
+Quiero poder cerrar el mercado y resolver las transacciones pendientes,  
+Para que los jugadores se adjudiquen de forma justa y se actualicen las plantillas y presupuestos.
+ 
+**Prueba de aceptación**
+ 
+- Se cierra el mercado y cada jugador se adjudica a la puja de mayor importe, se descuenta el importe del presupuesto del ganador y el jugador se añade a su plantilla.
+- Hay un empate entre dos pujas y el sistema adjudica el jugador a la puja registrada primero.
+- Un jugador sin pujas no se adjudica y sigue disponible en el mercado.
+- Se debe aplicar la regla de negocio R.N.XX.
 
 
 #### 4.1.1. Requisitos de información
