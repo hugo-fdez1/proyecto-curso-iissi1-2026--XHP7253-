@@ -264,7 +264,64 @@ Para que los jugadores se adjudiquen de forma justa y se actualicen las plantill
 - Un jugador sin pujas no se adjudica y sigue disponible en el mercado.
 - Se debe aplicar la regla de negocio R.N.XX.
 
+**R.F.08.01. Creación de alineaciones**  
+Como participante,  
+Quiero poder crear la alineación de mi equipo para una jornada,  
+Para elegir qué jugadores puntúan en esa jornada.
+ 
+**Prueba de aceptación**
+ 
+- Se crea una alineación con una formación válida y 11 jugadores de la plantilla del equipo y el sistema la guarda para esa jornada.
+- Se intenta crear una alineación con una formación no permitida, con jugadores que no están en la plantilla, con jugadores lesionados o sancionados, o en una jornada ya cerrada, y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
 
+**R.F.08.02. Lectura de alineaciones**  
+Como participante / administrador,  
+Quiero poder consultar la alineación de un equipo en una jornada,  
+Para revisar mis decisiones o ver cómo han jugado los demás equipos.
+ 
+**Prueba de aceptación**
+ 
+- Un participante consulta la alineación de su propio equipo y el sistema muestra la formación, los 11 jugadores y el capitán.
+- Un participante intenta consultar la alineación de otro equipo con la jornada sin cerrar y el sistema no la muestra, para evitar ventajas.
+- Se consulta la alineación de cualquier equipo en una jornada ya cerrada y el sistema la muestra junto con los puntos obtenidos.
+
+
+**R.F.08.03. Modificación de alineaciones**  
+Como participante,  
+Quiero poder modificar mi alineación (jugadores o formación),  
+Para adaptarla a lesiones, sanciones o cambios de última hora antes de que empiece la jornada.
+ 
+**Prueba de aceptación**
+ 
+- Se modifica la alineación con la jornada aún abierta y el sistema guarda el cambio siempre que siga siendo válida.
+- Se intenta modificar una alineación de una jornada cerrada y el sistema muestra un mensaje de error.
+- Se intenta sustituir un jugador por otro lesionado o que no está en la plantilla y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
+
+
+**R.F.08.04. Borrado de alineaciones**  
+Como participante,  
+Quiero poder eliminar la alineación de una jornada,  
+Para empezar de cero si me he equivocado al configurarla.
+ 
+**Prueba de aceptación**
+ 
+- Se elimina la alineación de una jornada abierta y el sistema la borra.
+- Se intenta eliminar la alineación de una jornada cerrada y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
+
+
+**R.F.08.05. Designación del capitán**  
+Como participante,  
+Quiero poder elegir un capitán entre los jugadores de mi alineación,  
+Para duplicar los puntos de ese jugador en la jornada.
+ 
+**Prueba de aceptación**
+ 
+- Se designa capitán a uno de los jugadores alineados y el sistema lo guarda en la alineación.
+- Se intenta designar capitán a un jugador que no está en la alineación o designar un segundo capitán y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
 #### 4.1.1. Requisitos de información
 
 ##### R.I.01. Consultar el perfil y estadísticas de un jugador
