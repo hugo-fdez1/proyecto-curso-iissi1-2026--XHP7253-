@@ -83,10 +83,10 @@ Se contemplan tres tipos de usuarios:
   Quiero poder gestionar las transacciones,<br>
   Para facilitar la compraventa de jugadores.<br>
 
-  **R.G.08. Gestión de las alineaciones**  <br>
+  **R.G.08. Gestión de los partidos**  <br>
   Como participante,<br>
-  Quiero poder gestionar las alineaciones,<br>
-  Para hacer un buen uso de los jugadores cada jornada.<br>
+  Quiero poder gestionar los partidos,<br>
+  Para seguir una buena estrategia cada partido.<br>
 
 ## 4. Catálogo de requisitos
 
@@ -186,9 +186,9 @@ quiero poder crear un equipo,<br>
 para poder jugar y participar así en la liga creada.
 
 **Prueba de aceptación**
+- Un usuario se une a una liga y el sistema crea y registra el equipo.
 - El sistema debe vincular correctamente el nuevo Equipo creado tanto a la Liga correspondiente como al Participante creador.
 - Se debe aplicar la regla de negocio R.N.05.
-
 
 #### R.F.03.02. Lectura de equipo
 
@@ -197,9 +197,9 @@ quiero consultar el detalle de mi equipo (plantilla, presupuesto y puntos acumul
 para conocer la situación actual de mi plantilla y planificar mi estrategia para las próximas jornadas.
 
 **Prueba de aceptación**
-- El sistema muestra el nombre del equipo, su valor total estimado y los puntos acumulados en la liga.
+- Un participante busca la información de su equipo y el sistema muestra una pantalla con todos sus datos asociados.
 - Se muestra el listado de jugadores que componen la plantilla actual del equipo.
-- Si un participante no posee un equipo en la liga consultada, el sistema denegará la visualización y mostrará un mensaje descriptivo.
+- Si se intenta consultar un equipo que no se encuentra en la liga, el sistema denegará la visualización y mostrará un mensaje de error.
 
 #### R.F.03.03. Modificación de equipo
 
@@ -208,8 +208,8 @@ quiero modificar los datos de mi equipo, <br>
 para mantener actualizada la identidad de mi equipo dentro de la liga.
 
 **Prueba de aceptación**
-- El participante debe ser el propietario del equipo que intenta editar (el sistema deniega la edición si no es el dueño).
-- El sistema actualiza los datos en la base de datos y muestra una confirmación con los datos del equipo actualizados en la pantalla de la liga.
+- El propietario de un equipo modifica su equipo y el sistema actualiza los datos en la base de datos y muestra una confirmación con los datos del equipo actualizados en la pantalla de la liga.
+- Se cumple la R.N.09.
 
 #### R.F.03.04. Borrado de equipo
 
@@ -218,12 +218,10 @@ quiero eliminar un equipo registrado en una liga, <br>
 para darme de baja de la competición (como participante) o expulsar/retirar un equipo de la liga (como administrador).
 
 **Prueba de aceptación**
-- El sistema debe verificar que la acción la realice el participante propietario del equipo o el administrador que gestiona la liga.
 - El sistema debe solicitar una verificación al usuario antes de realizar la acción para evitar borrados accidentales. 
-- Al eliminar un equipo, el sistema tiene que liberar los jugadores que pertenecieron a ese equipo borrado.
-- Se debe modificar el número de participantes en la liga, además de la clasificación.
-
-
+- Al eliminar un equipo, el sistema libera los jugadores que pertenecían a ese equipo borrado.
+- Al eliminar un equipo, el sistema modifica el número de participantes en la liga, además de la clasificación.
+- Se cumple la R.N.10.
 
 #### R.F.04.01. Creación de jugador
 
@@ -232,13 +230,11 @@ quiero dar de alta a un nuevo jugador en el sistema con sus datos base,<br>
 para incorporar nuevos futbolistas al catálogo de la plataforma y permitir que los participantes puedan ficharlos en sus respectivas ligas.
 
 **Prueba de aceptación**
-- El administrador debe introducir los datos obligatorios del nuevo jugador: nombre, posición, valor, foto, estado físico.
+- El administrador crea a un nueva jugador junto con su información y el sistema registra a ese jugador y muestra un mensaje de confirmación.
 - El sistema inicializa automáticamente los atributos calculables (/media y /puntosTotales) a cero.
 - El sistema valida que la posición seleccionada esté permitidas por el enumerado (DEL, MED, DEF, POR).
 - El sistema debe validar que el estado físico asignado pertenezca a su enumerado correspondiente (LESIONADO, DISPONIBLE, DUDOSO, SANCIONADO).
 - Se debe aplicar la regla de negocio R.N.03.
--  El sistema confirma el registro correcto y el jugador queda disponible en el mercado/catálogo global del sistema.
-
 
 #### R.F.04.02. Lectura de jugador
 
@@ -247,9 +243,9 @@ quiero consultar la ficha de información detallada de un jugador,<br>
 para evaluar su rendimiento, planificar mis alineaciones o analizar su posible fichaje en el mercado.
 
 **Prueba de aceptación**
-- El sistema debe mostrar toda la información básica del jugador, además de sus atributos calculados.
+- Un usuario consulta a un jugador y el sistema muestra toda la información básica del jugador, además de sus atributos calculados.
 - El sistema muestra el valor del jugador actualizado.
-- Se permite consultar el desglose de las puntuaciones obtenidas por el jugador en cada una de las jornadas disputadas.
+- Al buscar la información del jugador aparece el desglose de las puntuaciones obtenidas por el jugador en cada una de las jornadas disputadas.
 
 #### R.F.04.03. Modificación del jugador
 
@@ -258,116 +254,21 @@ quiero modificar la ficha y las estadísticas de un jugador,<br>
 para mantener actualizada la información del mercado y reflejar su situación real en la competición.
 
 **Prueba de aceptación**
-- El sistema valida que el usuario auteticado sea un administrador.
+- El sistema valida que el usuario autenticado sea un administrador.
 - El sistema permite buscar y seleccionar un Jugador existente para su edición.
 - El sistema guarda los cambios en la base de datos y se muestra inmediatamente en las fichas del jugador.
 
 #### R.F.04.04. Borrado del jugador
 
-Como adminsitrador,<br>
+Como administrador,<br>
 quiero eliminar todos los datos sobre un jugador,<br>
 para retirar del sistema a futbolistas que han abandonado la competición real.
 
 **Prueba de aceptación**
-- El sistema valida que el usuario auteticado sea un administrador.
-- El sistema muestra un aviso al administrador y solicita una confirmación para procesar el borrado definitivo.
-- El sistema desvincula el jugador borrado del equipo al que pertenecía y enviará un mensaje que indique la incidencia al participante afectado.
-El sistema elimina la entidad Jugador de la base de datos, lo retira del mercado global y muestra un mensaje de confirmación.
-
-
-
-
-### ESTO ESTÁ MAL CREO PERO LO DEJO DE MOMENTO.
-
-R.F.01. Pujar por un jugador en el mercado
-Como mánager de una liga
-
-quiero realizar una puja económica por un futbolista libre en el mercado
-
-para incorporarlo a mi plantilla y reforzar mi equipo.
-
-Prueba de aceptación
-
--El sistema debe comprobar que el mánager dispone de presupuesto equivalente o superior al importe pujado.
-
--La puja realizada debe permanecer oculta para el resto de mánagers hasta la hora de cierre del mercado.
-
--Se debe aplicar la regla de negocio R.N.01 (El dinero de la puja activa se retiene temporalmente del saldo disponible del usuario).
-
-R.F.02. Guardar alineación táctica
-Como mánager de una liga
-
-quiero seleccionar mi formación táctica y asignar 11 futbolistas titulares
-
-para sumar los puntos que consigan estos jugadores durante los partidos de la jornada.
-
-Prueba de aceptación
-
--Comprobar que no se permite guardar una alineación con más de 11 jugadores ni con puestos vacíos.
-
--Verificar que el sistema bloquee la edición de alineaciones en cuanto comience el primer partido de la jornada.
-
--Se debe aplicar la regla de negocio R.N.02 (Si el saldo total del mánager es negativo al inicio de la jornada, la alineación puntúa 0).
-
-R.F.03. Pagar cláusula de rescisión
-Como mánager de una liga
-
-quiero pagar la cláusula de rescisión de un jugador de un rival
-
-para ficharlo de forma inmediata sin necesidad de subasta.
-
-Prueba de aceptación
-
--Verificar que la opción solo esté activa dentro del horario permitido para clausulados.
-
--Comprobar que el importe pagado se descuente al comprador y se abone instantáneamente al saldo del vendedor.
-
--Se debe aplicar la regla de negocio R.N.03 (Un jugador recién fichado mediante cláusula no puede ser clausulado de nuevo durante 14 días).
-
-R.F.04. Poner un jugador en venta
-Como mánager de una liga
-
-quiero poner a un futbolista de mi plantilla en el mercado de fichajes
-
-para recibir ofertas económicas del sistema o de otros mánagers y ganar presupuesto.
-
-Prueba de aceptación
-
--Comprobar que el jugador aparezca inmediatamente en el mercado de ventas.
-
--Permitir retirar al jugador del mercado en cualquier momento antes de aceptar una oferta.
-
--Se debe aplicar la regla de negocio R.N.04 (El sistema del mercado emitirá siempre una oferta automática basada en el valor de mercado actual dentro de las primeras 24 horas).
-
-R.F.05. Asignar capitán al equipo
-Como mánager de una liga
-
-quiero designar a un jugador titular como capitán de mi alineación
-
-para duplicar los puntos que consiga durante la jornada.
-
-Prueba de aceptación
-
--Verificar que solo se pueda seleccionar a un único jugador titular como capitán por jornada.
-
--Comprobar que en el cálculo de puntuación final de la jornada se aplique el multiplicador x2 sobre sus puntos netos.
-
--Se debe aplicar la regla de negocio R.N.15 (Si el capitán seleccionado recibe puntos negativos, la penalización también se multiplicará por 2).
-
-R.F.06. Crear una liga privada
-Como mánager
-
-quiero crear una liga privada con un código de invitación único y una configuración personalizada
-
-para competir exclusivamente con un grupo cerrado de amigos.
-
-Prueba de aceptación
-
--Comprobar que el sistema genere un código único al completar la creación.
-
--Verificar que el usuario creador quede asignado automáticamente con el rol de Administrador de Liga.
-
--Se debe aplicar la regla de negocio R.N.02 (Un mismo usuario no puede estar inscrito en más de 10 ligas en paralelo).
+- Al intentar borrar un jugador, el sistema muestra un aviso al administrador y solicita una confirmación para procesar el borrado definitivo.
+- Al proceder con la eliminación del jugador, el sistema desvincula el jugador borrado del equipo al que pertenecía y enviará un mensaje que indique la incidencia al participante afectado.
+- El sistema elimina al jugador y a su información de la base de datos y muestra un mensaje de confirmación.
+- Se cumple el R.N.10.
 
 #### 4.1.1. Requisitos de información
 
@@ -418,7 +319,7 @@ quiero poder almacenar la siguiente información sobre el Equipo:
 para saber cómo va el equipo en la clasificación general.
 
 Esta entidad Equipo se asocia de la siguiente forma:
-- Varios Equipo pertence a un solo participante (cumpliendo siempre la R.N.08).
+- Varios Equipo pertenece a un solo participante (cumpliendo siempre la R.N.08).
 - Uno o varios Equipos pertenecen a una sola liga.
 - Un Equipo puede poseer entre 0 y muchos Jugadores.
 - Varios Equipos guardan varias Alineaciones.
@@ -512,7 +413,7 @@ No puede haber dos usuarios con el mismo correo electrónico.
 
 Un usuario no puede participar en más de 5 ligas a la vez.
 
-##### R.N.03. Permisos de gestión de liga
+##### R.N.03. Permisos de gestión de la liga
 
 Solo un administrador o el creador de una liga puede gestionar una liga y a sus participantes.
 
@@ -522,7 +423,7 @@ Un jugador no puede pertenecer a dos equipos diferentes en una misma liga.
 
 ##### R.N.05. Unicidad de equipo por liga
 
-Un manager no puede tener dos (o más) equipos en una misma liga.
+Un usuario no puede tener dos (o más) equipos en una misma liga.
 
 ##### R.N.06. Valor positivo del jugador
 
@@ -536,41 +437,13 @@ Solo es posible unirse a una liga mediante un código alfanumérico de 6 caracte
 
 La contraseña debe contener al menos 8 caracteres.
 
+##### R.N.09. Permisos sobre un equipo
 
+El propietario de un equipo (o un administrador) es el único que tiene permisos sobre su equipo.
 
+##### R.N.10. Permisos de gestión
 
-
-### ESTO CREO QUE TAMBIÉN ESTÁ MAL PERO LO DEJO DE MOMENTO Y PONGO LOS BUENOS ARRIBA
-
-
-#### R.N.01 
- El dinero de la puja activa se retiene temporalmente del presupuesto disponible del usuario.
-
-#### R.N.02  
-Si el saldo total del mánager es negativo al inicio de la jornada, la alineación puntúa 0.
-
-####  R.N.03 
- Un jugador recién fichado mediante cláusula no puede ser clausulado de nuevo durante 14 días.
-
-####  R.N.04  
-El sistema del mercado emitirá siempre una oferta automática basada en el valor de mercado actual dentro de las primeras 24 horas.
-
-#### R.N.05  
-Si el capitán seleccionado recibe puntos negativos, la penalización también se multiplicará por 2.
-
-
-
-
-### 4.2. Mapa de historias de usuario (opcional)
-
-### 4.3. Requisitos no funcionales (opcional)
-
-**R.N.F. 01. Título requisito no funcional**
-Como [tipo de usuario]
-quiero [servicio]
-para [razón]
-
--- fin entregable 1 --
+Solo un administrador puede gestionar la información referente a la aplicación.
 
 ## 5. Modelo conceptual
 
