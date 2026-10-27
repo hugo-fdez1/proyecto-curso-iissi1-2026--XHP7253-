@@ -274,7 +274,7 @@ para retirar del sistema a futbolistas que han abandonado la competición real.
 
 ##### R.I.01. Información de usuario
 
-Como mánager de una liga
+Como dueño de la aplicación
 
 quiero poder almacenar la siguiente información de Usuario:
 - El correo que esa persona va a emplear para registrarse.
@@ -289,12 +289,11 @@ De esta clase Usuario derivan dos subclases:
   - El presupuesto inicial.
 
 Y estas subclases se asocian de la siguiente forma:
-- Un Administrador puede gestionar una o varias Ligas a nivel global.
 - Un participante puede crear una o varias Ligas.  Además, el participante puede poseer uno o varios Equipos.
 
 ##### R.I.02. Información de la liga
 
-Como mánager de una liga
+Como participante
 
 quiero poder almacenar la siguiente información de la Liga:
 - El nombre de esa liga.
@@ -303,14 +302,13 @@ quiero poder almacenar la siguiente información de la Liga:
 para identificar de forma única la competición y permitir que los participantes se unan mediante un código privado.
 
 Esta entidad Liga se asocia de la siguiente forma:
-- Una Liga gestionada por un solo Administrador.
 - Una Liga es creada por un único participante.
 - Una Liga se compone obligatoriamente de uno a muchos Equipos.
 - Una Liga está compuesta por una a muchas Jornadas.
 
 ##### R.I.03. Información del equipo
 
-Como mánager de una liga
+Como participante
 
 quiero poder almacenar la siguiente información sobre el Equipo:
 - Los puntos totales (calculado mediante la suma de todos los puntos de la Alineación en cada Jornada).
@@ -319,14 +317,14 @@ quiero poder almacenar la siguiente información sobre el Equipo:
 para saber cómo va el equipo en la clasificación general.
 
 Esta entidad Equipo se asocia de la siguiente forma:
-- Varios Equipo pertenece a un solo participante (cumpliendo siempre la R.N.08).
+- Varios Equipo pertence a un solo participante (cumpliendo siempre la R.N.08).
 - Uno o varios Equipos pertenecen a una sola liga.
 - Un Equipo puede poseer entre 0 y muchos Jugadores.
-- Varios Equipos guardan varias Alineaciones.
+- Varios Equipos participan en varias Jornadas.
 
 ##### R.I.04. Información del jugador
 
-Como mánager de una liga
+Como participante
 
 quiero poder almacenar la siguiente información sobre el Jugador:
 - El nombre.
@@ -340,13 +338,13 @@ quiero poder almacenar la siguiente información sobre el Jugador:
 para consultar la ficha y las estadísticas del futbolista, saber si está disponible para ponerlo en la alineación y gestionar su compra o venta según su valor y posición.
 
 Esta entidad Jugador se asocia de la siguiente forma:
-- Varios Jugadores pertenecen a un equipo (respetando la RN.07).
-- 11 Jugadores son alineados por una Alineación.
+- Varios Jugadores pueden pertenecer a varios Equipos (respetando la RN.07).
+- 11 Jugadores son alineados en varios Partidos.
 - Varios Jugadores juegan entre 0 y muchas Jornadas.
 
 ##### R.I.05. Información de la jornada
 
-Como mánager de una liga
+Como administrador
 
 quiero poder almacenar la siguiente información sobre el Jornada:
 - El número de la Jornada.
@@ -356,27 +354,29 @@ quiero poder almacenar la siguiente información sobre el Jornada:
 para tener organizado el calendario de la liga, controlar las fechas en las que los participantes pueden guardar su alineación y calcular las puntuaciones semanales.
 
 Esta entidad Jornada se asocia de la siguiente forma:
-- Una o varias Jornadas son compuestas en una Liga.
-- Una Jornada registra muchas Alineaciones.
+- Una Liga está compuesta obligatoriamente por una o varias Jornadas.
+- En muchas Jornadas participan muchos Equipos.
 - Varias Jornadas son jugadas por varios Jugadores.
 
-##### R.I.06. Información de puntuación
+##### R.I.06. Información de los partidos
 
-Como mánager de una liga
+Como administrador
 
-quiero poder almacenar la siguiente información sobre la Puntuación:
-- Los goles marcados por el Jugador en la Jornada.
-- Las asistencias realizadas.
-- Los puntos obtenidos en la jornada (calculados a partir de los goles, asistencias y su actuación).
+quiero poder almacenar la siguiente información sobre el Partido:
+- Los puntos por Jornada (calculado como la suma de todas las Puntuaciones de los 11 Jugadores alineados).
+- La fecha y hora que comienza el Partido.
+- El estado en el que se encuentra el Partido (PENDIENTE, EN_JUEGO, FINALIZADO, SUSPENDIDO).
 
-para saber cuántos puntos suma cada jugador en un partido concreto, actualizar los puntos de las alineaciones de los participantes y llevar el registro de estadísticas de los futbolistas.
+para conocer el calendario de enfrentamientos, realizar el seguimiento del estado de cada partido en tiempo real y calcular automáticamente los puntos obtenidos por el equipo en dicha jornada.
 
-Esta entidad Puntuación se asocia de la siguiente forma:
-- Puntuacion nace de la relación muchos a muchos entre Jugador y Jornada. Cada registro de Puntuacion vincula a 1 único Jugador con 1 única Jornada para almacenar su rendimiento específico en ese partido.
+Esta entidad Partido se asocia de la siguiente forma:
+- Nace de la relación muchos a muchos entre Equipo y Jornada.
+- Un Partido alinea a 11 Jugadores.
+
 
 ##### R.I.07. Información de transacciones
 
-Como mánager de una liga
+Como participante
 
 quiero poder almacenar la siguiente información sobre la Transacción:
 - La cantidad (el dinero de la operación).
@@ -388,21 +388,20 @@ para registrar los fichajes y compraventas de jugadores entre equipos y llevar e
 Esta entidad Transacción se asocia de la siguiente forma:
 - Transacción se modela como una clase de asociación sobre la relación entre Equipo y Jugador. Cada registro de Transacción vincula a 1 Equipo con 1 Jugador para registrar el intento o confirmación de su fichaje por una cantidad, fecha y estado concretos.
 
-##### R.I.08. Información de las alineaciones
+##### R.I.08. Información de puntuación
 
-Como mánager de una liga
+Como administrador
 
-quiero poder almacenar la siguiente información sobre la Alineacion:
-- Los puntos por Jornada (calculado como la suma de todas las Puntuaciones de los 11 Jugadores alineados).
-- La formación que emplea el Equipo.
-- La fecha de guardado de la Alineación.
+quiero poder almacenar la siguiente información sobre la Puntuación:
+- Los goles marcados por el Jugador en la Jornada.
+- Las asistencias realizadas.
+- Los puntos obtenidos en la jornada (calculados a partir de los goles, asistencias y su actuación).
 
-para registrar los 11 jugadores y la formación táctica que elige el usuario en una jornada, comprobar que la guardó dentro del plazo límite y calcular los puntos que suma esa semana.
+para saber cuántos puntos suma cada jugador en un partido concreto, actualizar los puntos de las alineaciones de los participantes y llevar el registro de estadísticas de los futbolistas.
 
-Esta entidad Alineación se asocia de la siguiente forma:
-- Una o varias Alineaciones son registradas por la Jornada.
-- Varias Alineaciones son guardadas por varios Equipos.
-- Una Alineación alinea a 11 Jugadores.
+Esta entidad Puntuación se asocia de la siguiente forma:
+- Se modela como una clase de asociación sobre la relación de alineación entre Jugador y Partido.
+- Cada registro de Puntuación vincula a 1 Jugador con 1 Partido concreto para almacenar sus estadísticas individuales y sus puntos derivados.
 
 #### 4.1.2. Reglas de negocio
 ##### R.N.01. Correo único
