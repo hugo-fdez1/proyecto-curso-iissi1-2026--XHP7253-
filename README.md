@@ -338,7 +338,7 @@ quiero poder almacenar la siguiente información sobre el Jugador:
 para consultar la ficha y las estadísticas del futbolista, saber si está disponible para ponerlo en la alineación y gestionar su compra o venta según su valor y posición.
 
 Esta entidad Jugador se asocia de la siguiente forma:
-- Varios Jugadores pueden pertenecer a varios Equipos (respetando la RN.07).
+- Varios Jugadores pueden pertenecer a varios Equipos (respetando la RN.04).
 - 11 Jugadores son alineados en varios Partidos.
 - Varios Jugadores juegan entre 0 y muchas Jornadas.
 
