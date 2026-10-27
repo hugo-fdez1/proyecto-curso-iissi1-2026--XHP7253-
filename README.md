@@ -230,7 +230,7 @@ quiero dar de alta a un nuevo jugador en el sistema con sus datos base,<br>
 para incorporar nuevos futbolistas al catálogo de la plataforma y permitir que los participantes puedan ficharlos en sus respectivas ligas.
 
 **Prueba de aceptación**
-- El administrador crea a un nueva jugador junto con su información y el sistema registra a ese jugador y muestra un mensaje de confirmación.
+- El administrador crea a un nuevo jugador junto con su información y el sistema registra a ese jugador y muestra un mensaje de confirmación.
 - El sistema inicializa automáticamente los atributos calculables (/media y /puntosTotales) a cero.
 - El sistema valida que la posición seleccionada esté permitidas por el enumerado (DEL, MED, DEF, POR).
 - El sistema debe validar que el estado físico asignado pertenezca a su enumerado correspondiente (LESIONADO, DISPONIBLE, DUDOSO, SANCIONADO).
@@ -268,7 +268,229 @@ para retirar del sistema a futbolistas que han abandonado la competición real.
 - Al intentar borrar un jugador, el sistema muestra un aviso al administrador y solicita una confirmación para procesar el borrado definitivo.
 - Al proceder con la eliminación del jugador, el sistema desvincula el jugador borrado del equipo al que pertenecía y enviará un mensaje que indique la incidencia al participante afectado.
 - El sistema elimina al jugador y a su información de la base de datos y muestra un mensaje de confirmación.
-- Se cumple el R.N.10.
+- Se cumple la R.N.10.
+
+**R.F.05.01. Creación de jornadas**  
+Como administrador,  
+Quiero poder crear una nueva jornada,  
+Para organizar el calendario de partidos de la temporada.
+ 
+**Prueba de aceptación**
+ 
+- Se introducen los datos asociados a una jornada y el sistema crea la jornada en estado pendiente.
+- Se intenta crear una jornada con un número ya existente o con la fecha de fin anterior a la de inicio y el sistema muestra un mensaje de error.
+- Se debe aplicar R.N.11.
+- Se debe aplicar R.N.12
+
+**R.F.05.02. Lectura de jornadas**  
+Como administrador / usuario,  
+Quiero poder consultar los datos de una jornada o el calendario completo,  
+Para saber cuándo se juega cada jornada y hasta cuándo puedo cambiar mi alineación.
+ 
+**Prueba de aceptación**
+ 
+- Se consultar una jornada y el sistema muestra la información referente a esa jornada.
+- Se solicita consultar una jornada que no existe y el sistema muestra un mensaje de jornada no encontrada.
+- Se solicita el calendario filtrado por estado  y el sistema muestra solo las jornadas de ese estado. ???????????????????????????????
+
+**R.F.05.03. Modificación de jornadas**  
+Como administrador,
+Quiero poder modificar los datos de una jornada,  
+Para corregir errores o adaptarme a cambios en el calendario de partidos.
+ 
+**Prueba de aceptación**
+ 
+- Se modifica la fecha de inicio de una jornada pendiente con un valor válido y el sistema guarda el cambio.
+- Se debe aplicar la regla de negocio R.N.11.
+
+**R.F.05.04. Borrado de jornadas**  
+Como administrador,  
+Quiero poder eliminar una jornada,  
+Para quitar jornadas creadas por error.
+ 
+**Prueba de aceptación**
+ 
+- Se elimina una jornada pendiente que no tiene alineaciones ni puntuaciones asociadas y el sistema la borra del calendario.
+- Se intenta eliminar una jornada con alineaciones o puntuaciones asociadas, o una jornada ya finalizada, y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.10.
+
+**R.F.06.01. Creación de puntuaciones**  
+Como administrador,  
+Quiero poder registrar los puntos que ha obtenido un jugador en una jornada,  
+Para que el sistema pueda calcular la puntuación de los equipos y la clasificación.
+ 
+**Prueba de aceptación**
+ 
+- Se registran los puntos de un jugador en una jornada en curso o finalizada y el sistema guarda la puntuación y actualiza los puntos de los equipos que lo alinearon.
+- Se intenta registrar la puntuación de un jugador que ya tiene puntos en esa jornada, o en una jornada pendiente, y el sistema muestra un mensaje de error.
+
+
+**R.F.06.02. Lectura de puntuaciones**  
+Como administrador / usuario,  
+Quiero poder consultar los puntos de un jugador o de un equipo en una jornada,  
+Para saber cómo ha rendido cada uno.
+ 
+**Prueba de aceptación**
+ 
+- Se solicita la puntuación de un jugador en una jornada y el sistema muestra sus puntos.
+- Se solicita la puntuación de un equipo en una jornada y el sistema muestra los puntos de cada jugador alineado y el total.
+- Se solicita la puntuación de una jornada sin puntos registrados y el sistema muestra un mensaje de puntuación no disponible.
+
+
+**R.F.06.03. Modificación de puntuaciones**  
+Como administrador,  
+Quiero poder corregir los puntos de un jugador en una jornada,  
+Para arreglar errores en la puntuación.
+ 
+**Prueba de aceptación**
+ 
+- Se modifica la puntuación de un jugador con un valor válido y el sistema guarda el cambio y recalcula los puntos de los equipos afectados y la clasificación.
+- Se intenta modificar la puntuación de un jugador que no tiene puntos registrados en esa jornada y el sistema muestra un mensaje de error. ???????????????????
+- Se debe aplicar la regla de negocio R.N.10.
+
+
+**R.F.06.04. Borrado de puntuaciones**  
+Como administrador,  
+Quiero poder eliminar la puntuación de un jugador en una jornada,  
+Para quitar puntuaciones registradas por error.
+ 
+**Prueba de aceptación**
+ 
+- Se elimina la puntuación de un jugador en una jornada y el sistema la borra y recalcula los puntos de los equipos afectados y la clasificación.
+- Se intenta eliminar una puntuación de un jugador sin puntuación asignada y el sistema muestra un mensaje de error.
+- Se debe aplicar R.N.10.
+
+**R.F.06.05. Consulta de la clasificación**  
+Como usuario / administrador,  
+Quiero poder consultar la clasificación de la liga,  
+Para conocer mi posición respecto al resto de participantes.
+ 
+**Prueba de aceptación**
+ 
+- Se solicita la clasificación y el sistema muestra los equipos ordenados por puntos totales de mayor a menor.
+- Se solicita la clasificación de una jornada concreta y el sistema muestra solo los puntos obtenidos en esa jornada.
+- Dos equipos empatan a puntos y el sistema los ordena aplicando el criterio de desempate (mayor valor de equipo).
+
+**R.F.07.01. Creación de transacciones**  
+Como participante,  
+Quiero poder realizar una transacción (puja por un jugador del mercado o venta de uno de mi plantilla),  
+Para incorporar jugadores a mi equipo o recuperar presupuesto.
+ 
+**Prueba de aceptación**
+ 
+- Se realiza una puja por un jugador del mercado con un importe válido y el sistema registra la transacción como pendiente.
+- Se intenta vender un jugador que no está en la plantilla del equipo y el sistema muestra un mensaje de error.
+- Se debe aplicar R.N.13.
+- Se debe aplicar R.N.14.
+
+
+**R.F.07.02. Lectura de transacciones**  
+Como administrador / usuario ,  
+Quiero poder consultar el historial de transacciones realizadas,  
+Para llevar el control de los fichajes, ventas y movimientos de presupuesto.
+ 
+**Prueba de aceptación**
+ 
+- Se solicita el historial de transacciones de un equipo y el sistema muestra jugador, tipo , importe, fecha, estado y participantes involucrados.
+- Se solicita el historial de toda la liga y el sistema muestra las transacciones de todos los equipos ordenadas por fecha.
+- Se solicita consultar una transacción que no existe y el sistema muestra un mensaje de transacción no encontrada.
+
+
+**R.F.07.03. Modificación de transacciones**  
+Como usuario,  
+Quiero poder modificar el importe de una puja pendiente,  
+Para mejorar mi oferta en base a mi estrategia.
+ 
+**Prueba de aceptación**
+ 
+- Se modifica el importe de una puja pendiente con un valor válido mientras el mercado está abierto y el sistema guarda el cambio.
+- Se intenta modificar una transacción ya resuelta y el sistema muestra un mensaje de error.
+- Se debe aplicar la R.N.09.
+- Se debe aplicar la R.N.13.
+- Se debe aplicar la R.N.14. 
+
+
+**R.F.07.04. Borrado de transacciones**  
+Como usuario,  
+Quiero poder cancelar una puja pendiente,  
+Para retirar mi oferta si ya no me interesa el jugador.
+ 
+**Prueba de aceptación**
+ 
+- Se cancela una puja pendiente y el sistema la elimina sin afectar al presupuesto.
+- Se intenta cancelar una transacción ya resuelta y el sistema muestra un mensaje de error, porque el historial de fichajes no se puede borrar.
+
+
+**R.F.07.05. Resolución de transacciones**  
+Como administrador,  
+Quiero poder cerrar el mercado y resolver las transacciones pendientes,  
+Para que los jugadores se adjudiquen de forma justa y se actualicen las plantillas y presupuestos.
+ 
+**Prueba de aceptación**
+ 
+- Se cierra el mercado cada 24 horas y cada jugador se adjudica a la puja de mayor importe, se descuenta el importe del presupuesto del ganador y el jugador se añade a su plantilla.
+- Hay un empate entre dos pujas y el sistema adjudica el jugador a la puja registrada primero.
+- Un jugador sin pujas no se adjudica y sigue disponible en el mercado.
+- Se debe aplicar la R.N.13.
+- Se debe aplicar la R.N.14
+
+**R.F.08.01. Creación de alineaciones**  
+Como participante,  
+Quiero poder crear la alineación de mi equipo para una jornada,  
+Para elegir qué jugadores puntúan en esa jornada.
+ 
+**Prueba de aceptación**
+ 
+- Se crea una alineación con una formación válida y 11 jugadores de la plantilla del equipo y el sistema la guarda para esa jornada.
+- Se intenta crear una alineación con una formación no permitida, con jugadores que no están en la plantilla, con jugadores lesionados o sancionados, o en una jornada ya cerrada, y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
+
+**R.F.08.02. Lectura de alineaciones**  
+Como participante / administrador,  
+Quiero poder consultar la alineación de un equipo en una jornada,  
+Para revisar mis decisiones o ver cómo han jugado los demás equipos.
+ 
+**Prueba de aceptación**
+ 
+- Un participante consulta la alineación de su propio equipo y el sistema muestra la formación, los 11 jugadores y el capitán.
+- Un participante intenta consultar la alineación de otro equipo con la jornada sin cerrar y el sistema no la muestra, para evitar ventajas.
+- Se consulta la alineación de cualquier equipo en una jornada ya cerrada y el sistema la muestra junto con los puntos obtenidos.
+
+
+**R.F.08.03. Modificación de alineaciones**  
+Como participante,  
+Quiero poder modificar mi alineación (jugadores o formación),  
+Para adaptarla a lesiones, sanciones o cambios de última hora antes de que empiece la jornada.
+ 
+**Prueba de aceptación**
+ 
+- Se modifica la alineación con la jornada aún abierta y el sistema guarda el cambio siempre que siga siendo válida.
+- Se intenta modificar una alineación de una jornada cerrada y el sistema muestra un mensaje de error.
+- Se intenta sustituir un jugador por otro lesionado o que no está en la plantilla y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
+
+**R.F.08.04. Borrado de alineaciones**  
+Como participante,  
+Quiero poder eliminar la alineación de una jornada,  
+Para empezar de cero si me he equivocado al configurarla.
+ 
+**Prueba de aceptación**
+ 
+- Se elimina la alineación de una jornada abierta y el sistema la borra.
+- Se intenta eliminar la alineación de una jornada cerrada y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
+
+
+**R.F.08.05. Designación del capitán**  
+Como participante,  
+Quiero poder elegir un capitán entre los jugadores de mi alineación,  
+Para duplicar los puntos de ese jugador en la jornada.
+ 
+**Prueba de aceptación**
+ 
+- Se designa capitán a uno de los jugadores alineados y el sistema lo guarda en la alineación.
+- Se intenta designar capitán a un jugador que no está en la alineación o designar un segundo capitán y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
 
 #### 4.1.1. Requisitos de información
 
@@ -443,6 +665,23 @@ El propietario de un equipo (o un administrador) es el único que tiene permisos
 ##### R.N.10. Permisos de gestión
 
 Solo un administrador puede gestionar la información referente a la aplicación.
+
+##### R.N.11. Fechas de jornada
+
+La fecha de inicio de una jornada no puede ser posterior a su fecha final.
+
+##### R.N.12. Número de jornada incorrecto
+
+El número de jornada debe ser mayor que cero.
+
+##### R.N.13. Limite de plantilla
+
+Un participante no puede tener más de 22 jugadores en propiedad.
+
+##### R.N.14. Presupuesto positivo
+
+Un participante no puede quedarse con un presupuesto negativo.
+
 
 ## 5. Modelo conceptual
 
