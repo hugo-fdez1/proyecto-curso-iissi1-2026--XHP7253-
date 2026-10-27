@@ -317,7 +317,7 @@ quiero poder almacenar la siguiente información sobre el Equipo:
 para saber cómo va el equipo en la clasificación general.
 
 Esta entidad Equipo se asocia de la siguiente forma:
-- Varios Equipo pertence a un solo participante (cumpliendo siempre la R.N.08).
+- Varios Equipo pertence a un solo participante (cumpliendo siempre la R.N.05).
 - Uno o varios Equipos pertenecen a una sola liga.
 - Un Equipo puede poseer entre 0 y muchos Jugadores.
 - Varios Equipos participan en varias Jornadas.
@@ -338,7 +338,7 @@ quiero poder almacenar la siguiente información sobre el Jugador:
 para consultar la ficha y las estadísticas del futbolista, saber si está disponible para ponerlo en la alineación y gestionar su compra o venta según su valor y posición.
 
 Esta entidad Jugador se asocia de la siguiente forma:
-- Varios Jugadores pueden pertenecer a varios Equipos (respetando la RN.04).
+- Varios Jugadores pueden pertenecer a varios Equipos (respetando la R.N.04).
 - 11 Jugadores son alineados en varios Partidos.
 - Varios Jugadores juegan entre 0 y muchas Jornadas.
 
