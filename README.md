@@ -279,9 +279,10 @@ Para organizar el calendario de partidos de la temporada.
  
 - Se introducen los datos asociados a una jornada y el sistema crea la jornada en estado pendiente.
 - Se intenta crear una jornada con un número ya existente o con la fecha de fin anterior a la de inicio y el sistema muestra un mensaje de error.
-- Se debe aplicar R.N.11.
-- Se debe aplicar R.N.12
-
+- Se debe aplicar la R.N.11.
+- Se debe aplicar la R.N.12.
+- Se debe aplicar la R.N.15.
+  
 **R.F.05.02. Lectura de jornadas**  
 Como administrador / usuario,  
 Quiero poder consultar los datos de una jornada o el calendario completo,  
@@ -434,53 +435,52 @@ Para que los jugadores se adjudiquen de forma justa y se actualicen las plantill
 - Se debe aplicar la R.N.13.
 - Se debe aplicar la R.N.14
 
-**R.F.08.01. Creación de alineaciones**  
-Como participante,  
-Quiero poder crear la alineación de mi equipo para una jornada,  
-Para elegir qué jugadores puntúan en esa jornada.
+**R.F.08.01. Creación de partidos**  
+Como administrador,  
+Quiero poder crear un partido,  
+Para poder establecer el calendario de la liga sin problemas.
  
 **Prueba de aceptación**
  
-- Se crea una alineación con una formación válida y 11 jugadores de la plantilla del equipo y el sistema la guarda para esa jornada.
-- Se intenta crear una alineación con una formación no permitida, con jugadores que no están en la plantilla, con jugadores lesionados o sancionados, o en una jornada ya cerrada, y el sistema muestra un mensaje de error.
-- Se debe aplicar la regla de negocio R.N.XX.
+- Un administrador crea un partido asignándole sus atributos y relacionado con una jornada, el sistema crea y guarda ese partido y muestra un mensaje de "operación exitosa".
+- Se debe aplicar la regla de negocio R.N.15.
 
-**R.F.08.02. Lectura de alineaciones**  
+**R.F.08.02. Lectura de partidos**  
 Como participante / administrador,  
-Quiero poder consultar la alineación de un equipo en una jornada,  
-Para revisar mis decisiones o ver cómo han jugado los demás equipos.
+Quiero poder consultar los partidos que haya cada jornada,  
+Para revisar el horario y seguir los resultados de cada partido.
  
 **Prueba de aceptación**
  
-- Un participante consulta la alineación de su propio equipo y el sistema muestra la formación, los 11 jugadores y el capitán.
-- Un participante intenta consultar la alineación de otro equipo con la jornada sin cerrar y el sistema no la muestra, para evitar ventajas.
-- Se consulta la alineación de cualquier equipo en una jornada ya cerrada y el sistema la muestra junto con los puntos obtenidos.
+- Un usuario consulta un partido y el sistema le muestra en pantalla todos los datos asociados a dicho partido.
+- Al consultar una jornada, el sistema muestra todos los partidos.
 
 
-**R.F.08.03. Modificación de alineaciones**  
-Como participante,  
-Quiero poder modificar mi alineación (jugadores o formación),  
-Para adaptarla a lesiones, sanciones o cambios de última hora antes de que empiece la jornada.
+**R.F.08.03. Modificación de partidos**  
+Como administrador,  
+Quiero poder modificar los partidos,  
+Para editar en tiempo real cómo va el partido o cambiar su horario.
  
 **Prueba de aceptación**
  
-- Se modifica la alineación con la jornada aún abierta y el sistema guarda el cambio siempre que siga siendo válida.
-- Se intenta modificar una alineación de una jornada cerrada y el sistema muestra un mensaje de error.
-- Se intenta sustituir un jugador por otro lesionado o que no está en la plantilla y el sistema muestra un mensaje de error.
-- Se debe aplicar la regla de negocio R.N.XX.
+- Un administrador modifica un partido y su información y el sistema actualiza esa información y muestra un mensaje de "operación exitosa".
+- Se debe aplicar la R.N.10.
+- Se debe aplicar la R.N.15.
+- Se debe aplicar la R.N.17.
 
-**R.F.08.04. Borrado de alineaciones**  
-Como participante,  
-Quiero poder eliminar la alineación de una jornada,  
-Para empezar de cero si me he equivocado al configurarla.
+**R.F.08.04. Borrado de partidos**  
+Como administrador,  
+Quiero poder eliminar un partido,  
+Para borrar de manera definitiva partidos que hayan sido añadidos por error o que se hayan suspendido de manera definitiva.
  
 **Prueba de aceptación**
  
-- Se elimina la alineación de una jornada abierta y el sistema la borra.
-- Se intenta eliminar la alineación de una jornada cerrada y el sistema muestra un mensaje de error.
-- Se debe aplicar la regla de negocio R.N.XX.
+- Un administrador elimina un partido y el sistema borra ese partido y sus datos y muestra un mensaje de "operación exitosa".
+- Un administrador elimina un partido ya finalizado y el sistema muestra un mensaje de error.
+- Se debe aplicar la R.N.17.
+- Se debe aplicar la R.N.10.
 
-
+?????????????????????????????????????????????
 **R.F.08.05. Designación del capitán**  
 Como participante,  
 Quiero poder elegir un capitán entre los jugadores de mi alineación,  
@@ -681,6 +681,18 @@ Un participante no puede tener más de 22 jugadores en propiedad.
 ##### R.N.14. Presupuesto positivo
 
 Un participante no puede quedarse con un presupuesto negativo.
+
+##### R.N.15. Un partido por jornada
+
+Un equipo no puede jugar más de un partido por jornada.
+
+##### R.N.16. Jornada única
+
+El número de jornada debe ser único.
+
+##### R.N.17. Modificación de partido finalizado
+
+No se puede modificar un partido que ya haya finalizado.
 
 
 ## 5. Modelo conceptual
