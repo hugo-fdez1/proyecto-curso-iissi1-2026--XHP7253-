@@ -38,7 +38,7 @@ Figura 1
 
 -Puntos: Número asignado a cada jugador al finalizar una jornada según su actuación.
 
--Valor: Dinero que cuesta en el mercado un jugador.
+-Valor: Dinero estimado que cuesta un jugador y va cambiando en función de sus actuaciones.
 
 ## 3. Visión general del sistema
 ### 3.1. Usuarios del sistema
@@ -98,11 +98,12 @@ Para poder participar y/o administrar la liga o la misma aplicación.<br>
   
 **Prueba de aceptación**
 - Una persona se registra en la aplicación con sus datos, se crea el usuario y puede comenzar a utilizar la aplicación.
-- Una persona se registra en la aplicación con datos incorrectos y el sistema muestra un mensaje de error.
-- Se debe aplicar la regla de negocio R.N.01.
+- Una persona se registra en la aplicación con un correo ya asociado a un usuario y el sistema muestra un mensaje de error.
+- Una persona se registra en la aplicación con una contraseña con longitud menor a 8 y el sistema muestra un mensaje de error.
+
 
 **R.F.01.02. Lectura de usuarios**  <br>
-Como administrador / usuario,<br>
+Como administrador / participante,<br>
 Quiero poder consultar los datos asociados a un usuario,<br>
 Para verificar su información o supervisar los usuarios registrados.<br>
   
@@ -112,7 +113,7 @@ Para verificar su información o supervisar los usuarios registrados.<br>
 - Al consultar la información solo se muestra la información pública, ocultando datos privados como la contraseña.
 
 **R.F.01.03. Modificación de usuarios**  <br>
-Como administrador / usuario,<br>
+Como administrador / participante ,<br>
 Quiero poder modificar la información de un usuario,<br>
 Para mantener actualizados los datos del usuario .<br>
   
@@ -120,9 +121,10 @@ Para mantener actualizados los datos del usuario .<br>
 - Se pide al sistema que edite alguno de los datos relacionados a un usuario registrado, se actualiza y se muestra un mensaje confirmando la edición seguido de los datos actualizados.
 - Se pide al sistema que edite los datos relacionados a un usuario no registrado y se muestra un mensaje de "usuario no encontrado".
 - Al editar se modifica alguno de los campos dejándolo en blanco y el sistema muestra un mensaje de error.
+- Un participante intenta editar los datos de otro usuario y el sistema se lo impide.
 
 **R.F.01.04. Borrado de usuarios**  <br>
-Como administrador / usuario ,<br>
+Como administrador / participante ,<br>
 Quiero poder borrar un usuario y los datos asociados a él,<br>
 Para quitar del sistema usuarios innecesarios o que no vayan a utilizar la aplicación más.<br>
   
@@ -130,7 +132,7 @@ Para quitar del sistema usuarios innecesarios o que no vayan a utilizar la aplic
 - Se intenta borrar un usuario del sistema, el sistema pide confirmación y una vez dada se elimina al usuario junto con sus datos.
 - Se intenta borrar un usuario no registrado y el sistema muestra un mensaje de "usuario no encontrado".
 - Al intentar iniciar sesión con sus datos, el sistema no permite el acceso y muestra un mensaje de "usuario no existe".
-
+- Un participante intenta borrar un usuario distinto al suyo y el sistema se lo impide.
 
 **R.F.02.01. Creación de la liga**  <br>
 Como administrador / participante,<br>
@@ -140,15 +142,16 @@ Para poder competir con otros usuarios en una misma competición.<br>
 **Prueba de aceptación**
 - Un usuario intenta crear una liga, se crea una nueva competición y se muestra al usuario la clasificación de esa nueva liga. 
 - Un usuario no registrado intenta crear una liga y el sistema le manda a una pantalla de inicio de sesión.
-- Se debe aplicar la regla de negocio R.N.02.
+- Se debe cumplir la R.N.03.
 
 **R.F.02.02. Consulta de la liga**  <br>
-Como administrador / usuario,<br>
+Como administrador / participante,<br>
 Quiero poder consultar la información de una liga,<br>
 Para verificar sus datos asociados y sus miembros.<br>
   
 **Prueba de aceptación**
-- Se solicita consultar la información de una liga y el sistema le muestra su nombre asociado, su código y los participantes de la liga.
+- El creador de la liga o el administrador intenta consultar la información de una liga y el sistema le muestra su nombre asociado, su código y los participantes de la liga.
+- Un participante intenta consultar la información y el sistema le muestra su nombre asociado y los participantes de la liga.
 
 **R.F.02.03. Modificación de la liga**  <br>
 Como administrador / creador de la liga,<br>
@@ -158,7 +161,6 @@ Para controlar la información de la liga y quién participa.<br>
 **Prueba de aceptación**
 - Se pide al sistema que edite alguno de los ajustes de la liga, el sistema guarda el cambio y muestra un mensaje de "operación exitosa".
 - Se pide al sistema que expulse a algún miembro de la liga, se borra a ese usuario del sistema y se muestra un mensaje de "operación exitosa".
-- Se debe aplicar la regla de negocio R.N.03.
 
 **R.F.02.04. Borrado de la liga**  <br>
 Como administrador / creador de la liga ,<br>
@@ -170,17 +172,16 @@ Para eliminar ligas en las que ya no se vaya a competir.<br>
 - Al intentar unirse a una liga borrada, el sistema no lo permite y muestra un mensaje de "esa liga ya no existe".
 
 **R.F.02.05. Unión a una liga**  <br>
-Como administrador / usuario,<br>
+Como administrador / participante,<br>
 Quiero que cada liga tenga asociado un código de 6 caracteres que permita unirse a dicha liga,<br>
 Para que un usuario pueda unirse a una liga ya empezada.<br>
   
 **Prueba de aceptación**
-- Un usuario introduce un código asociado a una liga en la pantalla de inicio, se añade ese usuario a dicha liga y se muestra un mensaje de bienvenida a la liga. 
-- Un usuario introduce un código no asociado a una liga y el sistema muestra un mensaje de "liga no encontrada".
-- Se debe aplicar la R.N.02.
+- Un participante introduce un código asociado a una liga en la pantalla de inicio, se añade ese usuario a dicha liga y se muestra un mensaje de bienvenida a la liga. 
+- Un participante introduce un código no asociado a una liga y el sistema muestra un mensaje de "liga no encontrada".
+- Un participante introduce un código que no sea de 8 caracteres alfanuméricos y el sistema muestra un mensaje de "formato incorrecto".
 
 #### R.F.03.01. Creación de equipo
-
 Como participante,<br>
 quiero poder crear un equipo,<br>
 para poder jugar y participar así en la liga creada.
@@ -191,7 +192,6 @@ para poder jugar y participar así en la liga creada.
 - Se debe aplicar la regla de negocio R.N.05.
 
 #### R.F.03.02. Lectura de equipo
-
 Como participante,<br>
 quiero consultar el detalle de mi equipo (plantilla, presupuesto y puntos acumulados),<br>
 para conocer la situación actual de mi plantilla y planificar mi estrategia para las próximas jornadas.
@@ -202,7 +202,6 @@ para conocer la situación actual de mi plantilla y planificar mi estrategia par
 - Si se intenta consultar un equipo que no se encuentra en la liga, el sistema denegará la visualización y mostrará un mensaje de error.
 
 #### R.F.03.03. Modificación de equipo
-
 Como participante, <br>
 quiero modificar los datos de mi equipo, <br>
 para mantener actualizada la identidad de mi equipo dentro de la liga.
@@ -212,7 +211,6 @@ para mantener actualizada la identidad de mi equipo dentro de la liga.
 - Se cumple la R.N.09.
 
 #### R.F.03.04. Borrado de equipo
-
 Como administrador / participante, <br>
 quiero eliminar un equipo registrado en una liga, <br>
 para darme de baja de la competición (como participante) o expulsar/retirar un equipo de la liga (como administrador).
@@ -224,7 +222,6 @@ para darme de baja de la competición (como participante) o expulsar/retirar un 
 - Se cumple la R.N.10.
 
 #### R.F.04.01. Creación de jugador
-
 Como administrador,<br>
 quiero dar de alta a un nuevo jugador en el sistema con sus datos base,<br>
 para incorporar nuevos futbolistas al catálogo de la plataforma y permitir que los participantes puedan ficharlos en sus respectivas ligas.
@@ -237,7 +234,6 @@ para incorporar nuevos futbolistas al catálogo de la plataforma y permitir que 
 - Se debe aplicar la regla de negocio R.N.03.
 
 #### R.F.04.02. Lectura de jugador
-
 Como participante,<br>
 quiero consultar la ficha de información detallada de un jugador,<br>
 para evaluar su rendimiento, planificar mis alineaciones o analizar su posible fichaje en el mercado.
@@ -248,7 +244,6 @@ para evaluar su rendimiento, planificar mis alineaciones o analizar su posible f
 - Al buscar la información del jugador aparece el desglose de las puntuaciones obtenidas por el jugador en cada una de las jornadas disputadas.
 
 #### R.F.04.03. Modificación del jugador
-
 Como administrador,<br>
 quiero modificar la ficha y las estadísticas de un jugador,<br>
 para mantener actualizada la información del mercado y reflejar su situación real en la competición.
@@ -259,7 +254,6 @@ para mantener actualizada la información del mercado y reflejar su situación r
 - El sistema guarda los cambios en la base de datos y se muestra inmediatamente en las fichas del jugador.
 
 #### R.F.04.04. Borrado del jugador
-
 Como administrador,<br>
 quiero eliminar todos los datos sobre un jugador,<br>
 para retirar del sistema a futbolistas que han abandonado la competición real.
@@ -630,17 +624,11 @@ Esta entidad Puntuación se asocia de la siguiente forma:
 
 No puede haber dos usuarios con el mismo correo electrónico.
 
-##### R.N.02. Límite de ligas
-
-Un usuario no puede participar en más de 5 ligas a la vez.
 
 ##### R.N.03. Permisos de gestión de la liga
 
 Solo un administrador o el creador de una liga puede gestionar una liga y a sus participantes.
 
-##### R.N.04. Jugador compartido
-
-Un jugador no puede pertenecer a dos equipos diferentes en una misma liga.
 
 ##### R.N.05. Unicidad de equipo por liga
 
@@ -674,26 +662,47 @@ La fecha de inicio de una jornada no puede ser posterior a su fecha final.
 
 El número de jornada debe ser mayor que cero.
 
-##### R.N.13. Limite de plantilla
-
-Un participante no puede tener más de 22 jugadores en propiedad.
 
 ##### R.N.14. Presupuesto positivo
 
 Un participante no puede quedarse con un presupuesto negativo.
 
-##### R.N.15. Un partido por jornada
-
-Un equipo no puede jugar más de un partido por jornada.
 
 ##### R.N.16. Jornada única
 
 El número de jornada debe ser único.
 
-##### R.N.17. Modificación de partido finalizado
 
-No se puede modificar un partido que ya haya finalizado.
 
+
+## Reglas de negocio de verdad
+##### R.N.01. Compraventa limitada
+
+No se puede completar la compra de un jugador por un precio menor al 50% del valor del jugador ni se puede vender por un precio mayor al 50%.
+
+##### R.N.02. Compra según el valor del equipo
+
+Un participante no puede comprar a un jugador cuyo valor de mercado suponga un 60% del valor total de su equipo.
+
+##### R.N.03. Límite de ligas
+
+Un mismo participante no puede estar en más de 5 ligas a la vez.
+
+##### R.N.04. Jugador compartido
+
+Un jugador no puede pertenecer a dos equipos diferentes en una misma liga.
+
+##### R.N.05. Limite de plantilla
+
+Un participante no puede tener más de 22 jugadores en propiedad en una misma liga.
+
+##### R.N.06. Un partido por jornada
+
+Un equipo de una liga no puede jugar más de un partido por jornada.
+
+##### R.N.07. Modificación de partido finalizado
+
+No se puede modificar un partido una vez haya finalizado.
 
 ## 5. Modelo conceptual
 
