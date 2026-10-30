@@ -187,9 +187,9 @@ quiero poder crear un equipo,<br>
 para poder jugar y participar así en la liga creada.
 
 **Prueba de aceptación**
-- Un usuario se une a una liga y el sistema crea y registra el equipo.
+- Un participante se une a una liga y el sistema crea y registra el equipo.
 - El sistema debe vincular correctamente el nuevo Equipo creado tanto a la Liga correspondiente como al Participante creador.
-- Se debe aplicar la regla de negocio R.N.05.
+- Un participante intenta crear un segundo equipo en una misma liga y el sistema se lo impide.
 
 #### R.F.03.02. Lectura de equipo
 Como participante,<br>
@@ -197,7 +197,7 @@ quiero consultar el detalle de mi equipo (plantilla, presupuesto y puntos acumul
 para conocer la situación actual de mi plantilla y planificar mi estrategia para las próximas jornadas.
 
 **Prueba de aceptación**
-- Un participante busca la información de su equipo y el sistema muestra una pantalla con todos sus datos asociados.
+- Un participante busca la información de un equipo y el sistema muestra una pantalla con todos sus datos asociados.
 - Se muestra el listado de jugadores que componen la plantilla actual del equipo.
 - Si se intenta consultar un equipo que no se encuentra en la liga, el sistema denegará la visualización y mostrará un mensaje de error.
 
@@ -208,7 +208,8 @@ para mantener actualizada la identidad de mi equipo dentro de la liga.
 
 **Prueba de aceptación**
 - El propietario de un equipo modifica su equipo y el sistema actualiza los datos en la base de datos y muestra una confirmación con los datos del equipo actualizados en la pantalla de la liga.
-- Se cumple la R.N.09.
+- Un participante intenta modificar otro equipo y el sistema se lo impide.
+- 
 
 #### R.F.03.04. Borrado de equipo
 Como administrador / participante, <br>
