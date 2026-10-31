@@ -121,6 +121,8 @@ Para mantener actualizados los datos del usuario .<br>
 - Se pide al sistema que edite alguno de los datos relacionados a un usuario registrado, se actualiza y se muestra un mensaje confirmando la edición seguido de los datos actualizados.
 - Se pide al sistema que edite los datos relacionados a un usuario no registrado y se muestra un mensaje de "usuario no encontrado".
 - Al editar se modifica alguno de los campos dejándolo en blanco y el sistema muestra un mensaje de error.
+- Se pide al sistema que edite el correo electrónico a uno ya asignado a otro usuario y el sistema muestra un mensaje de error.
+- Se pide al sistema que edite la contraseña a una con una longitud menor a 8 caracteres y el sistema muestra un mensaje de error.
 - Un participante intenta editar los datos de otro usuario y el sistema se lo impide.
 
 **R.F.01.04. Borrado de usuarios**  <br>
@@ -161,6 +163,7 @@ Para controlar la información de la liga y quién participa.<br>
 **Prueba de aceptación**
 - Se pide al sistema que edite alguno de los ajustes de la liga, el sistema guarda el cambio y muestra un mensaje de "operación exitosa".
 - Se pide al sistema que expulse a algún miembro de la liga, se borra a ese usuario del sistema y se muestra un mensaje de "operación exitosa".
+- Se pide al sistema editar el código de unión a la liga y el sistema lo impide y muestra un mensaje de error.
 
 **R.F.02.04. Borrado de la liga**  <br>
 Como administrador / creador de la liga ,<br>
@@ -209,7 +212,6 @@ para mantener actualizada la identidad de mi equipo dentro de la liga.
 **Prueba de aceptación**
 - El propietario de un equipo modifica su equipo y el sistema actualiza los datos en la base de datos y muestra una confirmación con los datos del equipo actualizados en la pantalla de la liga.
 - Un participante intenta modificar otro equipo y el sistema se lo impide.
-- 
 
 #### R.F.03.04. Borrado de equipo
 Como administrador / participante, <br>
@@ -220,11 +222,11 @@ para darme de baja de la competición (como participante) o expulsar/retirar un 
 - El sistema debe solicitar una verificación al usuario antes de realizar la acción para evitar borrados accidentales. 
 - Al eliminar un equipo, el sistema libera los jugadores que pertenecían a ese equipo borrado.
 - Al eliminar un equipo, el sistema modifica el número de participantes en la liga, además de la clasificación.
-- Se cumple la R.N.10.
+- Al intentar eliminar un equipo que no sea propio sin ser administrador, el sistema muestra un mensaje 
 
 #### R.F.04.01. Creación de jugador
 Como administrador,<br>
-quiero dar de alta a un nuevo jugador en el sistema con sus datos base,<br>
+quiero dar de alta a un nuevo jugador en el sistema con sus datos,<br>
 para incorporar nuevos futbolistas al catálogo de la plataforma y permitir que los participantes puedan ficharlos en sus respectivas ligas.
 
 **Prueba de aceptación**
@@ -232,7 +234,6 @@ para incorporar nuevos futbolistas al catálogo de la plataforma y permitir que 
 - El sistema inicializa automáticamente los atributos calculables (/media y /puntosTotales) a cero.
 - El sistema valida que la posición seleccionada esté permitidas por el enumerado (DEL, MED, DEF, POR).
 - El sistema debe validar que el estado físico asignado pertenezca a su enumerado correspondiente (LESIONADO, DISPONIBLE, DUDOSO, SANCIONADO).
-- Se debe aplicar la regla de negocio R.N.03.
 
 #### R.F.04.02. Lectura de jugador
 Como participante,<br>
@@ -250,9 +251,9 @@ quiero modificar la ficha y las estadísticas de un jugador,<br>
 para mantener actualizada la información del mercado y reflejar su situación real en la competición.
 
 **Prueba de aceptación**
-- El sistema valida que el usuario autenticado sea un administrador.
 - El sistema permite buscar y seleccionar un Jugador existente para su edición.
-- El sistema guarda los cambios en la base de datos y se muestra inmediatamente en las fichas del jugador.
+- Al modificar la información de un jugador el sistema guarda los cambios en la base de datos y se muestra inmediatamente al consultar al jugador.
+- No se puede modificar el valor de un jugador para que sea un número negativo.
 
 #### R.F.04.04. Borrado del jugador
 Como administrador,<br>
@@ -263,7 +264,6 @@ para retirar del sistema a futbolistas que han abandonado la competición real.
 - Al intentar borrar un jugador, el sistema muestra un aviso al administrador y solicita una confirmación para procesar el borrado definitivo.
 - Al proceder con la eliminación del jugador, el sistema desvincula el jugador borrado del equipo al que pertenecía y enviará un mensaje que indique la incidencia al participante afectado.
 - El sistema elimina al jugador y a su información de la base de datos y muestra un mensaje de confirmación.
-- Se cumple la R.N.10.
 
 **R.F.05.01. Creación de jornadas**  
 Como administrador,  
@@ -273,10 +273,10 @@ Para organizar el calendario de partidos de la temporada.
 **Prueba de aceptación**
  
 - Se introducen los datos asociados a una jornada y el sistema crea la jornada en estado pendiente.
-- Se intenta crear una jornada con un número ya existente o con la fecha de fin anterior a la de inicio y el sistema muestra un mensaje de error.
-- Se debe aplicar la R.N.11.
-- Se debe aplicar la R.N.12.
-- Se debe aplicar la R.N.15.
+- Se intenta crear una jornada con un número ya existente y el sistema muestra un mensaje de error.
+- Si la fecha de comienzo de la jornada es posterior a la fecha de finalización, el sistema muestra un mensaje de error.
+- Si el número de jornada es menor o igual que cero, el sistema muestra un mensaje de error.
+- Se debe aplicar la R.N.06.
   
 **R.F.05.02. Lectura de jornadas**  
 Como administrador / usuario,  
@@ -285,9 +285,8 @@ Para saber cuándo se juega cada jornada y hasta cuándo puedo cambiar mi alinea
  
 **Prueba de aceptación**
  
-- Se consultar una jornada y el sistema muestra la información referente a esa jornada.
+- Se consulta una jornada y el sistema muestra la información referente a esa jornada.
 - Se solicita consultar una jornada que no existe y el sistema muestra un mensaje de jornada no encontrada.
-- Se solicita el calendario filtrado por estado  y el sistema muestra solo las jornadas de ese estado. ???????????????????????????????
 
 **R.F.05.03. Modificación de jornadas**  
 Como administrador,
@@ -296,8 +295,9 @@ Para corregir errores o adaptarme a cambios en el calendario de partidos.
  
 **Prueba de aceptación**
  
-- Se modifica la fecha de inicio de una jornada pendiente con un valor válido y el sistema guarda el cambio.
-- Se debe aplicar la regla de negocio R.N.11.
+- Se modifica información de una jornada pendiente y el sistema guarda el cambio.
+- Se intenta modificar la fecha de inicio de una jornada para ser posterior a la fecha de finalización y el sistema muestra un mensaje de error.
+- Se intenta modificar el número de jornada para que sea un numero menor o igual que cero o un número de una jornada ya existente y el sistema muestra un mensaje de error.
 
 **R.F.05.04. Borrado de jornadas**  
 Como administrador,  
@@ -306,9 +306,8 @@ Para quitar jornadas creadas por error.
  
 **Prueba de aceptación**
  
-- Se elimina una jornada pendiente que no tiene alineaciones ni puntuaciones asociadas y el sistema la borra del calendario.
+- Se elimina una jornada y el sistema la borra del calendario.
 - Se intenta eliminar una jornada con alineaciones o puntuaciones asociadas, o una jornada ya finalizada, y el sistema muestra un mensaje de error.
-- Se debe aplicar la regla de negocio R.N.10.
 
 **R.F.06.01. Creación de puntuaciones**  
 Como administrador,  
@@ -319,6 +318,7 @@ Para que el sistema pueda calcular la puntuación de los equipos y la clasificac
  
 - Se registran los puntos de un jugador en una jornada en curso o finalizada y el sistema guarda la puntuación y actualiza los puntos de los equipos que lo alinearon.
 - Se intenta registrar la puntuación de un jugador que ya tiene puntos en esa jornada, o en una jornada pendiente, y el sistema muestra un mensaje de error.
+- Se intenta crear una puntuación con goles o asistencias en negativo y el sistema muestra un mensaje de error.
 
 
 **R.F.06.02. Lectura de puntuaciones**  
@@ -340,10 +340,9 @@ Para arreglar errores en la puntuación.
  
 **Prueba de aceptación**
  
-- Se modifica la puntuación de un jugador con un valor válido y el sistema guarda el cambio y recalcula los puntos de los equipos afectados y la clasificación.
-- Se intenta modificar la puntuación de un jugador que no tiene puntos registrados en esa jornada y el sistema muestra un mensaje de error. ???????????????????
-- Se debe aplicar la regla de negocio R.N.10.
-
+- Se modifica la puntuación de un jugador y el sistema guarda el cambio y recalcula los puntos de los equipos afectados y la clasificación.
+- Se modifica la puntuación de un jugador asignándole goles o asistencias negativos y el sistema muestra un mensaje de error.
+- Se intenta modificar los goles y asistencias asignados a una puntuación para dejarlos en negativo y el sistema muestra un mensaje de error.
 
 **R.F.06.04. Borrado de puntuaciones**  
 Como administrador,  
@@ -354,7 +353,6 @@ Para quitar puntuaciones registradas por error.
  
 - Se elimina la puntuación de un jugador en una jornada y el sistema la borra y recalcula los puntos de los equipos afectados y la clasificación.
 - Se intenta eliminar una puntuación de un jugador sin puntuación asignada y el sistema muestra un mensaje de error.
-- Se debe aplicar R.N.10.
 
 **R.F.06.05. Consulta de la clasificación**  
 Como usuario / administrador,  
@@ -376,12 +374,13 @@ Para incorporar jugadores a mi equipo o recuperar presupuesto.
  
 - Se realiza una puja por un jugador del mercado con un importe válido y el sistema registra la transacción como pendiente.
 - Se intenta vender un jugador que no está en la plantilla del equipo y el sistema muestra un mensaje de error.
-- Se debe aplicar R.N.13.
-- Se debe aplicar R.N.14.
-
+- Se intenta realizar una transacción por una cantidad negativa y el sistema muestra un mensaje de error.
+- Se debe aplicar la R.N.01.
+- Se debe aplicar la R.N.02.
+- Se debe aplicar la R.N.05.
 
 **R.F.07.02. Lectura de transacciones**  
-Como administrador / usuario ,  
+Como administrador / participante ,  
 Quiero poder consultar el historial de transacciones realizadas,  
 Para llevar el control de los fichajes, ventas y movimientos de presupuesto.
  
@@ -393,7 +392,7 @@ Para llevar el control de los fichajes, ventas y movimientos de presupuesto.
 
 
 **R.F.07.03. Modificación de transacciones**  
-Como usuario,  
+Como participante,  
 Quiero poder modificar el importe de una puja pendiente,  
 Para mejorar mi oferta en base a mi estrategia.
  
@@ -401,18 +400,18 @@ Para mejorar mi oferta en base a mi estrategia.
  
 - Se modifica el importe de una puja pendiente con un valor válido mientras el mercado está abierto y el sistema guarda el cambio.
 - Se intenta modificar una transacción ya resuelta y el sistema muestra un mensaje de error.
-- Se debe aplicar la R.N.09.
-- Se debe aplicar la R.N.13.
-- Se debe aplicar la R.N.14. 
+- Se intenta modificar una transacción para que la cantidad sea negativa y el sistema muestra un mensaje de error.
+- Se debe aplicar la R.N.03.
+- Se debe aplicar la R.N.02.
+- Se debe aplicar la R.N.05. 
 
 
 **R.F.07.04. Borrado de transacciones**  
-Como usuario,  
+Como participante,  
 Quiero poder cancelar una puja pendiente,  
 Para retirar mi oferta si ya no me interesa el jugador.
  
 **Prueba de aceptación**
- 
 - Se cancela una puja pendiente y el sistema la elimina sin afectar al presupuesto.
 - Se intenta cancelar una transacción ya resuelta y el sistema muestra un mensaje de error, porque el historial de fichajes no se puede borrar.
 
@@ -427,8 +426,9 @@ Para que los jugadores se adjudiquen de forma justa y se actualicen las plantill
 - Se cierra el mercado cada 24 horas y cada jugador se adjudica a la puja de mayor importe, se descuenta el importe del presupuesto del ganador y el jugador se añade a su plantilla.
 - Hay un empate entre dos pujas y el sistema adjudica el jugador a la puja registrada primero.
 - Un jugador sin pujas no se adjudica y sigue disponible en el mercado.
-- Se debe aplicar la R.N.13.
-- Se debe aplicar la R.N.14
+- Se debe aplicar la R.N.01.
+- Se debe aplicar la R.N.02.
+- Se debe aplicar la R.N.05.
 
 **R.F.08.01. Creación de partidos**  
 Como administrador,  
@@ -438,7 +438,8 @@ Para poder establecer el calendario de la liga sin problemas.
 **Prueba de aceptación**
  
 - Un administrador crea un partido asignándole sus atributos y relacionado con una jornada, el sistema crea y guarda ese partido y muestra un mensaje de "operación exitosa".
-- Se debe aplicar la regla de negocio R.N.15.
+- El partido se crea en estado pendiente por defecto.
+- Se debe aplicar la R.N.06.
 
 **R.F.08.02. Lectura de partidos**  
 Como participante / administrador,  
@@ -459,9 +460,8 @@ Para editar en tiempo real cómo va el partido o cambiar su horario.
 **Prueba de aceptación**
  
 - Un administrador modifica un partido y su información y el sistema actualiza esa información y muestra un mensaje de "operación exitosa".
-- Se debe aplicar la R.N.10.
-- Se debe aplicar la R.N.15.
-- Se debe aplicar la R.N.17.
+- Se debe aplicar la R.N.06.
+- Se debe aplicar la R.N.07.
 
 **R.F.08.04. Borrado de partidos**  
 Como administrador,  
@@ -471,21 +471,7 @@ Para borrar de manera definitiva partidos que hayan sido añadidos por error o q
 **Prueba de aceptación**
  
 - Un administrador elimina un partido y el sistema borra ese partido y sus datos y muestra un mensaje de "operación exitosa".
-- Un administrador elimina un partido ya finalizado y el sistema muestra un mensaje de error.
-- Se debe aplicar la R.N.17.
-- Se debe aplicar la R.N.10.
-
-?????????????????????????????????????????????
-**R.F.08.05. Designación del capitán**  
-Como participante,  
-Quiero poder elegir un capitán entre los jugadores de mi alineación,  
-Para duplicar los puntos de ese jugador en la jornada.
- 
-**Prueba de aceptación**
- 
-- Se designa capitán a uno de los jugadores alineados y el sistema lo guarda en la alineación.
-- Se intenta designar capitán a un jugador que no está en la alineación o designar un segundo capitán y el sistema muestra un mensaje de error.
-- Se debe aplicar la regla de negocio R.N.XX.
+- Se debe aplicar la R.N.07.
 
 #### 4.1.1. Requisitos de información
 
@@ -534,7 +520,7 @@ quiero poder almacenar la siguiente información sobre el Equipo:
 para saber cómo va el equipo en la clasificación general.
 
 Esta entidad Equipo se asocia de la siguiente forma:
-- Varios Equipo pertence a un solo participante (cumpliendo siempre la R.N.08).
+- Varios Equipo pertence a un solo participante.
 - Uno o varios Equipos pertenecen a una sola liga.
 - Un Equipo puede poseer entre 0 y muchos Jugadores.
 - Un Equipo enfrenta a otro equipo.
@@ -621,62 +607,7 @@ Esta entidad Puntuación se asocia de la siguiente forma:
 - Cada registro de Puntuación vincula a 1 Jugador con 1 Partido concreto para almacenar sus estadísticas individuales y sus puntos derivados.
 
 #### 4.1.2. Reglas de negocio
-##### R.N.01. Correo único
 
-No puede haber dos usuarios con el mismo correo electrónico.
-
-
-##### R.N.03. Permisos de gestión de la liga
-
-Solo un administrador o el creador de una liga puede gestionar una liga y a sus participantes.
-
-
-##### R.N.05. Unicidad de equipo por liga
-
-Un usuario no puede tener dos (o más) equipos en una misma liga.
-
-##### R.N.06. Valor positivo del jugador
-
-El valor económico del Jugador debe ser un importe numérico estrictamente mayor que cero.
-
-##### R.N.07. Código incorrecto
-
-Solo es posible unirse a una liga mediante un código alfanumérico de 6 caracteres.
-
-##### R.N.08. Contraseña no permitida
-
-La contraseña debe contener al menos 8 caracteres.
-
-##### R.N.09. Permisos sobre un equipo
-
-El propietario de un equipo (o un administrador) es el único que tiene permisos sobre su equipo.
-
-##### R.N.10. Permisos de gestión
-
-Solo un administrador puede gestionar la información referente a la aplicación.
-
-##### R.N.11. Fechas de jornada
-
-La fecha de inicio de una jornada no puede ser posterior a su fecha final.
-
-##### R.N.12. Número de jornada incorrecto
-
-El número de jornada debe ser mayor que cero.
-
-
-##### R.N.14. Presupuesto positivo
-
-Un participante no puede quedarse con un presupuesto negativo.
-
-
-##### R.N.16. Jornada única
-
-El número de jornada debe ser único.
-
-
-
-
-## Reglas de negocio de verdad
 ##### R.N.01. Compraventa limitada
 
 No se puede completar la compra de un jugador por un precio menor al 50% del valor del jugador ni se puede vender por un precio mayor al 50%.
@@ -704,10 +635,6 @@ Un equipo de una liga no puede jugar más de un partido por jornada.
 ##### R.N.07. Modificación de partido finalizado
 
 No se puede modificar un partido una vez haya finalizado.
-
-##### R.N.08. Unicidad de equipo por liga
-
-Un usuario no puede tener dos (o más) equipos en una misma liga.
 
 ## 5. Modelo conceptual
 
