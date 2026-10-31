@@ -10,15 +10,9 @@
 
 - Nos han pedido una aplicación estilo "Fantasy" inspirada en LaLiga. En esta aplicación, un grupo de personas forman una liga en la que a cada usuario se le asigna un equipo inicial y se le da un presupuesto. Ese presupuesto se puede gastar en un mercado donde puedes comprar y vender jugadores y cada día salen unos jugadores nuevos que puedes fichar. Al final de cada jornada, según la actuación de cada jugador del equipo, el usuario gana (o pierde) una serie de puntos, coronándose un ganador de la liga al finalizar todas las jornadas.  
 Actualmente, este formato se encuentra con varios problemas: muchos periódicos crean estas ligas "fantasy" (ver Figura 1), pero la inscripción y seguimiento son complejos, al tener que estar pendiente del periódico cada jornada, lo que supone un gasto importante además del propio gasto que conlleva la inscripción a la liga y la manera de gestionar el equipo (Ej. por teléfono, por correo); además de las ligas de los periódicos, existen ligas "entre amigos", mucho más casuales, pero con el inconveniente de que mínimo una persona debe gestionar toda la liga, es decir, gestionar los fichajes, el "Draft" (si se hace), el seguimiento de cada equipo y sus respectivos puntos, etc. Se espera que tomemos este formato y lo hagamos mucho más accesible, automatizando todos los problemas anteriormente mencionados para depender menos de una persona (o revista) que gestione la liga, implementando una base de datos con datos acerca de distintos puntos de la aplicación para facilitar el proceso.
-Una vez discutido el problema y tras haber realizado varias entrevistas con el cliente, hemos realizado este borrador.
 
-<img width="387" height="516" alt="image" src="https://github.com/user-attachments/assets/46e932d3-bf2f-41e9-b330-fd8260d4c7a0" />
+<img width="387" height="516" alt="image" src="https://github.com/user-attachments/assets/46e932d3-bf2f-41e9-b330-fd8260d4c7a0" /><br>
 Figura 1
-
-
-
-
-
 
 ## 2. Glosario de términos
 
@@ -44,9 +38,7 @@ Figura 1
 
 -Puntos: Número asignado a cada jugador al finalizar una jornada según su actuación.
 
--Valor: Dinero que cuesta en el mercado un jugador.
-
-
+-Valor: Dinero estimado que cuesta un jugador y va cambiando en función de sus actuaciones.
 
 ## 3. Visión general del sistema
 ### 3.1. Usuarios del sistema
@@ -56,167 +48,450 @@ Se contemplan tres tipos de usuarios:
 - Participante: Ficha jugadores y construye su equipo, gana una serie de puntos en función de la actuación de sus jugadores alineados.
 
 ### 3.2. Requisitos generales
- **R.G.01. Gestión de los usuarios**
+ **R.G.01. Gestión de los usuarios**  <br>
+  Como administrador,<br>
+  Quiero poder gestionar los distintos usuarios,<br>
+  Para controlar el acceso y los permisos de cada usuario.<br>
+
+**R.G.02. Gestión de la liga**<br>
+  Como creador de la liga, <br>
+  Quiero poder gestionar la liga,<br>
+  Para el buen funcionamiento de la competición.<br>
   
-  Como administrador,
+  **R.G.03. Gestión del equipo**<br>
+  Como participante,<br>
+  Quiero poder gestionar el equipo,<br>
+  Para poder competir en la liga adecuadamente.<br>
 
-  Quiero poder gestionar los distintos usuarios,
+  **R.G.04. Gestión de los jugadores**<br>
+  Como participante / administrador,<br>
+  Quiero poder gestionar los jugadores,<br>
+  Para el buen funcionamiento de las estadísticas y transacciones.<br>
 
-  Para controlar el acceso y los permisos de cada usuario.
+  **R.G.05. Gestión de la jornada**  <br>
+  Como administrador,<br>
+  Quiero poder gestionar la jornada,<br>
+  Para organizar fácilmente el calendario de partidos.<br>
 
-**R.G.02. Gestión de la liga**
-  
-  Como creador de la liga,
+  **R.G.06. Gestión de la puntuación** <br> 
+  Como administrador,<br>
+  Quiero poder gestionar la puntuación,<br>
+  Para el buen funcionamiento de la clasificación.<br>
 
-  Quiero poder gestionar la liga,
+  **R.G.07. Gestión de las transacciones**  <br>
+  Como participante / administrador,<br>
+  Quiero poder gestionar las transacciones,<br>
+  Para facilitar la compraventa de jugadores.<br>
 
-  Para el buen funcionamiento de la competición.
+  **R.G.08. Gestión de los partidos**  <br>
+  Como participante,<br>
+  Quiero poder gestionar los partidos,<br>
+  Para seguir una buena estrategia cada partido.<br>
 
-  **R.G.03. Gestión del equipo**
-  
-  Como participante,
-
-  Quiero poder gestionar el equipo,
-
-  Para poder competir en la liga adecuadamente.
-
-  **R.G.04. Gestión de los jugadores**
-  
-  Como participante / administrador,
-
-  Quiero poder gestionar los jugadores,
-
-  Para el buen funcionamiento de las estadísticas y transacciones.
-  
-  **R.G.05. Gestión de la jornada**
-  
-  Como administrador,
-
-  Quiero poder gestionar la jornada,
-
-  Para organizar fácilmente el calendario de partidos.
-  
-  **R.G.06. Gestión de la puntuación**
-  
-  Como administrador,
-
-  Quiero poder gestionar la puntuación,
-
-  Para el buen funcionamiento de la clasificación.
-
-  **R.G.07. Gestión de las transacciones**
-  
-  Como participante / administrador,
-
-  Quiero poder gestionar las transacciones,
-
-  Para facilitar la compraventa de jugadores.
-
-  **R.G.08. Gestión de las alineaciones**
-  
-  Como participante,
-
-  Quiero poder gestionar las alineaciones,
-
-  Para hacer un buen uso de los jugadores cada jornada. 
 ## 4. Catálogo de requisitos
 
 ### 4.1. Requisitos funcionales
+**R.F.01.01. Creación de usuarios**  <br>
+Como administrador / participante,<br>
+Quiero poder crear un nuevo usuario,<br>
+Para poder participar y/o administrar la liga o la misma aplicación.<br>
+  
+**Prueba de aceptación**
+- Una persona se registra en la aplicación con sus datos, se crea el usuario y puede comenzar a utilizar la aplicación.
+- Una persona se registra en la aplicación con un correo ya asociado a un usuario y el sistema muestra un mensaje de error.
+- Una persona se registra en la aplicación con una contraseña con longitud menor a 8 y el sistema muestra un mensaje de error.
 
-R.F.01. Pujar por un jugador en el mercado
-Como mánager de una liga
 
-quiero realizar una puja económica por un futbolista libre en el mercado
+**R.F.01.02. Lectura de usuarios**  <br>
+Como administrador / participante,<br>
+Quiero poder consultar los datos asociados a un usuario,<br>
+Para verificar su información o supervisar los usuarios registrados.<br>
+  
+**Prueba de aceptación**
+- Se solicita consultar la información de un usuario y el sistema le muestra sus datos.
+- Se solicita consultar la información de un usuario no registrado y el sistema le muestra un mensaje de "usuario no encontrado".
+- Al consultar la información solo se muestra la información pública, ocultando datos privados como la contraseña.
 
-para incorporarlo a mi plantilla y reforzar mi equipo.
+**R.F.01.03. Modificación de usuarios**  <br>
+Como administrador / participante ,<br>
+Quiero poder modificar la información de un usuario,<br>
+Para mantener actualizados los datos del usuario .<br>
+  
+**Prueba de aceptación**
+- Se pide al sistema que edite alguno de los datos relacionados a un usuario registrado, se actualiza y se muestra un mensaje confirmando la edición seguido de los datos actualizados.
+- Se pide al sistema que edite los datos relacionados a un usuario no registrado y se muestra un mensaje de "usuario no encontrado".
+- Al editar se modifica alguno de los campos dejándolo en blanco y el sistema muestra un mensaje de error.
+- Un participante intenta editar los datos de otro usuario y el sistema se lo impide.
 
-Prueba de aceptación
+**R.F.01.04. Borrado de usuarios**  <br>
+Como administrador / participante ,<br>
+Quiero poder borrar un usuario y los datos asociados a él,<br>
+Para quitar del sistema usuarios innecesarios o que no vayan a utilizar la aplicación más.<br>
+  
+**Prueba de aceptación**
+- Se intenta borrar un usuario del sistema, el sistema pide confirmación y una vez dada se elimina al usuario junto con sus datos.
+- Se intenta borrar un usuario no registrado y el sistema muestra un mensaje de "usuario no encontrado".
+- Al intentar iniciar sesión con sus datos, el sistema no permite el acceso y muestra un mensaje de "usuario no existe".
+- Un participante intenta borrar un usuario distinto al suyo y el sistema se lo impide.
 
--El sistema debe comprobar que el mánager dispone de presupuesto equivalente o superior al importe pujado.
+**R.F.02.01. Creación de la liga**  <br>
+Como administrador / participante,<br>
+Quiero crear una nueva liga,<br>
+Para poder competir con otros usuarios en una misma competición.<br>
+  
+**Prueba de aceptación**
+- Un usuario intenta crear una liga, se crea una nueva competición y se muestra al usuario la clasificación de esa nueva liga. 
+- Un usuario no registrado intenta crear una liga y el sistema le manda a una pantalla de inicio de sesión.
+- Se debe cumplir la R.N.03.
 
--La puja realizada debe permanecer oculta para el resto de mánagers hasta la hora de cierre del mercado.
+**R.F.02.02. Consulta de la liga**  <br>
+Como administrador / participante,<br>
+Quiero poder consultar la información de una liga,<br>
+Para verificar sus datos asociados y sus miembros.<br>
+  
+**Prueba de aceptación**
+- El creador de la liga o el administrador intenta consultar la información de una liga y el sistema le muestra su nombre asociado, su código y los participantes de la liga.
+- Un participante intenta consultar la información y el sistema le muestra su nombre asociado y los participantes de la liga.
 
--Se debe aplicar la regla de negocio R.N.01 (El dinero de la puja activa se retiene temporalmente del saldo disponible del usuario).
+**R.F.02.03. Modificación de la liga**  <br>
+Como administrador / creador de la liga,<br>
+Quiero poder modificar la información y los participantes de una liga,<br>
+Para controlar la información de la liga y quién participa.<br>
+  
+**Prueba de aceptación**
+- Se pide al sistema que edite alguno de los ajustes de la liga, el sistema guarda el cambio y muestra un mensaje de "operación exitosa".
+- Se pide al sistema que expulse a algún miembro de la liga, se borra a ese usuario del sistema y se muestra un mensaje de "operación exitosa".
 
-R.F.02. Guardar alineación táctica
-Como mánager de una liga
+**R.F.02.04. Borrado de la liga**  <br>
+Como administrador / creador de la liga ,<br>
+Quiero poder borrar una liga y toda su información asociada,<br>
+Para eliminar ligas en las que ya no se vaya a competir.<br>
+  
+**Prueba de aceptación**
+- Se intenta borrar una liga, el sistema borra la liga y sus datos asociados y muestra un mensaje de "operación exitosa".
+- Al intentar unirse a una liga borrada, el sistema no lo permite y muestra un mensaje de "esa liga ya no existe".
 
-quiero seleccionar mi formación táctica y asignar 11 futbolistas titulares
+**R.F.02.05. Unión a una liga**  <br>
+Como administrador / participante,<br>
+Quiero que cada liga tenga asociado un código de 6 caracteres que permita unirse a dicha liga,<br>
+Para que un usuario pueda unirse a una liga ya empezada.<br>
+  
+**Prueba de aceptación**
+- Un participante introduce un código asociado a una liga en la pantalla de inicio, se añade ese usuario a dicha liga y se muestra un mensaje de bienvenida a la liga. 
+- Un participante introduce un código no asociado a una liga y el sistema muestra un mensaje de "liga no encontrada".
+- Un participante introduce un código que no sea de 8 caracteres alfanuméricos y el sistema muestra un mensaje de "formato incorrecto".
 
-para sumar los puntos que consigan estos jugadores durante los partidos de la jornada.
+#### R.F.03.01. Creación de equipo
+Como participante,<br>
+quiero poder crear un equipo,<br>
+para poder jugar y participar así en la liga creada.
 
-Prueba de aceptación
+**Prueba de aceptación**
+- Un participante se une a una liga y el sistema crea y registra el equipo.
+- El sistema debe vincular correctamente el nuevo Equipo creado tanto a la Liga correspondiente como al Participante creador.
+- Un participante intenta crear un segundo equipo en una misma liga y el sistema se lo impide.
 
--Comprobar que no se permite guardar una alineación con más de 11 jugadores ni con puestos vacíos.
+#### R.F.03.02. Lectura de equipo
+Como participante,<br>
+quiero consultar el detalle de mi equipo (plantilla, presupuesto y puntos acumulados),<br>
+para conocer la situación actual de mi plantilla y planificar mi estrategia para las próximas jornadas.
 
--Verificar que el sistema bloquee la edición de alineaciones en cuanto comience el primer partido de la jornada.
+**Prueba de aceptación**
+- Un participante busca la información de un equipo y el sistema muestra una pantalla con todos sus datos asociados.
+- Se muestra el listado de jugadores que componen la plantilla actual del equipo.
+- Si se intenta consultar un equipo que no se encuentra en la liga, el sistema denegará la visualización y mostrará un mensaje de error.
 
--Se debe aplicar la regla de negocio R.N.02 (Si el saldo total del mánager es negativo al inicio de la jornada, la alineación puntúa 0).
+#### R.F.03.03. Modificación de equipo
+Como participante, <br>
+quiero modificar los datos de mi equipo, <br>
+para mantener actualizada la identidad de mi equipo dentro de la liga.
 
-R.F.03. Pagar cláusula de rescisión
-Como mánager de una liga
+**Prueba de aceptación**
+- El propietario de un equipo modifica su equipo y el sistema actualiza los datos en la base de datos y muestra una confirmación con los datos del equipo actualizados en la pantalla de la liga.
+- Un participante intenta modificar otro equipo y el sistema se lo impide.
+- 
 
-quiero pagar la cláusula de rescisión de un jugador de un rival
+#### R.F.03.04. Borrado de equipo
+Como administrador / participante, <br>
+quiero eliminar un equipo registrado en una liga, <br>
+para darme de baja de la competición (como participante) o expulsar/retirar un equipo de la liga (como administrador).
 
-para ficharlo de forma inmediata sin necesidad de subasta.
+**Prueba de aceptación**
+- El sistema debe solicitar una verificación al usuario antes de realizar la acción para evitar borrados accidentales. 
+- Al eliminar un equipo, el sistema libera los jugadores que pertenecían a ese equipo borrado.
+- Al eliminar un equipo, el sistema modifica el número de participantes en la liga, además de la clasificación.
+- Se cumple la R.N.10.
 
-Prueba de aceptación
+#### R.F.04.01. Creación de jugador
+Como administrador,<br>
+quiero dar de alta a un nuevo jugador en el sistema con sus datos base,<br>
+para incorporar nuevos futbolistas al catálogo de la plataforma y permitir que los participantes puedan ficharlos en sus respectivas ligas.
 
--Verificar que la opción solo esté activa dentro del horario permitido para clausulados.
+**Prueba de aceptación**
+- El administrador crea a un nuevo jugador junto con su información y el sistema registra a ese jugador y muestra un mensaje de confirmación.
+- El sistema inicializa automáticamente los atributos calculables (/media y /puntosTotales) a cero.
+- El sistema valida que la posición seleccionada esté permitidas por el enumerado (DEL, MED, DEF, POR).
+- El sistema debe validar que el estado físico asignado pertenezca a su enumerado correspondiente (LESIONADO, DISPONIBLE, DUDOSO, SANCIONADO).
+- Se debe aplicar la regla de negocio R.N.03.
 
--Comprobar que el importe pagado se descuente al comprador y se abone instantáneamente al saldo del vendedor.
+#### R.F.04.02. Lectura de jugador
+Como participante,<br>
+quiero consultar la ficha de información detallada de un jugador,<br>
+para evaluar su rendimiento, planificar mis alineaciones o analizar su posible fichaje en el mercado.
 
--Se debe aplicar la regla de negocio R.N.03 (Un jugador recién fichado mediante cláusula no puede ser clausulado de nuevo durante 14 días).
+**Prueba de aceptación**
+- Un usuario consulta a un jugador y el sistema muestra toda la información básica del jugador, además de sus atributos calculados.
+- El sistema muestra el valor del jugador actualizado.
+- Al buscar la información del jugador aparece el desglose de las puntuaciones obtenidas por el jugador en cada una de las jornadas disputadas.
 
-R.F.04. Poner un jugador en venta
-Como mánager de una liga
+#### R.F.04.03. Modificación del jugador
+Como administrador,<br>
+quiero modificar la ficha y las estadísticas de un jugador,<br>
+para mantener actualizada la información del mercado y reflejar su situación real en la competición.
 
-quiero poner a un futbolista de mi plantilla en el mercado de fichajes
+**Prueba de aceptación**
+- El sistema valida que el usuario autenticado sea un administrador.
+- El sistema permite buscar y seleccionar un Jugador existente para su edición.
+- El sistema guarda los cambios en la base de datos y se muestra inmediatamente en las fichas del jugador.
 
-para recibir ofertas económicas del sistema o de otros mánagers y ganar presupuesto.
+#### R.F.04.04. Borrado del jugador
+Como administrador,<br>
+quiero eliminar todos los datos sobre un jugador,<br>
+para retirar del sistema a futbolistas que han abandonado la competición real.
 
-Prueba de aceptación
+**Prueba de aceptación**
+- Al intentar borrar un jugador, el sistema muestra un aviso al administrador y solicita una confirmación para procesar el borrado definitivo.
+- Al proceder con la eliminación del jugador, el sistema desvincula el jugador borrado del equipo al que pertenecía y enviará un mensaje que indique la incidencia al participante afectado.
+- El sistema elimina al jugador y a su información de la base de datos y muestra un mensaje de confirmación.
+- Se cumple la R.N.10.
 
--Comprobar que el jugador aparezca inmediatamente en el mercado de ventas.
+**R.F.05.01. Creación de jornadas**  
+Como administrador,  
+Quiero poder crear una nueva jornada,  
+Para organizar el calendario de partidos de la temporada.
+ 
+**Prueba de aceptación**
+ 
+- Se introducen los datos asociados a una jornada y el sistema crea la jornada en estado pendiente.
+- Se intenta crear una jornada con un número ya existente o con la fecha de fin anterior a la de inicio y el sistema muestra un mensaje de error.
+- Se debe aplicar la R.N.11.
+- Se debe aplicar la R.N.12.
+- Se debe aplicar la R.N.15.
+  
+**R.F.05.02. Lectura de jornadas**  
+Como administrador / usuario,  
+Quiero poder consultar los datos de una jornada o el calendario completo,  
+Para saber cuándo se juega cada jornada y hasta cuándo puedo cambiar mi alineación.
+ 
+**Prueba de aceptación**
+ 
+- Se consultar una jornada y el sistema muestra la información referente a esa jornada.
+- Se solicita consultar una jornada que no existe y el sistema muestra un mensaje de jornada no encontrada.
+- Se solicita el calendario filtrado por estado  y el sistema muestra solo las jornadas de ese estado. ???????????????????????????????
 
--Permitir retirar al jugador del mercado en cualquier momento antes de aceptar una oferta.
+**R.F.05.03. Modificación de jornadas**  
+Como administrador,
+Quiero poder modificar los datos de una jornada,  
+Para corregir errores o adaptarme a cambios en el calendario de partidos.
+ 
+**Prueba de aceptación**
+ 
+- Se modifica la fecha de inicio de una jornada pendiente con un valor válido y el sistema guarda el cambio.
+- Se debe aplicar la regla de negocio R.N.11.
 
--Se debe aplicar la regla de negocio R.N.04 (El sistema del mercado emitirá siempre una oferta automática basada en el valor de mercado actual dentro de las primeras 24 horas).
+**R.F.05.04. Borrado de jornadas**  
+Como administrador,  
+Quiero poder eliminar una jornada,  
+Para quitar jornadas creadas por error.
+ 
+**Prueba de aceptación**
+ 
+- Se elimina una jornada pendiente que no tiene alineaciones ni puntuaciones asociadas y el sistema la borra del calendario.
+- Se intenta eliminar una jornada con alineaciones o puntuaciones asociadas, o una jornada ya finalizada, y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.10.
 
-R.F.05. Asignar capitán al equipo
-Como mánager de una liga
+**R.F.06.01. Creación de puntuaciones**  
+Como administrador,  
+Quiero poder registrar los puntos que ha obtenido un jugador en una jornada,  
+Para que el sistema pueda calcular la puntuación de los equipos y la clasificación.
+ 
+**Prueba de aceptación**
+ 
+- Se registran los puntos de un jugador en una jornada en curso o finalizada y el sistema guarda la puntuación y actualiza los puntos de los equipos que lo alinearon.
+- Se intenta registrar la puntuación de un jugador que ya tiene puntos en esa jornada, o en una jornada pendiente, y el sistema muestra un mensaje de error.
 
-quiero designar a un jugador titular como capitán de mi alineación
 
-para duplicar los puntos que consiga durante la jornada.
+**R.F.06.02. Lectura de puntuaciones**  
+Como administrador / usuario,  
+Quiero poder consultar los puntos de un jugador o de un equipo en una jornada,  
+Para saber cómo ha rendido cada uno.
+ 
+**Prueba de aceptación**
+ 
+- Se solicita la puntuación de un jugador en una jornada y el sistema muestra sus puntos.
+- Se solicita la puntuación de un equipo en una jornada y el sistema muestra los puntos de cada jugador alineado y el total.
+- Se solicita la puntuación de una jornada sin puntos registrados y el sistema muestra un mensaje de puntuación no disponible.
 
-Prueba de aceptación
 
--Verificar que solo se pueda seleccionar a un único jugador titular como capitán por jornada.
+**R.F.06.03. Modificación de puntuaciones**  
+Como administrador,  
+Quiero poder corregir los puntos de un jugador en una jornada,  
+Para arreglar errores en la puntuación.
+ 
+**Prueba de aceptación**
+ 
+- Se modifica la puntuación de un jugador con un valor válido y el sistema guarda el cambio y recalcula los puntos de los equipos afectados y la clasificación.
+- Se intenta modificar la puntuación de un jugador que no tiene puntos registrados en esa jornada y el sistema muestra un mensaje de error. ???????????????????
+- Se debe aplicar la regla de negocio R.N.10.
 
--Comprobar que en el cálculo de puntuación final de la jornada se aplique el multiplicador x2 sobre sus puntos netos.
 
--Se debe aplicar la regla de negocio R.N.15 (Si el capitán seleccionado recibe puntos negativos, la penalización también se multiplicará por 2).
+**R.F.06.04. Borrado de puntuaciones**  
+Como administrador,  
+Quiero poder eliminar la puntuación de un jugador en una jornada,  
+Para quitar puntuaciones registradas por error.
+ 
+**Prueba de aceptación**
+ 
+- Se elimina la puntuación de un jugador en una jornada y el sistema la borra y recalcula los puntos de los equipos afectados y la clasificación.
+- Se intenta eliminar una puntuación de un jugador sin puntuación asignada y el sistema muestra un mensaje de error.
+- Se debe aplicar R.N.10.
 
-R.F.06. Crear una liga privada
-Como mánager
+**R.F.06.05. Consulta de la clasificación**  
+Como usuario / administrador,  
+Quiero poder consultar la clasificación de la liga,  
+Para conocer mi posición respecto al resto de participantes.
+ 
+**Prueba de aceptación**
+ 
+- Se solicita la clasificación y el sistema muestra los equipos ordenados por puntos totales de mayor a menor.
+- Se solicita la clasificación de una jornada concreta y el sistema muestra solo los puntos obtenidos en esa jornada.
+- Dos equipos empatan a puntos y el sistema los ordena aplicando el criterio de desempate (mayor valor de equipo).
 
-quiero crear una liga privada con un código de invitación único y una configuración personalizada
+**R.F.07.01. Creación de transacciones**  
+Como participante,  
+Quiero poder realizar una transacción (puja por un jugador del mercado o venta de uno de mi plantilla),  
+Para incorporar jugadores a mi equipo o recuperar presupuesto.
+ 
+**Prueba de aceptación**
+ 
+- Se realiza una puja por un jugador del mercado con un importe válido y el sistema registra la transacción como pendiente.
+- Se intenta vender un jugador que no está en la plantilla del equipo y el sistema muestra un mensaje de error.
+- Se debe aplicar R.N.13.
+- Se debe aplicar R.N.14.
 
-para competir exclusivamente con un grupo cerrado de amigos.
 
-Prueba de aceptación
+**R.F.07.02. Lectura de transacciones**  
+Como administrador / usuario ,  
+Quiero poder consultar el historial de transacciones realizadas,  
+Para llevar el control de los fichajes, ventas y movimientos de presupuesto.
+ 
+**Prueba de aceptación**
+ 
+- Se solicita el historial de transacciones de un equipo y el sistema muestra jugador, tipo , importe, fecha, estado y participantes involucrados.
+- Se solicita el historial de toda la liga y el sistema muestra las transacciones de todos los equipos ordenadas por fecha.
+- Se solicita consultar una transacción que no existe y el sistema muestra un mensaje de transacción no encontrada.
 
--Comprobar que el sistema genere un código único al completar la creación.
 
--Verificar que el usuario creador quede asignado automáticamente con el rol de Administrador de Liga.
+**R.F.07.03. Modificación de transacciones**  
+Como usuario,  
+Quiero poder modificar el importe de una puja pendiente,  
+Para mejorar mi oferta en base a mi estrategia.
+ 
+**Prueba de aceptación**
+ 
+- Se modifica el importe de una puja pendiente con un valor válido mientras el mercado está abierto y el sistema guarda el cambio.
+- Se intenta modificar una transacción ya resuelta y el sistema muestra un mensaje de error.
+- Se debe aplicar la R.N.09.
+- Se debe aplicar la R.N.13.
+- Se debe aplicar la R.N.14. 
 
--Se debe aplicar la regla de negocio R.N.02 (Un mismo usuario no puede estar inscrito en más de 10 ligas en paralelo).
+
+**R.F.07.04. Borrado de transacciones**  
+Como usuario,  
+Quiero poder cancelar una puja pendiente,  
+Para retirar mi oferta si ya no me interesa el jugador.
+ 
+**Prueba de aceptación**
+ 
+- Se cancela una puja pendiente y el sistema la elimina sin afectar al presupuesto.
+- Se intenta cancelar una transacción ya resuelta y el sistema muestra un mensaje de error, porque el historial de fichajes no se puede borrar.
+
+
+**R.F.07.05. Resolución de transacciones**  
+Como administrador,  
+Quiero poder cerrar el mercado y resolver las transacciones pendientes,  
+Para que los jugadores se adjudiquen de forma justa y se actualicen las plantillas y presupuestos.
+ 
+**Prueba de aceptación**
+ 
+- Se cierra el mercado cada 24 horas y cada jugador se adjudica a la puja de mayor importe, se descuenta el importe del presupuesto del ganador y el jugador se añade a su plantilla.
+- Hay un empate entre dos pujas y el sistema adjudica el jugador a la puja registrada primero.
+- Un jugador sin pujas no se adjudica y sigue disponible en el mercado.
+- Se debe aplicar la R.N.13.
+- Se debe aplicar la R.N.14
+
+**R.F.08.01. Creación de partidos**  
+Como administrador,  
+Quiero poder crear un partido,  
+Para poder establecer el calendario de la liga sin problemas.
+ 
+**Prueba de aceptación**
+ 
+- Un administrador crea un partido asignándole sus atributos y relacionado con una jornada, el sistema crea y guarda ese partido y muestra un mensaje de "operación exitosa".
+- Se debe aplicar la regla de negocio R.N.15.
+
+**R.F.08.02. Lectura de partidos**  
+Como participante / administrador,  
+Quiero poder consultar los partidos que haya cada jornada,  
+Para revisar el horario y seguir los resultados de cada partido.
+ 
+**Prueba de aceptación**
+ 
+- Un usuario consulta un partido y el sistema le muestra en pantalla todos los datos asociados a dicho partido.
+- Al consultar una jornada, el sistema muestra todos los partidos.
+
+
+**R.F.08.03. Modificación de partidos**  
+Como administrador,  
+Quiero poder modificar los partidos,  
+Para editar en tiempo real cómo va el partido o cambiar su horario.
+ 
+**Prueba de aceptación**
+ 
+- Un administrador modifica un partido y su información y el sistema actualiza esa información y muestra un mensaje de "operación exitosa".
+- Se debe aplicar la R.N.10.
+- Se debe aplicar la R.N.15.
+- Se debe aplicar la R.N.17.
+
+**R.F.08.04. Borrado de partidos**  
+Como administrador,  
+Quiero poder eliminar un partido,  
+Para borrar de manera definitiva partidos que hayan sido añadidos por error o que se hayan suspendido de manera definitiva.
+ 
+**Prueba de aceptación**
+ 
+- Un administrador elimina un partido y el sistema borra ese partido y sus datos y muestra un mensaje de "operación exitosa".
+- Un administrador elimina un partido ya finalizado y el sistema muestra un mensaje de error.
+- Se debe aplicar la R.N.17.
+- Se debe aplicar la R.N.10.
+
+?????????????????????????????????????????????
+**R.F.08.05. Designación del capitán**  
+Como participante,  
+Quiero poder elegir un capitán entre los jugadores de mi alineación,  
+Para duplicar los puntos de ese jugador en la jornada.
+ 
+**Prueba de aceptación**
+ 
+- Se designa capitán a uno de los jugadores alineados y el sistema lo guarda en la alineación.
+- Se intenta designar capitán a un jugador que no está en la alineación o designar un segundo capitán y el sistema muestra un mensaje de error.
+- Se debe aplicar la regla de negocio R.N.XX.
+
 #### 4.1.1. Requisitos de información
 
 ##### R.I.01. Información de usuario
 
-Como mánager de una liga
+Como dueño de la aplicación
 
 quiero poder almacenar la siguiente información de Usuario:
 - El correo que esa persona va a emplear para registrarse.
@@ -231,12 +506,11 @@ De esta clase Usuario derivan dos subclases:
   - El presupuesto inicial.
 
 Y estas subclases se asocian de la siguiente forma:
-- Un Administrador puede gestionar una o varias Ligas a nivel global.
 - Un participante puede crear una o varias Ligas.  Además, el participante puede poseer uno o varios Equipos.
 
 ##### R.I.02. Información de la liga
 
-Como mánager de una liga
+Como participante
 
 quiero poder almacenar la siguiente información de la Liga:
 - El nombre de esa liga.
@@ -251,7 +525,7 @@ Esta entidad Liga se asocia de la siguiente forma:
 
 ##### R.I.03. Información del equipo
 
-Como mánager de una liga
+Como participante
 
 quiero poder almacenar la siguiente información sobre el Equipo:
 - Los puntos totales (calculado mediante la suma de todos los puntos de la Alineación en cada Jornada).
@@ -260,14 +534,14 @@ quiero poder almacenar la siguiente información sobre el Equipo:
 para saber cómo va el equipo en la clasificación general.
 
 Esta entidad Equipo se asocia de la siguiente forma:
-- Varios Equipo pertence a un solo participante (cumpliendo siempre la R.N.08).
+- Varios Equipo pertence a un solo participante (cumpliendo siempre la R.N.05).
 - Uno o varios Equipos pertenecen a una sola liga.
 - Un Equipo puede poseer entre 0 y muchos Jugadores.
-- Varios Equipos guardan varias Alineaciones.
+- Varios Equipos participan en varias Jornadas.
 
 ##### R.I.04. Información del jugador
 
-Como mánager de una liga
+Como participante
 
 quiero poder almacenar la siguiente información sobre el Jugador:
 - El nombre.
@@ -281,13 +555,13 @@ quiero poder almacenar la siguiente información sobre el Jugador:
 para consultar la ficha y las estadísticas del futbolista, saber si está disponible para ponerlo en la alineación y gestionar su compra o venta según su valor y posición.
 
 Esta entidad Jugador se asocia de la siguiente forma:
-- Varios Jugadores pertenecen a un equipo (respetando la RN.07).
-- 11 Jugadores son alineados por una Alineación.
+- Varios Jugadores pueden pertenecer a varios Equipos (respetando la R.N.04).
+- 11 Jugadores son alineados en varios Partidos.
 - Varios Jugadores juegan entre 0 y muchas Jornadas.
 
 ##### R.I.05. Información de la jornada
 
-Como mánager de una liga
+Como administrador
 
 quiero poder almacenar la siguiente información sobre el Jornada:
 - El número de la Jornada.
@@ -297,27 +571,29 @@ quiero poder almacenar la siguiente información sobre el Jornada:
 para tener organizado el calendario de la liga, controlar las fechas en las que los participantes pueden guardar su alineación y calcular las puntuaciones semanales.
 
 Esta entidad Jornada se asocia de la siguiente forma:
-- Una o varias Jornadas son compuestas en una Liga.
-- Una Jornada registra muchas Alineaciones.
+- Una Liga está compuesta obligatoriamente por una o varias Jornadas.
+- En muchas Jornadas participan muchos Equipos.
 - Varias Jornadas son jugadas por varios Jugadores.
 
-##### R.I.06. Información de puntuación
+##### R.I.06. Información de los partidos
 
-Como mánager de una liga
+Como administrador
 
-quiero poder almacenar la siguiente información sobre la Puntuación:
-- Los goles marcados por el Jugador en la Jornada.
-- Las asistencias realizadas.
-- Los puntos obtenidos en la jornada (calculados a partir de los goles, asistencias y su actuación).
+quiero poder almacenar la siguiente información sobre el Partido:
+- Los puntos por Jornada (calculado como la suma de todas las Puntuaciones de los 11 Jugadores alineados).
+- La fecha y hora que comienza el Partido.
+- El estado en el que se encuentra el Partido (PENDIENTE, EN_JUEGO, FINALIZADO, SUSPENDIDO).
 
-para saber cuántos puntos suma cada jugador en un partido concreto, actualizar los puntos de las alineaciones de los participantes y llevar el registro de estadísticas de los futbolistas.
+para conocer el calendario de enfrentamientos, realizar el seguimiento del estado de cada partido en tiempo real y calcular automáticamente los puntos obtenidos por el equipo en dicha jornada.
 
-Esta entidad Puntuación se asocia de la siguiente forma:
-- Puntuacion nace de la relación muchos a muchos entre Jugador y Jornada. Cada registro de Puntuacion vincula a 1 único Jugador con 1 única Jornada para almacenar su rendimiento específico en ese partido.
+Esta entidad Partido se asocia de la siguiente forma:
+- Nace de la relación muchos a muchos entre Equipo y Jornada.
+- Un Partido alinea a 11 Jugadores.
+
 
 ##### R.I.07. Información de transacciones
 
-Como mánager de una liga
+Como participante
 
 quiero poder almacenar la siguiente información sobre la Transacción:
 - La cantidad (el dinero de la operación).
@@ -329,62 +605,105 @@ para registrar los fichajes y compraventas de jugadores entre equipos y llevar e
 Esta entidad Transacción se asocia de la siguiente forma:
 - Transacción se modela como una clase de asociación sobre la relación entre Equipo y Jugador. Cada registro de Transacción vincula a 1 Equipo con 1 Jugador para registrar el intento o confirmación de su fichaje por una cantidad, fecha y estado concretos.
 
-##### R.I.08. Información de las alineaciones
+##### R.I.08. Información de puntuación
 
-Como mánager de una liga
+Como administrador
 
-quiero poder almacenar la siguiente información sobre la Alineacion:
-- Los puntos por Jornada (calculado como la suma de todas las Puntuaciones de los 11 Jugadores alineados).
-- La formación que emplea el Equipo.
-- La fecha de guardado de la Alineación.
+quiero poder almacenar la siguiente información sobre la Puntuación:
+- Los goles marcados por el Jugador en la Jornada.
+- Las asistencias realizadas.
+- Los puntos obtenidos en la jornada (calculados a partir de los goles, asistencias y su actuación).
 
-para registrar los 11 jugadores y la formación táctica que elige el usuario en una jornada, comprobar que la guardó dentro del plazo límite y calcular los puntos que suma esa semana.
+para saber cuántos puntos suma cada jugador en un partido concreto, actualizar los puntos de las alineaciones de los participantes y llevar el registro de estadísticas de los futbolistas.
 
-Esta entidad Alineación se asocia de la siguiente forma:
-- Una o varias Alineaciones son registradas por la Jornada.
-- Varias Alineaciones son guardadas por varios Equipos.
-- Una Alineación alinea a 11 Jugadores.
+Esta entidad Puntuación se asocia de la siguiente forma:
+- Se modela como una clase de asociación sobre la relación de alineación entre Jugador y Partido.
+- Cada registro de Puntuación vincula a 1 Jugador con 1 Partido concreto para almacenar sus estadísticas individuales y sus puntos derivados.
 
 #### 4.1.2. Reglas de negocio
+##### R.N.01. Correo único
 
-#### R.N.01 
- El dinero de la puja activa se retiene temporalmente del presupuesto disponible del usuario.
+No puede haber dos usuarios con el mismo correo electrónico.
 
-#### R.N.02  
-Si el saldo total del mánager es negativo al inicio de la jornada, la alineación puntúa 0.
 
-####  R.N.03 
- Un jugador recién fichado mediante cláusula no puede ser clausulado de nuevo durante 14 días.
+##### R.N.03. Permisos de gestión de la liga
 
-####  R.N.04  
-El sistema del mercado emitirá siempre una oferta automática basada en el valor de mercado actual dentro de las primeras 24 horas.
+Solo un administrador o el creador de una liga puede gestionar una liga y a sus participantes.
 
-#### R.N.05  
-Si el capitán seleccionado recibe puntos negativos, la penalización también se multiplicará por 2.
 
-####  R.N.06 
-Un mismo usuario no puede estar inscrito en más de 10 ligas en paralelo.
+##### R.N.05. Unicidad de equipo por liga
 
-##### R.N.07. Jugador compartido
+Un usuario no puede tener dos (o más) equipos en una misma liga.
+
+##### R.N.06. Valor positivo del jugador
+
+El valor económico del Jugador debe ser un importe numérico estrictamente mayor que cero.
+
+##### R.N.07. Código incorrecto
+
+Solo es posible unirse a una liga mediante un código alfanumérico de 6 caracteres.
+
+##### R.N.08. Contraseña no permitida
+
+La contraseña debe contener al menos 8 caracteres.
+
+##### R.N.09. Permisos sobre un equipo
+
+El propietario de un equipo (o un administrador) es el único que tiene permisos sobre su equipo.
+
+##### R.N.10. Permisos de gestión
+
+Solo un administrador puede gestionar la información referente a la aplicación.
+
+##### R.N.11. Fechas de jornada
+
+La fecha de inicio de una jornada no puede ser posterior a su fecha final.
+
+##### R.N.12. Número de jornada incorrecto
+
+El número de jornada debe ser mayor que cero.
+
+
+##### R.N.14. Presupuesto positivo
+
+Un participante no puede quedarse con un presupuesto negativo.
+
+
+##### R.N.16. Jornada única
+
+El número de jornada debe ser único.
+
+
+
+
+## Reglas de negocio de verdad
+##### R.N.01. Compraventa limitada
+
+No se puede completar la compra de un jugador por un precio menor al 50% del valor del jugador ni se puede vender por un precio mayor al 50%.
+
+##### R.N.02. Compra según el valor del equipo
+
+Un participante no puede comprar a un jugador cuyo valor de mercado suponga un 60% del valor total de su equipo.
+
+##### R.N.03. Límite de ligas
+
+Un mismo participante no puede estar en más de 5 ligas a la vez.
+
+##### R.N.04. Jugador compartido
 
 Un jugador no puede pertenecer a dos equipos diferentes en una misma liga.
 
-##### R.N.08. Unicidad de equipo por liga
+##### R.N.05. Limite de plantilla
 
-Un manager no puede tener dos (o más) equipos en una misma liga.
+Un participante no puede tener más de 22 jugadores en propiedad en una misma liga.
 
+##### R.N.06. Un partido por jornada
 
+Un equipo de una liga no puede jugar más de un partido por jornada.
 
-### 4.2. Mapa de historias de usuario (opcional)
+##### R.N.07. Modificación de partido finalizado
 
-### 4.3. Requisitos no funcionales (opcional)
-
-**R.N.F. 01. Título requisito no funcional**
-Como [tipo de usuario]
-quiero [servicio]
-para [razón]
-
--- fin entregable 1 --
+No se puede modificar un partido una vez haya finalizado.
 
 ## 5. Modelo conceptual
 
