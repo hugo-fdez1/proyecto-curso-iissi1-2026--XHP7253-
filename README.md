@@ -520,7 +520,7 @@ para identificar de forma única la competición y permitir que los participante
 
 Esta entidad Liga se asocia de la siguiente forma:
 - Una Liga es creada por un único participante.
-- Una Liga se compone obligatoriamente de uno a muchos Equipos.
+- Una Liga tiene uno o muchos Equipos.
 - Una Liga está compuesta por una a muchas Jornadas.
 
 ##### R.I.03. Información del equipo
@@ -534,10 +534,10 @@ quiero poder almacenar la siguiente información sobre el Equipo:
 para saber cómo va el equipo en la clasificación general.
 
 Esta entidad Equipo se asocia de la siguiente forma:
-- Varios Equipo pertence a un solo participante (cumpliendo siempre la R.N.05).
+- Varios Equipo pertence a un solo participante (cumpliendo siempre la R.N.08).
 - Uno o varios Equipos pertenecen a una sola liga.
 - Un Equipo puede poseer entre 0 y muchos Jugadores.
-- Varios Equipos participan en varias Jornadas.
+- Un Equipo enfrenta a otro equipo.
 
 ##### R.I.04. Información del jugador
 
@@ -556,8 +556,8 @@ para consultar la ficha y las estadísticas del futbolista, saber si está dispo
 
 Esta entidad Jugador se asocia de la siguiente forma:
 - Varios Jugadores pueden pertenecer a varios Equipos (respetando la R.N.04).
-- 11 Jugadores son alineados en varios Partidos.
-- Varios Jugadores juegan entre 0 y muchas Jornadas.
+- 22 Jugadores son alineados en uno o varios Partidos.
+
 
 ##### R.I.05. Información de la jornada
 
@@ -571,9 +571,8 @@ quiero poder almacenar la siguiente información sobre el Jornada:
 para tener organizado el calendario de la liga, controlar las fechas en las que los participantes pueden guardar su alineación y calcular las puntuaciones semanales.
 
 Esta entidad Jornada se asocia de la siguiente forma:
-- Una Liga está compuesta obligatoriamente por una o varias Jornadas.
-- En muchas Jornadas participan muchos Equipos.
-- Varias Jornadas son jugadas por varios Jugadores.
+-Una o muchas Jornadas componen a una Liga.
+- Una Jornada está compuesta por uno o más Partidos.
 
 ##### R.I.06. Información de los partidos
 
@@ -587,8 +586,9 @@ quiero poder almacenar la siguiente información sobre el Partido:
 para conocer el calendario de enfrentamientos, realizar el seguimiento del estado de cada partido en tiempo real y calcular automáticamente los puntos obtenidos por el equipo en dicha jornada.
 
 Esta entidad Partido se asocia de la siguiente forma:
-- Nace de la relación muchos a muchos entre Equipo y Jornada.
-- Un Partido alinea a 11 Jugadores.
+- Nace de la relación de Equipo con sí mismo, donde un Equipo enfrenta a otro Equipo.
+- Uno o varios Partidos alinea a 22 Jugadores.
+- Uno o varios Partidos componen a una Jornada.
 
 
 ##### R.I.07. Información de transacciones
@@ -704,6 +704,10 @@ Un equipo de una liga no puede jugar más de un partido por jornada.
 ##### R.N.07. Modificación de partido finalizado
 
 No se puede modificar un partido una vez haya finalizado.
+
+##### R.N.08. Unicidad de equipo por liga
+
+Un usuario no puede tener dos (o más) equipos en una misma liga.
 
 ## 5. Modelo conceptual
 
