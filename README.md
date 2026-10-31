@@ -245,7 +245,6 @@ quiero poder almacenar la siguiente información de la Liga:
 para identificar de forma única la competición y permitir que los participantes se unan mediante un código privado.
 
 Esta entidad Liga se asocia de la siguiente forma:
-- Una Liga gestionada por un solo Administrador.
 - Una Liga es creada por un único participante.
 - Una Liga se compone obligatoriamente de uno a muchos Equipos.
 - Una Liga está compuesta por una a muchas Jornadas.
