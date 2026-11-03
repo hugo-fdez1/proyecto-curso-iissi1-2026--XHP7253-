@@ -644,7 +644,8 @@ No se puede modificar un partido una vez haya finalizado.
 
 ### 5.2. Escenarios de prueba
 
-<img width="14400" height="4509" alt="5 2 escenario de prueba_2026-11-03_18-10-00" src="https://github.com/user-attachments/assets/87acf7ab-8ba9-4482-801f-3465cbdd5848" />
+<img width="14400" height="4509" alt="5 2 escenario de prueba_2026-11-03_18-15-51" src="https://github.com/user-attachments/assets/b5a13245-6896-4fbf-b501-6c43fe45eac0" />
+
 
 
 ## 6. Matrices de trazabilidad
