@@ -641,7 +641,8 @@ No se puede modificar un partido una vez haya finalizado.
 ### 5.1. Diagramas de clases UML
 
 - con restricciones.
-![alt text](<Liga Fantasy.png>)
+
+<img style="display: block;-webkit-user-select: none;margin: auto;cursor: zoom-in;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="https://raw.githubusercontent.com/hugo-fdez1/proyecto-curso-iissi1-2026--XHP7253-/refs/heads/main/Liga%20Fantasy.png" width="921" height="695">
 
 
 ### 5.2. Escenarios de prueba
