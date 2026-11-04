@@ -647,9 +647,7 @@ No se puede modificar un partido una vez haya finalizado.
 
 ### 5.2. Escenarios de prueba
 
-<img width="14400" height="4509" alt="5 2 escenario de prueba_2026-11-04_16-40-13" src="https://github.com/user-attachments/assets/a26614e5-49e7-4944-8452-90e133b17449" />
-
-![alt text](<5.2 escenario de prueba_2026-11-04_20-40-41.png>)
+<img style="display: block;-webkit-user-select: none;margin: auto;cursor: zoom-in;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="https://raw.githubusercontent.com/hugo-fdez1/proyecto-curso-iissi1-2026--XHP7253-/refs/heads/main/5.2%20escenario%20de%20prueba_2026-11-04_20-40-41.png" width="981" height="307">
 
 
 ## 6. Matrices de trazabilidad
