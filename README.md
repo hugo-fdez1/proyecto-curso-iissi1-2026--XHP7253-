@@ -644,7 +644,7 @@ No se puede modificar un partido una vez haya finalizado.
 
 ### 5.2. Escenarios de prueba
 
-<img width="14400" height="4509" alt="5 2 escenario de prueba_2026-11-03_18-15-51" src="https://github.com/user-attachments/assets/b5a13245-6896-4fbf-b501-6c43fe45eac0" />
+<img width="14400" height="4509" alt="5 2 escenario de prueba_2026-11-04_16-40-13" src="https://github.com/user-attachments/assets/a26614e5-49e7-4944-8452-90e133b17449" />
 
 
 
