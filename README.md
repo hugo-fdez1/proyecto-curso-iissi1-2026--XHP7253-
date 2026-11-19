@@ -715,5 +715,6 @@ Se consideran todo tipo de constraints declarativas (aquellas definidas durante 
 -- fin entregable 3 --
 
 ## Referencias
-
-
+- https://coolligan.com/blogs/news/cuando-empieza-la-liga-fantasy?srsltid=AYCX9vIKA7cbEuB5LsDPujvqvXAz9a3ywkyp9c8Gv0kEpTZvpx8GAl5R
+- https://www.marca.com/fantasy-marca/2024/10/29/67212698268e3ecb4c8b456d.html?site=uedit
+- https://www.instagram.com/p/DcB7OBQAgIS/
