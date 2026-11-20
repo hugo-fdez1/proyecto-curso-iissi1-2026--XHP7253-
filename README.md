@@ -683,7 +683,7 @@ No se puede modificar un partido una vez haya finalizado.
 -- fin entregable 2 --
 
 ## 7. Modelo relacional en 3FN
-´´´
+```text
 Usuario(!id, #correo, nombre, contraseña)
 Administrador(!id, @usuarioId)
 Participante(!id, @usuarioId, presupuesto)
@@ -696,7 +696,7 @@ Jornada(!id, @ligaId, #numero, fechaInicio, fechaFin)
 Partido(!id, @jornadaId, @equipo1Id, @equipo2Id, fechaHora, estado)
 Puntuacion(!id, @partidoId, @jugadorId, #(partidoId, jugadorId), puntos, goles, asistencias)
 Transaccion(!id, @equipoId, @jugadorId, cantidad, fecha)
-´´´
+```
 
 ### 7.1.  Justificación de la estrategia de transformación de jerarquías
 
