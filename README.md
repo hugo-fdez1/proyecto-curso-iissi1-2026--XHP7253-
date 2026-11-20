@@ -721,17 +721,17 @@ No se puede modificar un partido una vez haya finalizado.
 ## 7. Modelo relacional en 3FN
 ```text
 Usuario(!id, #correo, nombre, contraseña)
-Administrador(!id, @usuarioId)
-Participante(!id, @usuarioId, presupuesto)
+Administrador(!id, #@usuarioId)
+Participante(!id, #@usuarioId, presupuesto)
 Liga(!id, @participanteId, nombre, #codigo)
 ParticipanteLiga(!id, @participanteId, @ligaId, #(participanteId, ligaId))
 Equipo(!id, @participanteId, @ligaId, #(participanteId, ligaId))
 Jugador(!id, nombre, valor, posicion, estadoFisico, foto)
 EquipoJugador(!id, @equipoId, @jugadorId,#(equipoId, jugadorId))
-Jornada(!id, @ligaId, #numero, fechaInicio, fechaFin)
+Jornada(!id, @ligaId, #(ligaId, numero), fechaInicio, fechaFin)
 Partido(!id, @jornadaId, @equipo1Id, @equipo2Id, fechaHora, estado)
 Puntuacion(!id, @partidoId, @jugadorId, #(partidoId, jugadorId), puntos, goles, asistencias)
-Transaccion(!id, @equipoId, @jugadorId, cantidad, fecha)
+Transaccion(!id, @equipoId, @jugadorId, cantidad, fecha, estado)
 ```
 
 ### 7.1.  Justificación de la estrategia de transformación de jerarquías
