@@ -112,14 +112,14 @@ CREATE TABLE transaccion (
     jugadorId INT NOT NULL,
     cantidad DECIMAL(9,2) NOT NULL,
     fecha DATE NOT NULL,
-    estado ENUM(PENDIENTE , ACEPTADA , RECHAZADA) NOT NULL,
+    estado ENUM('PENDIENTE' , 'ACEPTADA' , 'RECHAZADA') NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(equipoId) REFERENCES equipos(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    PRIMARY KEY(jugadorId) REFERENCES jugadores(id)
+    FOREIGN KEY (jugadorId) REFERENCES jugadores(id)
         ON DELETE CASCADE
-        ON UPDATE CASCADE,
+        ON UPDATE CASCADE
     
 );
 
@@ -136,7 +136,7 @@ CREATE TABLE puntuacion (
     FOREIGN KEY (partidoId) REFERENCES partidos(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    PRIMARY KEY(jugadorId) REFERENCES jugadores(id)
+    FOREIGN KEY (jugadorId) REFERENCES jugadores(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     UNIQUE (partidoId, jugadorId)    
@@ -148,8 +148,8 @@ CREATE TABLE partido (
     jornadaId INT NOT NULL,
     equipo1Id INT NOT NULL,
     equipo2Id INT NOT NULL,
-    fechaHora DATE NOT NULL,
-    estado ENUM(PENDIENTE, EN_JUEGO , FINALIZADO , SUSPENDIDA) NOT NULL,
+    fechaHora DATETIME NOT NULL,
+    estado ENUM('PENDIENTE', 'EN_JUEGO' , 'FINALIZADO' , 'SUSPENDIDO') NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (jornadaId) REFERENCES jornadas(id)
         ON DELETE CASCADE
@@ -159,7 +159,7 @@ CREATE TABLE partido (
         ON UPDATE CASCADE,
     FOREIGN KEY (equipo2Id) REFERENCES equipos(id)
         ON DELETE CASCADE
-        ON UPDATE CASCADE,      
+        ON UPDATE CASCADE     
 );
 
 
