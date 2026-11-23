@@ -739,7 +739,7 @@ Transaccion(!id, @equipoId, @jugadorId, cantidad, fecha, estado)
 
 ### 7.1.  Justificación de la estrategia de transformación de jerarquías
 
-- si se identificaron jerarquías en el MC.
+- si se identificaron jerarquías en el MC..
 
 
 ### 8. Matriz de trazabilidad MC/SQL (opcional):
