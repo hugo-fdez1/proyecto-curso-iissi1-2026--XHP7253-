@@ -1,3 +1,16 @@
+DROP TABLE IF EXISTS puntuaciones;
+DROP TABLE IF EXISTS partidos;
+DROP TABLE IF EXISTS transacciones;
+DROP TABLE IF EXISTS jornadas;
+DROP TABLE IF EXISTS equipoJugador;
+DROP TABLE IF EXISTS jugadores;
+DROP TABLE IF EXISTS equipos;
+DROP TABLE IF EXISTS participanteLiga;
+DROP TABLE IF EXISTS ligas;
+DROP TABLE IF EXISTS participantes;
+DROP TABLE IF EXISTS administradores;
+DROP TABLE IF EXISTS usuarios;
+
 create table usuarios(
     id INT not null auto_increment,
     correo VARCHAR(255) not null,
@@ -20,12 +33,13 @@ create table administradores(
 create table participantes(
     id int not null auto_increment,
     usuarioId int not null,
-    presupuesto decimal(11,2) default 200000000.00,
+    presupuesto decimal(11,2) not null default 200000000.00,
     primary key(id),
     foreign key (usuarioId) references usuarios(id)
         on delete cascade
         on update cascade,
-    unique(usuarioId)
+    unique(usuarioId),
+    check (presupuesto>=0)
 );
 
 CREATE TABLE ligas (
@@ -75,7 +89,8 @@ CREATE TABLE jugadores (
     posicion ENUM('DEL', 'MED', 'DEF', 'POR') NOT NULL,
     estadoFisico ENUM('LESIONADO', 'DISPONIBLE', 'DUDOSO', 'SANCIONADO') NOT NULL,
     foto VARCHAR(255),
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    check (valor>0)
 );
 
 CREATE TABLE equipoJugador (
@@ -102,16 +117,17 @@ CREATE TABLE jornadas (
     FOREIGN KEY (ligaId) REFERENCES ligas(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    UNIQUE (ligaId, numero)
+    UNIQUE (ligaId, numero),
+    check (fechaFin>=fechaInicio)
 );
 
 
-CREATE TABLE transaccion (
+CREATE TABLE transacciones (
     id INT NOT NULL AUTO_INCREMENT,
     equipoId INT NOT NULL,
     jugadorId INT NOT NULL,
-    cantidad DECIMAL(9,2) NOT NULL,
-    fecha DATE NOT NULL,
+    cantidad DECIMAL(11,2) NOT NULL,
+    fechaHora DATETIME NOT NULL,
     estado ENUM('PENDIENTE' , 'ACEPTADA' , 'RECHAZADA') NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(equipoId) REFERENCES equipos(id)
@@ -119,32 +135,13 @@ CREATE TABLE transaccion (
         ON UPDATE CASCADE,
     FOREIGN KEY (jugadorId) REFERENCES jugadores(id)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
+        ON UPDATE CASCADE,
+    check (cantidad>0)
     
 );
 
-
-
-CREATE TABLE puntuacion (
-    id INT NOT NULL AUTO_INCREMENT
-    partidoId INT NOT NULL,
-    jugadorId INT NOT NULL,
-    puntos INT NOT NULL,
-    goles  INT NOT NULL,
-    asistencias INT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (partidoId) REFERENCES partidos(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    FOREIGN KEY (jugadorId) REFERENCES jugadores(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    UNIQUE (partidoId, jugadorId)    
-);
-
-
-CREATE TABLE partido (
-    id INT NOT NULL AUTO_INCREMENT
+CREATE TABLE partidos (
+    id INT NOT NULL AUTO_INCREMENT,
     jornadaId INT NOT NULL,
     equipo1Id INT NOT NULL,
     equipo2Id INT NOT NULL,
@@ -159,7 +156,24 @@ CREATE TABLE partido (
         ON UPDATE CASCADE,
     FOREIGN KEY (equipo2Id) REFERENCES equipos(id)
         ON DELETE CASCADE
-        ON UPDATE CASCADE     
+        ON UPDATE CASCADE,
+    check (equipo1Id<>equipo2Id)    
 );
 
-
+CREATE TABLE puntuaciones (
+    id INT NOT NULL AUTO_INCREMENT,
+    partidoId INT NOT NULL,
+    jugadorId INT NOT NULL,
+    puntos INT NOT NULL,
+    goles  INT NOT NULL,
+    asistencias INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (partidoId) REFERENCES partidos(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (jugadorId) REFERENCES jugadores(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    UNIQUE (partidoId, jugadorId),
+    check (goles>=0 and asistencias>=0)    
+);

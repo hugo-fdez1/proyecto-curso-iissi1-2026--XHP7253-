@@ -475,10 +475,9 @@ Para borrar de manera definitiva partidos que hayan sido añadidos por error o q
 
 #### Tenemos que hacer consultas complejas (que involucren dos o más tablas) y en ellas que aparezcan como minimo una vez las funciones de agregacion (count,sum,avg,max,min) y order by, group by, where, having, e imagino que con eso basta. 
 
-**R.F.09. Consulta de la media de los puntos de un equipo por jornada**
-
-Como usuario,
-Quiero poder consultar la media de puntos que han hecho los jugadores de cada equipo por jornada,
+**R.F.09. Consulta de la media de los puntos de un equipo por jornada**<br>
+Como usuario,<br>
+Quiero poder consultar la media de puntos que han hecho los jugadores de cada equipo por jornada,<br>
 Para tener más conocimiento sobre el nivel general de un equipo.
 
 **Prueba de aceptación**
@@ -486,10 +485,9 @@ Para tener más conocimiento sobre el nivel general de un equipo.
 - Un usuario accede al perfil de un equipo y le sale esta información pudiendo elegir por cada jornada.
 - Un usuario accede al perfil de un equipo y consulta una jornada en la que el equipo no puntuó por cualquier razón y la media le dará cero.
 
-**R.F.10. Consulta de los 5 jugadores más goleadores**
-
-Como usuario,
-Quiero poder consultar los cinco jugadores que más goles han marcado en orden de más a menos goles,
+**R.F.10. Consulta de los 5 jugadores más goleadores**<br>
+Como usuario,<br>
+Quiero poder consultar los cinco jugadores que más goles han marcado en orden de más a menos goles,<br>
 Para saber qué jugadores son buenos atacantes.
 
 **Prueba de aceptación**
@@ -497,10 +495,9 @@ Para saber qué jugadores son buenos atacantes.
 - Un usuario intentará consultar esta información y el sistema le mostrará los jugadores correspondientes.
 - Un usuario intenta consultar estos jugadores sin haberse jugado ninguna jornada y el sistema mostrará un sistema de error.
 
-**R.F.11. Consulta de la transacción más cara por equipo**
-
-Como usuario,
-Quiero poder consultar la transacción más cara realizada por cada equipo, ya sea compra o venta, y el jugador involucrado,
+**R.F.11. Consulta de la transacción más cara por equipo**<br>
+Como usuario,<br>
+Quiero poder consultar la transacción más cara realizada por cada equipo, ya sea compra o venta, y el jugador involucrado,<br>
 Para hacerme una idea de cómo ha utilizado el dinero cada equipo.
 
 **Prueba de aceptación**
@@ -734,7 +731,7 @@ EquipoJugador(!id, @equipoId, @jugadorId, #(equipoId, jugadorId))
 Jornada(!id, @ligaId, numero, #(ligaId, numero), fechaInicio, fechaFin)
 Partido(!id, @jornadaId, @equipo1Id, @equipo2Id, fechaHora, estado)
 Puntuacion(!id, @partidoId, @jugadorId, #(partidoId, jugadorId), puntos, goles, asistencias)
-Transaccion(!id, @equipoId, @jugadorId, cantidad, fecha, estado)
+Transaccion(!id, @equipoId, @jugadorId, cantidad, fechaHora, estado)
 ```
 
 ### 7.1.  Justificación de la estrategia de transformación de jerarquías
