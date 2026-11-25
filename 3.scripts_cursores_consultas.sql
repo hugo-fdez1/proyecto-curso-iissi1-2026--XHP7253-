@@ -17,3 +17,15 @@ group by jugadores.id
 order by sum(puntuaciones.goles) Desc
 Limit 5
 ;
+
+--R.F.11--
+select u.nombre,j.nombre,t.cantidad from transacciones t
+join equipos e on t.equipoId=e.id
+join jugadores j on j.id = t.jugadorId
+join participantes p on e.participanteId=p.id
+join usuarios u on u.id = p.usuarioId
+where t.cantidad = (
+    select Max(t1.cantidad) from transacciones t1
+    where t1.equipoId=e.id
+)
+;
