@@ -505,6 +505,31 @@ Para hacerme una idea de cómo ha utilizado el dinero cada equipo.
 - Un usuario intenta consultar la información de un equipo y en un apartado el sistema le mostrará este dato.
 - Si no ha realizado ninguna transacción el sistema no mostrará ningún apartado.
 
+**R.F.12. Consulta de los jugadores que más puntúan por equipo**<br>
+Como usuario,<br>
+Quiero poder consultar los jugadores que más puntúan por cada equipo,<br>
+Para saber que jugador me conviene fichar para perjudicar al rival.
+
+**Prueba de aceptación**
+
+- Un usuario intenta consultar los jugadores que más puntúan de un equipo y un apartado del sistema le mostrará ese dato.
+- El sistema mostrará el top 5 jugadores de cada equipo mejor puntuados subrayados.
+
+**R.F.13. Consulta de los equipos más goleadores**<br>
+Como usuario,<br>
+Quiero poder consultar los equipos que más goles han marcado,<br>
+Para ver quien tiene mejores atacantes.
+
+**Prueba de aceptación**
+
+- Un usuario intenta consultar en qué puesto está un equipo en cuanto a goles y un apartado del sistema se lo muestra.
+- El sistema mostrará los 3 equipos más goleadores subrayados.
+
+
+**R.F.14.   
+
+
+
 #### 4.1.1. Requisitos de información
 
 ##### R.I.01. Información de usuario
